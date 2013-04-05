@@ -1,6 +1,6 @@
 # Grape::Swagger::Rails
 
-TODO: Write a gem description
+grape-swagger Ruby on Rails integration
 
 ## Installation
 
