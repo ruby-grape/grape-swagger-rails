@@ -22,5 +22,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake'
   spec.add_dependency 'railties', '~> 3.2.13'
   spec.add_dependency 'rubyzip', '~> 0.9.9'
-  spec.add_dependency 'grape-swagger', '~> 0.5.0'
 end
