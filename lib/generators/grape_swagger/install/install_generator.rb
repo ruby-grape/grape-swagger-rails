@@ -10,7 +10,7 @@ module GrapeSwagger
 
       def install
         install_path = 'apidoc'
-        swagger_ui_repo = 'https://github.com/wordnik/swagger-ui/'
+        swagger_ui_repo = 'https://github.com/wordnik/swagger-ui'
         api_path = 'api'
 
         Zip::ZipFile.foreach(open("#{swagger_ui_repo}/archive/master.zip")) do |zip_entry|
