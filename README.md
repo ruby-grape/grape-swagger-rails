@@ -16,9 +16,9 @@ Or install it yourself as:
 
     $ gem install grape-swagger-rails
 
-## Usage
+## Usage: add this line to your routes.rb
 
-    rails g grape_swagger:install
+    mount GrapeSwaggerRails::Engine => '/apidoc'
 
 ## Contributing
 
