@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'grape/swagger/rails/version'
+require 'grape-swagger-rails/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'grape-swagger-rails'
-  spec.version       = Grape::Swagger::Rails::VERSION
+  spec.version       = GrapeSwaggerRails::VERSION
   spec.authors       = ['Aleksandr B. Ivanov', 'Alexander Logunov']
   spec.email         = ['radanisk@ya.ru', 'unlovedru@gmail.com']
   spec.description   = %q{grape grape-swagger swagger-ui rails integration}
