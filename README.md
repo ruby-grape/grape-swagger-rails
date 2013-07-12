@@ -19,6 +19,12 @@ Or install it yourself as:
 ## Usage: add this line to your routes.rb
 
     mount GrapeSwaggerRails::Engine => '/apidoc'
+    
+## Нюансы
+
+Чтобы избежать проблемы с валидацией параметров в `POST` запросах, используе этот gem:
+
+    gem 'grape-swagger', :git=>'git://github.com/jhecking/grape-swagger.git'
 
 ## Contributing
 
