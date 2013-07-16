@@ -18,7 +18,11 @@ Or install it yourself as:
 
 ## Usage: add this line to your routes.rb
 
-    mount GrapeSwaggerRails::Engine => '/apidoc'
+    mount GrapeSwaggerRails::Engine => '/swagger'
+
+Create `./config/initializer/swagger.rg` with lines:
+
+    GrapeSwaggerRails.discoveryUrl = "/swagger_doc.json"
     
 ## Нюансы
 
