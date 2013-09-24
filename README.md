@@ -20,7 +20,7 @@ Or install it yourself as:
 
     mount GrapeSwaggerRails::Engine => '/swagger'
 
-Create `./config/initializer/swagger.rg` with lines:
+Create `./config/initializer/swagger.rb` with lines:
 
     GrapeSwaggerRails.discoveryUrl = "/swagger_doc.json"
     
