@@ -13,7 +13,7 @@
       dom_id:"swagger-ui-container",
       supportHeaderParams: true,
       headers: "<%= GrapeSwaggerRails.headers.to_json %>",
-      supportedSubmitMethods: ['get', 'post', 'put'],
+      supportedSubmitMethods: ['get', 'post', 'put', 'patch', 'delete'],
       onComplete: function(swaggerApi, swaggerUi){
         if(console) {
           console.log("Loaded SwaggerUI")
