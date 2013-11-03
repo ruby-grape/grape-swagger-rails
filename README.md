@@ -23,6 +23,9 @@ Or install it yourself as:
 Create `./config/initializer/swagger.rb` with lines:
 
     GrapeSwaggerRails.discoveryUrl = "/swagger_doc.json"
+    GrapeSwaggerRails.appName      = 'Swagger'
+    GrapeSwaggerRails.appUrl       = 'http://swagger.wordnik.com'
+
     
 ## Нюансы
 
