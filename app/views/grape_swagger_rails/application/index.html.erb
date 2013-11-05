@@ -13,7 +13,7 @@
       dom_id:"swagger-ui-container",
       supportHeaderParams: true,
       headers: "<%= GrapeSwaggerRails.headers.to_json %>",
-      supportedSubmitMethods: ['get', 'post', 'put'],
+      supportedSubmitMethods: ['get', 'post', 'put', 'patch', 'delete'],
       onComplete: function(swaggerApi, swaggerUi){
         if(console) {
           console.log("Loaded SwaggerUI")
@@ -40,7 +40,7 @@
 <body>
 <div id='header'>
     <div class="swagger-ui-wrap">
-        <a id="logo" href="http://swagger.wordnik.com">swagger</a>
+        <a id="logo" href="<%= GrapeSwaggerRails.appUrl %>"><%= GrapeSwaggerRails.appName %></a>
 
         <form id='api_selector'>
 

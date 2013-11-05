@@ -34,7 +34,7 @@
         this.verbose = options.verbose;
       }
       this.supportHeaderParams = options.supportHeaderParams != null ? options.supportHeaderParams : false;
-      this.supportedSubmitMethods = options.supportedSubmitMethods != null ? options.supportedSubmitMethods : ['get'];
+      this.supportedSubmitMethods = options.supportedSubmitMethods != null ? options.supportedSubmitMethods : ['get', 'put', 'post', 'patch', 'delete'];
       if (options.success != null) {
         this.success = options.success;
       }
