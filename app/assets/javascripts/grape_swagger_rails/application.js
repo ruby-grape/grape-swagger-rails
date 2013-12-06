@@ -10,13 +10,14 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require grape_swagger_rails/jquery-1.8.0.min.js
-//= require grape_swagger_rails/jquery.slideto.min.js
-//= require grape_swagger_rails/jquery.wiggle.min.js
-//= require grape_swagger_rails/jquery.ba-bbq.min.js
-//= require grape_swagger_rails/handlebars-1.0.rc.1.js
-//= require grape_swagger_rails/underscore-min.js
-//= require grape_swagger_rails/backbone-min.js
-//= require grape_swagger_rails/swagger.js
-//= require grape_swagger_rails/swagger-ui.js
-//= require grape_swagger_rails/highlight.7.3.pack.js
+//= require ./shred.bundle
+//= require ./jquery-1.8.0.min
+//= require ./jquery.slideto.min
+//= require ./jquery.wiggle.min
+//= require ./jquery.ba-bbq.min
+//= require ./handlebars-1.0.0
+//= require ./underscore-min
+//= require ./backbone-min
+//= require ./swagger
+//= require ./swagger-ui
+//= require ./highlight.7.3.pack

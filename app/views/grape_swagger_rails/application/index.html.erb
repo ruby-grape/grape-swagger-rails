@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Swagger UI</title>
-    <link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
-    <%= stylesheet_link_tag 'grape_swagger_rails/application.css' %>
-    <%= javascript_include_tag 'grape_swagger_rails/application.js' %>
-    <script type="text/javascript">
+  <title>Swagger UI</title>
+  <link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
+  <%= stylesheet_link_tag 'grape_swagger_rails/application.css' %>
+  <%= javascript_include_tag 'grape_swagger_rails/application.js' %>
+  <script type="text/javascript">
 	$(function () {
     window.swaggerUi = new SwaggerUi({
-      discoveryUrl: "<%= GrapeSwaggerRails.discoveryUrl %>",
+      url: "<%= GrapeSwaggerRails.discoveryUrl %>",
       apiKey: "<%= GrapeSwaggerRails.apiKey %>",
       dom_id:"swagger-ui-container",
       supportHeaderParams: true,
@@ -31,29 +31,34 @@
       docExpansion: "none"
     });
 
+    $('#input_apiKey').change(function() {
+      var key = $('#input_apiKey')[0].value;
+      console.log("key: " + key);
+      if(key && key.trim() != "") {
+        console.log("added key " + key);
+        window.authorizations.add("key", new ApiKeyAuthorization("api_key", key, "query"));
+      }
+    })
     window.swaggerUi.load();
   });
-
-    </script>
+  </script>
 </head>
 
 <body>
 <div id='header'>
-    <div class="swagger-ui-wrap">
-        <a id="logo" href="<%= GrapeSwaggerRails.appUrl %>"><%= GrapeSwaggerRails.appName %></a>
+  <div class="swagger-ui-wrap">
+    <a id="logo" href="<%= GrapeSwaggerRails.appUrl %>"><%= GrapeSwaggerRails.appName %></a>
 
-        <form id='api_selector'>
-
-            <div class='input'><input placeholder="http://example.com/api" id="input_baseUrl" name="baseUrl"
-                                      type="text"/></div>
-            <div class='input'><input placeholder="api_key" id="input_apiKey" name="apiKey" type="text"/></div>
-            <div class='input'><a id="explore" href="#">Explore</a></div>
-        </form>
-    </div>
+    <form id='api_selector'>
+      <div class='input'><input placeholder="http://example.com/api" id="input_baseUrl" name="baseUrl" type="text"/></div>
+      <div class='input'><input placeholder="api_key" id="input_apiKey" name="apiKey" type="text"/></div>
+      <div class='input'><a id="explore" href="#">Explore</a></div>
+    </form>
+  </div>
 </div>
 
 <div id="message-bar" class="swagger-ui-wrap">
-    &nbsp;
+  &nbsp;
 </div>
 
 <div id="swagger-ui-container" class="swagger-ui-wrap">
