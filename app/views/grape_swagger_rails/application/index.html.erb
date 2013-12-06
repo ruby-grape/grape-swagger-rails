@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-swagger-options="<%= GrapeSwaggerRails.options.to_json %>">
 <head>
   <title>Swagger UI</title>
   <link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
@@ -7,13 +7,14 @@
   <%= javascript_include_tag 'grape_swagger_rails/application.js' %>
   <script type="text/javascript">
 	$(function () {
+	  var options = $("html").data('swagger-options');
+	  
     window.swaggerUi = new SwaggerUi({
-      url: "<%= GrapeSwaggerRails.discoveryUrl %>",
-      apiKey: "<%= GrapeSwaggerRails.apiKey %>",
+      url: options.url,
       dom_id:"swagger-ui-container",
       supportHeaderParams: true,
-      headers: "<%= GrapeSwaggerRails.headers.to_json %>",
-      supportedSubmitMethods: ['get', 'post', 'put', 'patch', 'delete'],
+      headers: options.headers,
+      supportedSubmitMethods: ['get', 'post', 'put', 'delete'],
       onComplete: function(swaggerApi, swaggerUi){
         if(console) {
           console.log("Loaded SwaggerUI")
@@ -35,8 +36,13 @@
       var key = $('#input_apiKey')[0].value;
       console.log("key: " + key);
       if(key && key.trim() != "") {
+        if (options.api_auth == 'basic') {
+          key = "Basic " + Base64.encode(key);
+        }
         console.log("added key " + key);
-        window.authorizations.add("key", new ApiKeyAuthorization("api_key", key, "query"));
+        window.authorizations.add("key", new ApiKeyAuthorization(options.api_key_name, key, options.api_key_type));
+      } else {
+        window.authorizations.add("key", null);
       }
     })
     window.swaggerUi.load();
@@ -47,7 +53,7 @@
 <body>
 <div id='header'>
   <div class="swagger-ui-wrap">
-    <a id="logo" href="<%= GrapeSwaggerRails.appUrl %>"><%= GrapeSwaggerRails.appName %></a>
+    <a id="logo" href="<%= GrapeSwaggerRails.options.app_url %>"><%= GrapeSwaggerRails.options.app_name %></a>
 
     <form id='api_selector'>
       <div class='input'><input placeholder="http://example.com/api" id="input_baseUrl" name="baseUrl" type="text"/></div>

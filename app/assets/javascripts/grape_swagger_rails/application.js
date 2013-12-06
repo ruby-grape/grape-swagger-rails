@@ -21,3 +21,4 @@
 //= require ./swagger
 //= require ./swagger-ui
 //= require ./highlight.7.3.pack
+//= require ./base64
