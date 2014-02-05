@@ -16,7 +16,7 @@
       headers: options.headers,
       supportedSubmitMethods: ['get', 'post', 'put', 'delete'],
       onComplete: function(swaggerApi, swaggerUi){
-        if(console) {
+        if('console' in window) {
           console.log("Loaded SwaggerUI")
           console.log(swaggerApi);
           console.log(swaggerUi);
@@ -24,7 +24,7 @@
         $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
       },
       onFailure: function(data) {
-        if(console) {
+        if('console' in window) {
           console.log("Unable to Load SwaggerUI");
           console.log(data);
         }
@@ -34,12 +34,11 @@
 
     $('#input_apiKey').change(function() {
       var key = $('#input_apiKey')[0].value;
-      console.log("key: " + key);
+      
       if(key && key.trim() != "") {
         if (options.api_auth == 'basic') {
           key = "Basic " + Base64.encode(key);
         }
-        console.log("added key " + key);
         window.authorizations.add("key", new ApiKeyAuthorization(options.api_key_name, key, options.api_key_type));
       } else {
         window.authorizations.add("key", null);
