@@ -22,14 +22,14 @@ Or install it yourself as:
 
 Create `./config/initializer/swagger.rb` with lines:
 
-    GrapeSwaggerRails.discoveryUrl = "/swagger_doc.json"
-    GrapeSwaggerRails.appName      = 'Swagger'
-    GrapeSwaggerRails.appUrl       = 'http://swagger.wordnik.com'
+    GrapeSwaggerRails.options.url      = "/swagger_doc.json"
+    GrapeSwaggerRails.options.app_name = 'Swagger'
+    GrapeSwaggerRails.options.app_url  = 'http://swagger.wordnik.com'
 
-    
-## Нюансы
+## Known problems
 
-Чтобы избежать проблемы с валидацией параметров в `POST` запросах, используе этот gem:
+To avoid problems with the validation parameters in `POST` request using this gem,
+please use the head version:
 
     gem 'grape-swagger', :git=>'git://github.com/jhecking/grape-swagger.git'
 
