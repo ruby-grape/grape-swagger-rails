@@ -10,13 +10,17 @@ module GrapeSwaggerRails
   mattr_accessor :options
   
   self.options = Options.new(
+    
     url:                  '/swagger_doc.json',
-    api_key_name:         'api_key',
-    api_key_type:         'query',
-    api_auth:             '', # 'basic'
-    headers:              {},
     app_name:             'Swagger',
     app_url:              'http://swagger.wordnik.com',
+    
+    headers:              {},
+    
+    api_auth:             '',        # 'basic'
+    api_key_name:         'api_key', # 'Authorization'
+    api_key_type:         'query',   # 'header'
+    
     authentication_proc:  nil # Proc used as a controller before filter that returns a boolean
   )
   
