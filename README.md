@@ -79,15 +79,6 @@ The block above is stored in the `authentication_proc` option:
 GrapeSwaggerRails.options.authentication_proc: Proc.new{|request| # return a boolean value}
 ```
 
-## Known problems
-
-To avoid problems with the validation parameters in `POST` request using this gem,
-please use the head version:
-
-```ruby
-gem 'grape-swagger', :git=>'git://github.com/jhecking/grape-swagger.git'
-```
-
 ## Contributing
 
 1. Fork it
