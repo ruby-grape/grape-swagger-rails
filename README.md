@@ -60,6 +60,16 @@ Now you can specify the username and password to your API in the Swagger "API ke
 The javascript that loads on the Swagger page automatically encodes the username and password and adds the authorization header to your API request. 
 See the official Swagger documentation about [Custom Header Parameters](https://github.com/wordnik/swagger-ui#custom-header-parameters---for-basic-auth-etc)
 
+### API Token Authentication
+
+If your application uses token authentication passed as a query param, you can setup Swagger to send the API token along with each request to your API:
+
+```ruby
+GrapeSwaggerRails.options.api_key_name = 'api_token'
+GrapeSwaggerRails.options.api_key_type = 'query'
+```
+
+You can use the ```api_key``` input box to fill in your API token.
 ### Swagger UI Authorization
 
 You may want to authenticate users before displaying the Swagger UI, particularly when the API is protected by Basic Authentication. 
