@@ -10,7 +10,7 @@
 	  var options = $("html").data('swagger-options');
 	  
     window.swaggerUi = new SwaggerUi({
-      url: options.url,
+      url: options.app_url + options.url,
       dom_id:"swagger-ui-container",
       supportHeaderParams: true,
       headers: options.headers,
