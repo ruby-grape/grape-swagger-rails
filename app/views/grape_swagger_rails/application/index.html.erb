@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html data-swagger-options="<%= GrapeSwaggerRails.options.to_json %>">
 <head>
-  <title>Swagger UI</title>
+  <title><%= GrapeSwaggerRails.options.app_name || 'Swagger UI' %></title>
   <link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
   <%= stylesheet_link_tag 'grape_swagger_rails/application.css' %>
   <%= javascript_include_tag 'grape_swagger_rails/application.js' %>
