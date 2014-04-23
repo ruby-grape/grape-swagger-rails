@@ -42,10 +42,9 @@
         window.authorizations.add("key", new ApiKeyAuthorization(options.api_key_name, key, options.api_key_type));
 	for (var key in options.headers) {
     		if (options.headers.hasOwnProperty(key)) {
-        		window.authorizations.add("key", new ApiKeyAuthorization(key, options.headers[key], "header"));
+        		window.authorizations.add("key", new ApiKeyAuthorization(key, options.headers[key]));
     		}
 	}
-	window.authorizations.add("key", new ApiKeyAuthorization("", key, "header"));
       } else {
         window.authorizations.add("key", null);
       }
