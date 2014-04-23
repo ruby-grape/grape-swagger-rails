@@ -32,15 +32,6 @@
       docExpansion: "none"
     });
 
-        for (var key in options.headers) {
-                if (options.headers.hasOwnProperty(key)) {
-                        window.authorizations.add("key", new ApiKeyAuthorization(key, options.headers[key]));
-			console.log("ADD headers" + key);
-                }
-        }
-
-
-
     $('#input_apiKey').change(function() {
       var key = $('#input_apiKey')[0].value;
       
@@ -49,7 +40,13 @@
           key = "Basic " + Base64.encode(key);
         }
         window.authorizations.add("key", new ApiKeyAuthorization(options.api_key_name, key, options.api_key_type));
-      } else {
+        for (var key in options.headers) {
+                if (options.headers.hasOwnProperty(key)) {
+                        window.authorizations.add("key", new ApiKeyAuthorization(key, options.headers[key],"header"));
+                }
+        } 
+
+     } else {
         window.authorizations.add("key", null);
       }
     })
