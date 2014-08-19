@@ -26,7 +26,7 @@ Add this line to `./config/routes.rb`:
 mount GrapeSwaggerRails::Engine => '/swagger'
 ```
 
-Create an initializer (e.g. `./config/initializer/swagger.rb`) and specify the URL to your Swagger API schema:
+Create an initializer (e.g. `./config/initializers/swagger.rb`) and specify the URL to your Swagger API schema:
 
 ```ruby
 GrapeSwaggerRails.options.url      = '/swagger_doc.json'
