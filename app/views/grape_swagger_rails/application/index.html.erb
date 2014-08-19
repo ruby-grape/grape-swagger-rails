@@ -8,7 +8,7 @@
   <script type="text/javascript">
 	$(function () {
 	  var options = $("html").data('swagger-options');
-	  
+
     window.swaggerUi = new SwaggerUi({
       url: options.app_url + options.url,
       dom_id:"swagger-ui-container",
@@ -34,10 +34,12 @@
 
     $('#input_apiKey').change(function() {
       var key = $('#input_apiKey')[0].value;
-      
+
       if(key && key.trim() != "") {
         if (options.api_auth == 'basic') {
           key = "Basic " + Base64.encode(key);
+        } else if (options.api_auth == 'bearer') {
+          key = "Bearer " + key
         }
         window.authorizations.add("key", new ApiKeyAuthorization(options.api_key_name, key, options.api_key_type));
       } else {

@@ -40,7 +40,7 @@ You can specify additional headers to add to each request:
 GrapeSwaggerRails.options.headers['Special-Header'] = 'Some Secret Value'
 ```
 
-Using the `headers` option above, you could hard-code Basic Authentication credentials. 
+Using the `headers` option above, you could hard-code Basic Authentication credentials.
 Alternatively, you can configure Basic Authentication through the UI, as described below.
 
 ### Basic Authentication
@@ -48,7 +48,7 @@ Alternatively, you can configure Basic Authentication through the UI, as describ
 If your application uses Basic Authentication, you can setup Swagger to send the username and password to the server with each request to your API:
 
 ```ruby
-GrapeSwaggerRails.options.api_auth     = 'basic'
+GrapeSwaggerRails.options.api_auth     = 'basic' # Or 'bearer' for OAuth
 GrapeSwaggerRails.options.api_key_name = 'Authorization'
 GrapeSwaggerRails.options.api_key_type = 'header'
 ```
@@ -57,7 +57,7 @@ Now you can specify the username and password to your API in the Swagger "API ke
 
     username:password
 
-The javascript that loads on the Swagger page automatically encodes the username and password and adds the authorization header to your API request. 
+The javascript that loads on the Swagger page automatically encodes the username and password and adds the authorization header to your API request.
 See the official Swagger documentation about [Custom Header Parameters](https://github.com/wordnik/swagger-ui#custom-header-parameters---for-basic-auth-etc)
 
 ### API Token Authentication
@@ -72,7 +72,7 @@ GrapeSwaggerRails.options.api_key_type = 'query'
 You can use the ```api_key``` input box to fill in your API token.
 ### Swagger UI Authorization
 
-You may want to authenticate users before displaying the Swagger UI, particularly when the API is protected by Basic Authentication. 
+You may want to authenticate users before displaying the Swagger UI, particularly when the API is protected by Basic Authentication.
 Use the `authenticate_with` option to inspect the request to the Swagger UI:
 
 ```ruby
