@@ -98,3 +98,7 @@ GrapeSwaggerRails.options.authentication_proc: Proc.new{|request| # return a boo
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+### Updating Swagger UI from Dist
+
+To update Swagger UI from its [distribution](https://github.com/wordnik/swagger-ui), run 'bundle exec rake swagger_ui:dist:update'. Examine the changes carefully.
