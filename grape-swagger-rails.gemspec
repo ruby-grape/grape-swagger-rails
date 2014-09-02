@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{grape grape-swagger swagger-ui rails integration}
   spec.homepage      = ''
   spec.license       = 'MIT'
-  spec.files         = `git ls-files`.split($/)
+  spec.files         = `git ls-files`.split($/) - `git ls-files test-app`.split($/)
   spec.require_paths = %w(lib)
 
   spec.add_development_dependency 'bundler', '~> 1.3'

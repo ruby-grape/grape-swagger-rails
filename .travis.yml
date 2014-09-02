@@ -1,0 +1,10 @@
+before_install:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+
+language: ruby
+
+cache: bundler
+
+rvm:
+  - 2.1.2

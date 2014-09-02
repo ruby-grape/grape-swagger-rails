@@ -1,5 +1,7 @@
 # GrapeSwaggerRails
 
+[![Build Status](https://travis-ci.org/BrandyMint/grape-swagger-rails.svg)](https://travis-ci.org/BrandyMint/grape-swagger-rails)
+
 Swagger UI as Rails Engine for grape-swagger gem
 
 ## Installation
