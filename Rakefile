@@ -1,13 +1,26 @@
 require "bundler/gem_tasks"
 
-Dir.glob('lib/tasks/*.rake').each do |r|
-  import r
+
+#!/usr/bin/env rake
+begin
+  require 'bundler/setup'
+rescue LoadError
+  puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
 end
 
-desc "Run tests within test-app."
-task :tests do
-  path = File.expand_path('../test-app', __FILE__)
-  Bundler.clean_exec "cd #{path}; bundle install; bundle exec rake"
+APP_RAKEFILE = File.expand_path("../spec/dummy/Rakefile", __FILE__)
+
+load 'rails/tasks/engine.rake'
+Bundler::GemHelper.install_tasks
+
+Dir[File.join(File.dirname(__FILE__), 'lib/tasks/**/*.rake')].each do |f|
+  load f
 end
 
-task :default => :tests
+require 'rspec/core'
+require 'rspec/core/rake_task'
+
+desc "Run all specs."
+RSpec::Core::RakeTask.new(:spec)
+
+task :default => :spec
