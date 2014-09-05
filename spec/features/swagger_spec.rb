@@ -45,6 +45,22 @@ describe 'Swagger' do
         expect(page).to have_css "span.string", text: "Basic #{Base64.encode64('username:password').strip}"
       end
     end
+    context "#api_auth:bearer" do
+      before do
+        GrapeSwaggerRails.options.api_auth = 'bearer'
+        GrapeSwaggerRails.options.api_key_name = 'Authorization'
+        GrapeSwaggerRails.options.api_key_type = 'header'
+        visit '/swagger'
+      end
+      it 'adds an Authorization header' do
+        fill_in 'apiKey', with: 'token'
+        find('#endpointListTogger_headers', visible: true).click
+        find('a[href="#!/headers/GET_api_headers_format"]', visible: true).click
+        click_button 'Try it out!'
+        expect(page).to have_css "span.attribute", text: 'Authorization'
+        expect(page).to have_css "span.string", text: 'Bearer token'
+      end
+    end
     context "#api_auth:token" do
       before do
         GrapeSwaggerRails.options.api_key_name = 'api_token'
