@@ -1,7 +1,7 @@
 require "grape-swagger-rails/engine"
 
 module GrapeSwaggerRails
-  class Options < Struct.new(:url, :api_key_name, :api_key_type, :api_auth, :headers, :app_name, :app_url, :authentication_proc)
+  class Options < OpenStruct
     def authenticate_with(&block)
       self.authentication_proc = block
     end
