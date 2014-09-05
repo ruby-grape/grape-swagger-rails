@@ -32,4 +32,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'jquery-rails'
   spec.add_development_dependency 'grape-swagger-ui'
   spec.add_development_dependency 'sprockets'
+  spec.add_development_dependency 'rack-cors'
 end

@@ -17,5 +17,10 @@ class API < Grape::API
     end
   end
 
+  desc 'Get headers.'
+  get '/headers' do
+    request.headers.as_json
+  end
+
   add_swagger_documentation
 end
