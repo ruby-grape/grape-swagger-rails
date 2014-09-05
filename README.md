@@ -28,12 +28,17 @@ Add this line to `./config/routes.rb`:
 mount GrapeSwaggerRails::Engine => '/swagger'
 ```
 
-Create an initializer (e.g. `./config/initializers/swagger.rb`) and specify the URL to your Swagger API schema:
+Create an initializer (e.g. `./config/initializers/swagger.rb`) and specify the URL to your Swagger API schema and app:
 
 ```ruby
 GrapeSwaggerRails.options.url      = '/swagger_doc.json'
-GrapeSwaggerRails.options.app_name = 'Swagger'
 GrapeSwaggerRails.options.app_url  = 'http://swagger.wordnik.com'
+```
+
+You can set the app name, default is "Swagger".
+
+``` ruby
+GrapeSwaggerRails.options.app_name = 'Swagger'
 ```
 
 You can specify additional headers to add to each request:

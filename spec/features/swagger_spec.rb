@@ -39,7 +39,7 @@ describe 'Swagger' do
       it 'adds an Authorization header' do
         fill_in 'apiKey', with: 'username:password'
         find('#endpointListTogger_headers', visible: true).click
-        find('a[href="#!/headers/GET_api_headers_format"]', visible: true).click
+        first('a[href="#!/headers/GET_api_headers_format"]', visible: true).click
         click_button 'Try it out!'
         expect(page).to have_css "span.attribute", text: 'Authorization'
         expect(page).to have_css "span.string", text: "Basic #{Base64.encode64('username:password').strip}"
@@ -55,7 +55,7 @@ describe 'Swagger' do
       it 'adds an Authorization header' do
         fill_in 'apiKey', with: 'token'
         find('#endpointListTogger_headers', visible: true).click
-        find('a[href="#!/headers/GET_api_headers_format"]', visible: true).click
+        first('a[href="#!/headers/GET_api_headers_format"]', visible: true).click
         click_button 'Try it out!'
         expect(page).to have_css "span.attribute", text: 'Authorization'
         expect(page).to have_css "span.string", text: 'Bearer token'
@@ -70,7 +70,7 @@ describe 'Swagger' do
       it 'adds an api_token query parameter' do
         fill_in 'apiKey', with: 'dummy'
         find('#endpointListTogger_params', visible: true).click
-        find('a[href="#!/params/GET_api_params_format"]', visible: true).click
+        first('a[href="#!/params/GET_api_params_format"]', visible: true).click
         click_button 'Try it out!'
         expect(page).to have_css "span.attribute", text: 'api_token'
         expect(page).to have_css "span.string", text: "dummy"
@@ -88,6 +88,25 @@ describe 'Swagger' do
       it 'denies access' do
         expect(current_path).to eq "/"
         expect(page).to have_content "Unauthorized Access"
+      end
+    end
+    context "#app_name" do
+      context 'set' do
+        before do
+          GrapeSwaggerRails.options.app_name = "Test App"
+          visit '/swagger'
+        end
+        it 'sets page title' do
+          expect(page.title).to eq "Test App"
+        end
+      end
+      context 'not set' do
+        before do
+          visit '/swagger'
+        end
+        it 'defaults page title' do
+          expect(page.title).to eq "Swagger"
+        end
       end
     end
     after do
