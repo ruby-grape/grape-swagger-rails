@@ -75,20 +75,14 @@ You can use the ```api_key``` input box to fill in your API token.
 ### Swagger UI Authorization
 
 You may want to authenticate users before displaying the Swagger UI, particularly when the API is protected by Basic Authentication.
-Use the `authenticate_with` option to inspect the request to the Swagger UI:
+Use the `before` option to inspect the request before Swagger UI:
 
 ```ruby
-GrapeSwaggerRails.options.authenticate_with do |request|
-  # 1. Inspect the `request` or access the Swagger UI controller via `self`
-  # 2. Check `current_user` or `can? :access, :api`, etc....
-  # 3. return a boolean value
+GrapeSwaggerRails.options.before_filter do |request|
+  # 1. Inspect the `request` or access the Swagger UI controller via `self`.
+  # 2. Check `current_user` or `can? :access, :api`, etc.
+  # 3. Redirect or error in case of failure.
 end
-```
-
-The block above is stored in the `authentication_proc` option:
-
-```ruby
-GrapeSwaggerRails.options.authentication_proc: Proc.new{|request| # return a boolean value}
 ```
 
 ## Contributing

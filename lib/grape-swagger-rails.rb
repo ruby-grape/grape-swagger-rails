@@ -2,8 +2,12 @@ require "grape-swagger-rails/engine"
 
 module GrapeSwaggerRails
   class Options < OpenStruct
-    def authenticate_with(&block)
-      self.authentication_proc = block
+    def before_filter(&block)
+      if block_given?
+        self.before_filter_proc = block
+      else
+        self.before_filter_proc
+      end
     end
   end
 
@@ -21,7 +25,7 @@ module GrapeSwaggerRails
     api_key_name:         'api_key', # 'Authorization'
     api_key_type:         'query',   # 'header'
 
-    authentication_proc:  nil # Proc used as a controller before filter that returns a boolean
+    before_filter_proc:   nil # Proc used as a controller before filter
   )
 
 end
