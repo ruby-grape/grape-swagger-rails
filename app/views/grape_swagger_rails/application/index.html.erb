@@ -13,7 +13,6 @@
       url: options.app_url + options.url,
       dom_id:"swagger-ui-container",
       supportHeaderParams: true,
-      headers: options.headers,
       supportedSubmitMethods: ['get', 'post', 'put', 'delete'],
       onComplete: function(swaggerApi, swaggerUi){
         if('console' in window) {
@@ -46,6 +45,11 @@
         window.authorizations.add("key", null);
       }
     })
+
+    <% GrapeSwaggerRails.options.headers.each_pair do |key, value| %>
+      <%=raw "window.authorizations.add('key', new ApiKeyAuthorization('#{CGI.escapeHTML(key)}', '#{CGI.escapeHTML(value)}', 'header'));" %>
+    <% end %>
+
     window.swaggerUi.load();
   });
   </script>
