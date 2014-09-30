@@ -90,6 +90,17 @@ GrapeSwaggerRails.options.before_filter do |request|
 end
 ```
 
+### Updating Swagger UI from Dist
+
+To update Swagger UI from its [distribution](https://github.com/wordnik/swagger-ui), run 'bundle exec rake swagger_ui:dist:update'. Examine the changes carefully.
+
+##Contributors
+
+* unloved  (https://github.com/unloved)
+* dapi    (https://github.com/dapi)
+* joelvh  (https://github.com/joelvh)
+* dblock  (https://github.com/dblock)
+
 ## Contributing
 
 1. Fork it
@@ -98,6 +109,3 @@ end
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-### Updating Swagger UI from Dist
-
-To update Swagger UI from its [distribution](https://github.com/wordnik/swagger-ui), run 'bundle exec rake swagger_ui:dist:update'. Examine the changes carefully.

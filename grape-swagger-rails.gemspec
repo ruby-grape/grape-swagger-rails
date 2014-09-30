@@ -6,11 +6,11 @@ require 'grape-swagger-rails/version'
 Gem::Specification.new do |spec|
   spec.name          = 'grape-swagger-rails'
   spec.version       = GrapeSwaggerRails::VERSION
-  spec.authors       = ['Aleksandr B. Ivanov', 'Alexander Logunov']
-  spec.email         = ['radanisk@ya.ru', 'unlovedru@gmail.com']
-  spec.description   = %q{grape grape-swagger swagger-ui rails integration}
-  spec.summary       = %q{grape grape-swagger swagger-ui rails integration}
-  spec.homepage      = ''
+  spec.authors       = ['Alexander Logunov']
+  spec.email         = ['unlovedru@gmail.com']
+  spec.description   = 'Swagger UI as Rails Engine for grape-swagger gem'
+  spec.summary       = 'Swagger UI as Rails Engine for grape-swagger gem'
+  spec.homepage      = 'https://github.com/BrandyMint/grape-swagger-rails'
   spec.license       = 'MIT'
   spec.files         = `git ls-files`.split($/)
   spec.test_files    = `git ls-files spec`.split($/)
