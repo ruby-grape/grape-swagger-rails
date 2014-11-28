@@ -1,3 +1,5 @@
+sudo: false
+
 before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
@@ -8,3 +10,12 @@ cache: bundler
 
 rvm:
   - 2.1.2
+
+env:
+  - GRAPE_SWAGGER_VERSION=0.7.2
+  - GRAPE_SWAGGER_VERSION=0.8.0
+  - GRAPE_SWAGGER_VERSION=HEAD
+
+matrix:
+  allow_failures:
+    - env: GRAPE_SWAGGER_VERSION=HEAD
