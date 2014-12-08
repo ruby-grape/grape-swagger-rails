@@ -92,20 +92,20 @@ end
 
 ### Updating Swagger UI from Dist
 
-To update Swagger UI from its [distribution](https://github.com/wordnik/swagger-ui), run 'bundle exec rake swagger_ui:dist:update'. Examine the changes carefully.
+To update Swagger UI from its [distribution](https://github.com/wordnik/swagger-ui), run `bundle exec rake swagger_ui:dist:update`. Examine the changes carefully.
 
-##Contributors
+## Contributors
 
-* unloved  (https://github.com/unloved)
-* dapi    (https://github.com/dapi)
-* joelvh  (https://github.com/joelvh)
-* dblock  (https://github.com/dblock)
+* [unloved](https://github.com/unloved)
+* [dapi](https://github.com/dapi)
+* [joelvh](https://github.com/joelvh)
+* [dblock](https://github.com/dblock)
+* ... and [more](https://github.com/BrandyMint/grape-swagger-rails/graphs/contributors) ...
 
 ## Contributing
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+See [CONTRIBUTING](CONTRIBUTING.md).
 
+## License
+
+MIT License, see [LICENSE](LICENSE.txt).
