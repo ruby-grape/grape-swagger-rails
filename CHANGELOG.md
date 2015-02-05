@@ -1,3 +1,7 @@
+### Next
+
+* Your contribution here.
+
 ### 0.1.0 (February 5, 2015)
 
 * [41](https://github.com/BrandyMint/grape-swagger-rails/pull/41): Compatibility with grape-swagger 0.8.0 and 0.9.0 - [@dblock](https://github.com/dblock).
