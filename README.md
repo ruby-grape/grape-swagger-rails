@@ -24,10 +24,11 @@ Or install it yourself as:
 
 GrapeSwaggerRails is compatible with the following versions of grape and grape-swagger.
 
-grape | grape-swagger
----------------------
-0.9.0 | 0.7.2
-0.9.0 | 0.8.0
+grape  | grape-swagger
+-------|--------------
+0.9.0  | 0.7.2
+0.9.0  | 0.8.0
+0.10.0 | 0.9.0
 
 ## Usage
 
