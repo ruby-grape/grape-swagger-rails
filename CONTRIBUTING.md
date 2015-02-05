@@ -1,19 +1,19 @@
 # Contributing to Grape-Swagger-Rails
 
-This project is work of [many contributors](https://github.com/BrandyMint/grape-swagger-rails/graphs/contributors).
-You're encouraged to submit [pull requests](https://github.com/BrandyMint/grape-swagger-rails/pulls),
-[propose features and discuss issues](https://github.com/BrandyMint/grape-swagger-rails/issues).
+This project is work of [many contributors](https://github.com/TinkerDev/grape-swagger-rails/graphs/contributors).
+You're encouraged to submit [pull requests](https://github.com/TinkerDev/grape-swagger-rails/pulls),
+[propose features and discuss issues](https://github.com/TinkerDev/grape-swagger-rails/issues).
 
 In the examples below, substitute your Github username for `contributor` in URLs.
 
 ## Fork the Project
 
-Fork the [project on Github](https://github.com/BrandyMint/grape-swagger-rails) and check out your copy.
+Fork the [project on Github](https://github.com/TinkerDev/grape-swagger-rails) and check out your copy.
 
 ```
 git clone https://github.com/contributor/grape-swagger.git
 cd grape-swagger
-git remote add upstream https://github.com/BrandyMint/grape-swagger-rails.git
+git remote add upstream https://github.com/TinkerDev/grape-swagger-rails.git
 ```
 
 ## Create a Topic Branch

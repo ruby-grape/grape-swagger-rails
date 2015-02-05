@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['unlovedru@gmail.com']
   spec.description   = 'Swagger UI as Rails Engine for grape-swagger gem'
   spec.summary       = 'Swagger UI as Rails Engine for grape-swagger gem'
-  spec.homepage      = 'https://github.com/BrandyMint/grape-swagger-rails'
+  spec.homepage      = 'https://github.com/TinkerDev/grape-swagger-rails'
   spec.license       = 'MIT'
   spec.files         = `git ls-files`.split($/)
   spec.test_files    = `git ls-files spec`.split($/)

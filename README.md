@@ -100,7 +100,7 @@ To update Swagger UI from its [distribution](https://github.com/wordnik/swagger-
 * [dapi](https://github.com/dapi)
 * [joelvh](https://github.com/joelvh)
 * [dblock](https://github.com/dblock)
-* ... and [more](https://github.com/BrandyMint/grape-swagger-rails/graphs/contributors) ...
+* ... and [more](https://github.com/TinkerDev/grape-swagger-rails/graphs/contributors) ...
 
 ## Contributing
 
