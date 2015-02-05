@@ -20,6 +20,14 @@ Or install it yourself as:
 
     $ gem install grape-swagger-rails
 
+## Compatibility
+
+GrapeSwaggerRails is compatible with the following versions of grape and grape-swagger.
+
+grape | grape-swagger
+---------------------
+0.9.0 | 0.7.2
+
 ## Usage
 
 Add this line to `./config/routes.rb`:

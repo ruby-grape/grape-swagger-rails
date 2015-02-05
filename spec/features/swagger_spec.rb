@@ -37,7 +37,8 @@ describe 'Swagger' do
         visit '/swagger'
       end
       it 'adds an Authorization header' do
-        fill_in 'apiKey', with: 'username:password'
+        page.execute_script("$('#input_apiKey').val('username:password')")
+        page.execute_script("$('#input_apiKey').trigger('change')")
         find('#endpointListTogger_headers', visible: true).click
         first('a[href="#!/headers/GET_api_headers_format"]', visible: true).click
         click_button 'Try it out!'
@@ -53,7 +54,8 @@ describe 'Swagger' do
         visit '/swagger'
       end
       it 'adds an Authorization header' do
-        fill_in 'apiKey', with: 'token'
+        page.execute_script("$('#input_apiKey').val('token')")
+        page.execute_script("$('#input_apiKey').trigger('change')")
         find('#endpointListTogger_headers', visible: true).click
         first('a[href="#!/headers/GET_api_headers_format"]', visible: true).click
         click_button 'Try it out!'
@@ -68,7 +70,8 @@ describe 'Swagger' do
         visit '/swagger'
       end
       it 'adds an api_token query parameter' do
-        fill_in 'apiKey', with: 'dummy'
+        page.execute_script("$('#input_apiKey').val('dummy')")
+        page.execute_script("$('#input_apiKey').trigger('change')")
         find('#endpointListTogger_params', visible: true).click
         first('a[href="#!/params/GET_api_params_format"]', visible: true).click
         click_button 'Try it out!'
