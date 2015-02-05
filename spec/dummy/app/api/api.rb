@@ -1,5 +1,4 @@
 class API < Grape::API
-  format :json
   prefix 'api'
 
   namespace :foos do
