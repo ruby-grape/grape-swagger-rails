@@ -73,6 +73,11 @@ Navigate to http://localhost:3000/swagger.
 
 Document any external behavior in the [README](README.md).
 
+## Update Changelog
+
+Add a line to [CHANGELOG](CHANGELOG.md) under *Next Release*.
+Make it look like every other line, including your name and link to your Github account.
+
 ## Push
 
 ```
@@ -84,6 +89,19 @@ git push origin my-feature-branch
 Go to https://github.com/contributor/grape and select your feature branch.
 Click the 'Pull Request' button and fill out the form. Pull requests are usually reviewed within a few days.
 
+## Update CHANGELOG Again
+
+Update the [CHANGELOG](CHANGELOG.md) with the pull request number. A typical entry looks as follows.
+
+```
+* [#123](https://github.com/TinkerDev/grape-swagger-rails/pull/123): Reticulated splines - [@contributor](https://github.com/contributor).
+```
+
+Amend your previous commit and force push the changes.
+
+```
+git commit --amend
+git push origin my-feature-branch -f
 ## Rebase
 
 If you've been working on a change for a while, rebase with upstream/master.
