@@ -27,6 +27,7 @@ GrapeSwaggerRails is compatible with the following versions of grape and grape-s
 grape | grape-swagger
 ---------------------
 0.9.0 | 0.7.2
+0.9.0 | 0.8.0
 
 ## Usage
 
