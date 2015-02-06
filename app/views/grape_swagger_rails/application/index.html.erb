@@ -4,6 +4,9 @@
   <title><%= GrapeSwaggerRails.options.app_name || 'Swagger UI' %></title>
   <link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
   <%= stylesheet_link_tag 'grape_swagger_rails/application.css' %>
+  <% if GrapeSwaggerRails.options[:custom_css_file] %>
+    <%= stylesheet_link_tag GrapeSwaggerRails.options[:custom_css_file] %>
+  <% end %>
   <%= javascript_include_tag 'grape_swagger_rails/application.js' %>
   <script type="text/javascript">
 	$(function () {

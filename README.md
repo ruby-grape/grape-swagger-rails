@@ -100,6 +100,14 @@ GrapeSwaggerRails.options.before_filter do |request|
 end
 ```
 
+### Custom Styles
+
+You may specify a stylesheet file to render with custom theming with:
+
+```ruby
+GrapeSwaggerRails.options.custom_css_file = 'swagger_custom.css'
+```
+ 
 ### Updating Swagger UI from Dist
 
 To update Swagger UI from its [distribution](https://github.com/wordnik/swagger-ui), run `bundle exec rake swagger_ui:dist:update`. Examine the changes carefully.
