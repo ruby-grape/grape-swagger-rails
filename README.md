@@ -102,11 +102,14 @@ end
 
 ### Custom Styles
 
-You may specify a stylesheet file to render with custom theming with:
+You can specify a stylesheet file to render with custom themes with:
 
 ```ruby
 GrapeSwaggerRails.options.custom_css_file = 'swagger_custom.css'
 ```
+
+This is rendered with `stylesheet_link_tag` so if you are using SASS or the Asset pipeline everything should work fine.
+
  
 ### Updating Swagger UI from Dist
 
