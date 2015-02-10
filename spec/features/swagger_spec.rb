@@ -120,7 +120,7 @@ describe 'Swagger' do
         end
         it 'adds a stylesheet include for custom css file' do
           render template: "grape_swagger_rails/application/index.html.erb"
-          expect(rendered).to have_xpath("//link[@href='test_custom.css']", visible: false)
+          expect(rendered).to have_xpath("//link[@href='/stylesheets/test_custom.css']", visible: false)
         end
       end
       context 'not set' do
