@@ -25,7 +25,7 @@ module GrapeSwaggerRails
     api_key_name:         'api_key', # 'Authorization'
     api_key_type:         'query',   # 'header'
 
-    custom_css_file:      '',        # will be included in index.html.erb
+    custom_css_file:      nil,       # 'path_to_custom_css' - will be rendered with #stylesheet_link_tag
 
     before_filter_proc:   nil # Proc used as a controller before filter
   )

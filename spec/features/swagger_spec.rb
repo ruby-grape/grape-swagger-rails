@@ -112,6 +112,23 @@ describe 'Swagger' do
         end
       end
     end
+    context "#custom_css_file", type: :view do
+      context 'set' do
+        before do
+          GrapeSwaggerRails.options.custom_css_file = "/spec/support/test_custom.css"
+        end
+        it 'adds a stylesheet include for custom css file' do
+          render template: "grape_swagger_rails/application/index.html.erb"
+          expect(rendered).to have_xpath("//link[@href='/spec/support/test_custom.css']", visible: false)
+        end
+      end
+      context 'not set' do
+        it 'renders the default index view just fine' do
+          render template: "grape_swagger_rails/application/index.html.erb"
+          expect(rendered).to have_content("Swagger")
+        end
+      end
+    end
     after do
       GrapeSwaggerRails.options = @options
     end
