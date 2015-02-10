@@ -2,7 +2,7 @@
 
 * Your contribution here.
 
-* Added a new :custom_css_file option to have default index.html.erb render a stylesheet link for custom theming - [@alexagranov](https://githum.com/alexagranov).
+* Added a new :custom_css_file option to have default index.html.erb render a stylesheet link for custom theming - [@alexagranov](https://github.com/alexagranov).
 
 ### 0.1.0 (February 5, 2015)
 
