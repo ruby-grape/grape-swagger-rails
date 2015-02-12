@@ -104,6 +104,34 @@ end
 
 To update Swagger UI from its [distribution](https://github.com/wordnik/swagger-ui), run `bundle exec rake swagger_ui:dist:update`. Examine the changes carefully.
 
+### Rails-API
+
+grape-swagger-rails uses Rail's asset pipeline for it's Javascript and CSS, there's some things you need to do when using [Rails-API](https://github.com/rails-api/rails-api) to use the asset pipeline.  
+If this isn't done you won`'t have any Javascript or CSS in your swagger-ui.
+
+* `config/application.rb`:
+```ruby
+require 'sprockets/railtie'
+# OR
+require 'rails/all'
+```
+
+* `app/assets/javascripts/application.js`
+```javascript
+//
+//= require_tree .
+```
+
+* `app/assets/stylesheets/application.css`
+```css
+/*
+*= require_tree .
+*/
+```
+
+You may need to create the asset directories.
+
+
 ## Contributors
 
 * [unloved](https://github.com/unloved)
