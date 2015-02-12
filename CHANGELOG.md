@@ -4,6 +4,7 @@
 
 ### 0.1.0 (February 5, 2015)
 
+* [5](https://github.com/TinkerDev/grape-swagger-rails/pull/5): Add Rails-API details to the README - [@rjocoleman](https://github.com/rjocoleman).
 * [41](https://github.com/BrandyMint/grape-swagger-rails/pull/41): Compatibility with grape-swagger 0.8.0 and 0.9.0 - [@dblock](https://github.com/dblock).
 
 ### 0.0.10 (September 30, 2014)
