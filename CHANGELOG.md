@@ -1,5 +1,6 @@
 ### Next
 
+* [#6](https://github.com/TinkerDev/grape-swagger-rails/pull/6): Fix: support multiple predefined headers - [@Tyr0](https://github.com/tyr0).
 * Your contribution here.
 
 ### 0.1.0 (February 5, 2015)
