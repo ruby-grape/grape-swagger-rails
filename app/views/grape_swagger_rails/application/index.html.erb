@@ -49,8 +49,8 @@
       }
     });
 
-    <% GrapeSwaggerRails.options.headers.each_pair do |key, value| %>
-      <%=raw "window.authorizations.add('key', new ApiKeyAuthorization('#{CGI.escapeHTML(key)}', '#{CGI.escapeHTML(value)}', 'header'));" %>
+    <% GrapeSwaggerRails.options.headers.each_with_index do |(key, value), index| %>
+      <%=raw "window.authorizations.add('header_#{index}', new ApiKeyAuthorization('#{CGI.escapeHTML(key)}', '#{CGI.escapeHTML(value)}', 'header'));" %>
     <% end %>
 
     window.swaggerUi.load();

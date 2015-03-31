@@ -115,6 +115,31 @@ This is rendered with `stylesheet_link_tag` so if you are using SASS or the Asse
 
 To update Swagger UI from its [distribution](https://github.com/wordnik/swagger-ui), run `bundle exec rake swagger_ui:dist:update`. Examine the changes carefully.
 
+### Enabling in a Rails-API Project
+
+The grape-swagger-rails gem uses the Rails asset pipeline for its Javascript and CSS. Enable the asset pipeline with [rails-api](https://github.com/rails-api/rails-api).
+
+Add sprockets to `config/application.rb`.
+
+```ruby
+require 'sprockets/railtie'
+```
+
+Include JavaScript in `app/assets/javascripts/application.js`.
+
+```javascript
+//
+//= require_tree .
+```
+
+Include CSS stylesheets in `app/assets/stylesheets/application.css`.
+
+```css
+/*
+*= require_tree .
+*/
+```
+
 ## Contributors
 
 * [unloved](https://github.com/unloved)
