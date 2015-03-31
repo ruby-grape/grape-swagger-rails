@@ -9,8 +9,9 @@
   <% end %>
   <%= javascript_include_tag 'grape_swagger_rails/application.js' %>
   <script type="text/javascript">
-	$(function () {
-	  var options = $("html").data('swagger-options');
+    $(function () {
+        var options = $("html").data('swagger-options');
+        var apiKey = options.headers['X-CSRF-Token'];
 
     window.swaggerUi = new SwaggerUi({
       url: options.app_url + options.url,
@@ -18,12 +19,18 @@
       supportHeaderParams: true,
       supportedSubmitMethods: ['get', 'post', 'put', 'delete'],
       onComplete: function(swaggerApi, swaggerUi){
-        if('console' in window) {
-          console.log("Loaded SwaggerUI")
-          console.log(swaggerApi);
-          console.log(swaggerUi);
-        }
-        $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
+          if('console' in window) {
+              console.log("Loaded SwaggerUI")
+              console.log(swaggerApi);
+              console.log(swaggerUi);
+          }
+          $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
+
+          // upon loading resources, populate 'api_key' input and disable...
+          if (apiKey) {
+              $("input[name='api_key']").attr('disabled', true);
+              $("input[name='api_key']").val(apiKey);
+          }
       },
       onFailure: function(data) {
         if('console' in window) {
@@ -34,7 +41,7 @@
       docExpansion: "none"
     });
 
-    $('#input_apiKey').change(function() {
+    function addApiKeyAuthorization() {
       var key = $('#input_apiKey')[0].value;
 
       if(key && key.trim() != "") {
@@ -47,11 +54,23 @@
       } else {
         window.authorizations.add("key", null);
       }
+    }
+
+    $('#input_apiKey').change(function() {
+        addApiKeyAuthorization();
+        // keep resource 'api_key' parameter up to date as well...
+        var key = $('#input_apiKey')[0].value;
+        $("input[name='api_key']").val(key);
     });
 
     <% GrapeSwaggerRails.options.headers.each_with_index do |(key, value), index| %>
       <%=raw "window.authorizations.add('header_#{index}', new ApiKeyAuthorization('#{CGI.escapeHTML(key)}', '#{CGI.escapeHTML(value)}', 'header'));" %>
     <% end %>
+
+    if (apiKey) {
+        $('#input_apiKey').val(apiKey);
+    }
+    addApiKeyAuthorization();
 
     window.swaggerUi.load();
   });
