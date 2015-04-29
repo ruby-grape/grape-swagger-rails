@@ -16,6 +16,7 @@ module GrapeSwaggerRails
   self.options = Options.new(
 
     url:                  '/swagger_doc',
+    urls:                 {},
     app_name:             'Swagger',
     app_url:              'http://swagger.wordnik.com',
 

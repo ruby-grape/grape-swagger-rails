@@ -7,6 +7,7 @@ module GrapeSwaggerRails
     end
 
     def index
+      @api_key_value = cookies['accessToken']
     end
   end
 end

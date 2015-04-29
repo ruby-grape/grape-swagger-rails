@@ -10,7 +10,7 @@
 	  var options = $("html").data('swagger-options');
 
     window.swaggerUi = new SwaggerUi({
-      url: options.app_url + options.url,
+      url: '<%= "#{request.protocol}#{request.host_with_port}#{GrapeSwaggerRails.options.url}" %>',
       dom_id:"swagger-ui-container",
       supportHeaderParams: true,
       supportedSubmitMethods: ['get', 'post', 'put', 'delete'],
@@ -61,8 +61,19 @@
     <a id="logo" href="<%= GrapeSwaggerRails.options.app_url %>"><%= GrapeSwaggerRails.options.app_name %></a>
 
     <form id='api_selector'>
-      <div class='input'><input placeholder="http://example.com/api" id="input_baseUrl" name="baseUrl" type="text"/></div>
-      <div class='input'><input placeholder="api_key" id="input_apiKey" name="apiKey" type="text"/></div>
+      <div class='input'>
+        <select id="input_baseUrl" name="baseUrl" onchange="$('#explore').click();" style="font-size:larger; min-width: 200px;">
+          <%- GrapeSwaggerRails.options.urls.sort.each do |name, url|
+            full_url = "#{request.protocol}#{request.host_with_port}#{url}" -%>
+            <%- if url == GrapeSwaggerRails.options.url -%>
+              <option selected="slected" value="<%= full_url %>"><%= name %></option>
+            <%- else -%>
+              <option value="<%= full_url %>"><%= name %></option>
+            <%- end -%>
+          <%- end -%>
+        </select>
+      </div>
+      <div class='input'><input placeholder="api_key" id="input_apiKey" name="apiKey" type="text" value="<%= @api_key_value%>"/></div>
       <div class='input'><a id="explore" href="#">Explore</a></div>
     </form>
   </div>
