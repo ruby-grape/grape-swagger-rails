@@ -122,6 +122,24 @@ describe 'Swagger' do
         end
       end
     end
+    context "#custom_css_file", type: :view do
+      # A view spec allows us to get away without an actual css file that a Capybara browser would want to pull in
+      context 'set' do
+        before do
+          GrapeSwaggerRails.options.custom_css_file = "test_custom.css"
+        end
+        it 'adds a stylesheet include for custom css file' do
+          render template: "grape_swagger_rails/application/index.html.erb"
+          expect(rendered).to have_xpath("//link[@href='/stylesheets/test_custom.css']", visible: false)
+        end
+      end
+      context 'not set' do
+        it 'renders the default index view just fine' do
+          render template: "grape_swagger_rails/application/index.html.erb"
+          expect(rendered).to have_content("Swagger")
+        end
+      end
+    end
     after do
       GrapeSwaggerRails.options = @options
     end
