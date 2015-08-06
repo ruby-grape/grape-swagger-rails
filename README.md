@@ -104,6 +104,10 @@ end
 
 To update Swagger UI from its [distribution](https://github.com/wordnik/swagger-ui), run `bundle exec rake swagger_ui:dist:update`. Examine the changes carefully.
 
+NOTE: This action should be run part of this gem (not your application). In case if you want to
+make it up-to-date, clone the repo, run the rake task, examine the diff, fix any bugs, make sure
+tests pass and then send PR here.
+
 ### Enabling in a Rails-API Project
 
 The grape-swagger-rails gem uses the Rails asset pipeline for its Javascript and CSS. Enable the asset pipeline with [rails-api](https://github.com/rails-api/rails-api).
