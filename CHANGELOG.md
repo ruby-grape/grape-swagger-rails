@@ -1,5 +1,6 @@
-### Next
+### 0.1.1 (Next)
 
+* Upgraded swagger-ui to v2.1.1 - [@dblock](https://github.com/dblock).
 * Your contribution here.
 
 ### 0.1.0 (February 5, 2015)

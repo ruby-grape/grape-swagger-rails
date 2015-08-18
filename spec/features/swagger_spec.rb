@@ -23,7 +23,7 @@ describe 'Swagger' do
       end
       it 'adds headers' do
         find('#endpointListTogger_headers', visible: true).click
-        find('a[href="#!/headers/GET_api_headers_format"]', visible: true).click
+        first('a[href="#!/headers/GET_api_headers_format"]', visible: true).click
         click_button 'Try it out!'
         expect(page).to have_css "span.attribute", text: 'X-Test-Header'
         expect(page).to have_css "span.string", text: 'Test Value'
