@@ -1,6 +1,6 @@
 # GrapeSwaggerRails
 
-[![Build Status](https://travis-ci.org/TinkerDev/grape-swagger-rails.svg)](https://travis-ci.org/TinkerDev/grape-swagger-rails)
+[![Build Status](https://travis-ci.org/ruby-grape/grape-swagger-rails.svg)](https://travis-ci.org/ruby-grape/grape-swagger-rails)
 
 Swagger UI as Rails Engine for grape-swagger gem.
 
@@ -138,7 +138,7 @@ Include CSS stylesheets in `app/assets/stylesheets/application.css`.
 * [dapi](https://github.com/dapi)
 * [joelvh](https://github.com/joelvh)
 * [dblock](https://github.com/dblock)
-* ... and [more](https://github.com/TinkerDev/grape-swagger-rails/graphs/contributors) ...
+* ... and [more](https://github.com/ruby-grape/grape-swagger-rails/graphs/contributors) ...
 
 ## Contributing
 

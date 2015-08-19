@@ -1,19 +1,19 @@
 # Contributing to Grape-Swagger-Rails
 
-This project is work of [many contributors](https://github.com/TinkerDev/grape-swagger-rails/graphs/contributors).
-You're encouraged to submit [pull requests](https://github.com/TinkerDev/grape-swagger-rails/pulls),
-[propose features and discuss issues](https://github.com/TinkerDev/grape-swagger-rails/issues).
+This project is work of [many contributors](https://github.com/ruby-grape/grape-swagger-rails/graphs/contributors).
+You're encouraged to submit [pull requests](https://github.com/ruby-grape/grape-swagger-rails/pulls),
+[propose features and discuss issues](https://github.com/ruby-grape/grape-swagger-rails/issues).
 
 In the examples below, substitute your Github username for `contributor` in URLs.
 
 ## Fork the Project
 
-Fork the [project on Github](https://github.com/TinkerDev/grape-swagger-rails) and check out your copy.
+Fork the [project on Github](https://github.com/ruby-grape/grape-swagger-rails) and check out your copy.
 
 ```
-git clone https://github.com/contributor/grape-swagger.git
-cd grape-swagger
-git remote add upstream https://github.com/TinkerDev/grape-swagger-rails.git
+git clone https://github.com/contributor/grape-swagger-rails.git
+cd grape-swagger-rails
+git remote add upstream https://github.com/ruby-grape/grape-swagger-rails.git
 ```
 
 ## Create a Topic Branch
@@ -53,7 +53,7 @@ You might find it useful to iterate on code by running the test project from spe
 ```
 spec/dummy$ GRAPE_SWAGGER_VERSION=HEAD bundle install
 
-Updating git://github.com/tim-vandecasteele/grape-swagger.git
+Updating git://github.com/ruby-grape/grape-swagger.git
 Fetching gem metadata from https://rubygems.org/.........
 Resolving dependencies...
 ...
@@ -86,7 +86,7 @@ git push origin my-feature-branch
 
 ## Make a Pull Request
 
-Go to https://github.com/contributor/grape and select your feature branch.
+Go to https://github.com/contributor/grape-swagger-rails and select your feature branch.
 Click the 'Pull Request' button and fill out the form. Pull requests are usually reviewed within a few days.
 
 ## Update CHANGELOG Again
@@ -94,7 +94,7 @@ Click the 'Pull Request' button and fill out the form. Pull requests are usually
 Update the [CHANGELOG](CHANGELOG.md) with the pull request number. A typical entry looks as follows.
 
 ```
-* [#123](https://github.com/TinkerDev/grape-swagger-rails/pull/123): Reticulated splines - [@contributor](https://github.com/contributor).
+* [#123](https://github.com/ruby-grape/grape-swagger-rails/pull/123): Reticulated splines - [@contributor](https://github.com/contributor).
 ```
 
 Amend your previous commit and force push the changes.
