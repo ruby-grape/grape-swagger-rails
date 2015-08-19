@@ -1,4 +1,4 @@
-require "grape-swagger-rails/engine"
+require 'grape-swagger-rails/engine'
 
 module GrapeSwaggerRails
   class Options < OpenStruct
@@ -6,7 +6,7 @@ module GrapeSwaggerRails
       if block_given?
         self.before_filter_proc = block
       else
-        self.before_filter_proc
+        before_filter_proc
       end
     end
   end
@@ -27,5 +27,4 @@ module GrapeSwaggerRails
 
     before_filter_proc:   nil # Proc used as a controller before filter
   )
-
 end

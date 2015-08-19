@@ -46,6 +46,9 @@ We definitely appreciate pull requests that highlight or reproduce a problem, ev
 
 Implement your feature or bug fix.
 
+Ruby style is enforced with [RuboCop](https://github.com/bbatsov/rubocop).
+Run `bundle exec rubocop` and fix any style issues highlighted.
+
 Make sure that `bundle exec rake` completes without errors.
 
 You might find it useful to iterate on code by running the test project from spec/dummy.

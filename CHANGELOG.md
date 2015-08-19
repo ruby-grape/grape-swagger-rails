@@ -3,6 +3,7 @@
 * [#6](https://github.com/ruby-grape/grape-swagger-rails/pull/6): Fix: support multiple predefined headers - [@Tyr0](https://github.com/tyr0).
 * Upgraded swagger-ui to v2.1.1 - [@dblock](https://github.com/dblock).
 * Grape-swagger 0.7.2 is no longer supported - [@dblock](https://github.com/dblock).
+* Implemented RuboCop, Ruby-style linter - [@dblock](https://github.com/dblock).
 * Your contribution here.
 
 ### 0.1.0 (February 5, 2015)

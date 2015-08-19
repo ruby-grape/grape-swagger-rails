@@ -6,17 +6,17 @@ describe 'Swagger' do
       visit '/swagger'
     end
     it 'loads foos resource' do
-      expect(page).to have_css "li#resource_foos"
+      expect(page).to have_css 'li#resource_foos'
     end
     it 'loads Swagger UI' do
       expect(page.evaluate_script('window.swaggerUi != null')).to be true
     end
   end
-  context "#options" do
+  context '#options' do
     before do
       @options = GrapeSwaggerRails.options.dup
     end
-    context "#headers" do
+    context '#headers' do
       before do
         GrapeSwaggerRails.options.headers['X-Test-Header'] = 'Test Value'
         GrapeSwaggerRails.options.headers['X-Another-Header'] = 'Another Value'
@@ -26,20 +26,20 @@ describe 'Swagger' do
         find('#endpointListTogger_headers', visible: true).click
         first('a[href="#!/headers/GET_api_headers_format"]', visible: true).click
         click_button 'Try it out!'
-        expect(page).to have_css "span.attribute", text: 'X-Test-Header'
-        expect(page).to have_css "span.string", text: 'Test Value'
+        expect(page).to have_css 'span.attribute', text: 'X-Test-Header'
+        expect(page).to have_css 'span.string', text: 'Test Value'
       end
       it 'supports multiple headers' do
         find('#endpointListTogger_headers', visible: true).click
         first('a[href="#!/headers/GET_api_headers_format"]', visible: true).click
         click_button 'Try it out!'
-        expect(page).to have_css "span.attribute", text: 'X-Test-Header'
-        expect(page).to have_css "span.string", text: 'Test Value'
-        expect(page).to have_css "span.attribute", text: 'X-Another-Header'
-        expect(page).to have_css "span.string", text: 'Another Value'
+        expect(page).to have_css 'span.attribute', text: 'X-Test-Header'
+        expect(page).to have_css 'span.string', text: 'Test Value'
+        expect(page).to have_css 'span.attribute', text: 'X-Another-Header'
+        expect(page).to have_css 'span.string', text: 'Another Value'
       end
     end
-    context "#api_auth:basic" do
+    context '#api_auth:basic' do
       before do
         GrapeSwaggerRails.options.api_auth = 'basic'
         GrapeSwaggerRails.options.api_key_name = 'Authorization'
@@ -52,11 +52,11 @@ describe 'Swagger' do
         find('#endpointListTogger_headers', visible: true).click
         first('a[href="#!/headers/GET_api_headers_format"]', visible: true).click
         click_button 'Try it out!'
-        expect(page).to have_css "span.attribute", text: 'Authorization'
-        expect(page).to have_css "span.string", text: "Basic #{Base64.encode64('username:password').strip}"
+        expect(page).to have_css 'span.attribute', text: 'Authorization'
+        expect(page).to have_css 'span.string', text: "Basic #{Base64.encode64('username:password').strip}"
       end
     end
-    context "#api_auth:bearer" do
+    context '#api_auth:bearer' do
       before do
         GrapeSwaggerRails.options.api_auth = 'bearer'
         GrapeSwaggerRails.options.api_key_name = 'Authorization'
@@ -69,11 +69,11 @@ describe 'Swagger' do
         find('#endpointListTogger_headers', visible: true).click
         first('a[href="#!/headers/GET_api_headers_format"]', visible: true).click
         click_button 'Try it out!'
-        expect(page).to have_css "span.attribute", text: 'Authorization'
-        expect(page).to have_css "span.string", text: 'Bearer token'
+        expect(page).to have_css 'span.attribute', text: 'Authorization'
+        expect(page).to have_css 'span.string', text: 'Bearer token'
       end
     end
-    context "#api_auth:token" do
+    context '#api_auth:token' do
       before do
         GrapeSwaggerRails.options.api_key_name = 'api_token'
         GrapeSwaggerRails.options.api_key_type = 'query'
@@ -85,32 +85,32 @@ describe 'Swagger' do
         find('#endpointListTogger_params', visible: true).click
         first('a[href="#!/params/GET_api_params_format"]', visible: true).click
         click_button 'Try it out!'
-        expect(page).to have_css "span.attribute", text: 'api_token'
-        expect(page).to have_css "span.string", text: "dummy"
+        expect(page).to have_css 'span.attribute', text: 'api_token'
+        expect(page).to have_css 'span.string', text: 'dummy'
       end
     end
-    context "#before_filter" do
+    context '#before_filter' do
       before do
-        GrapeSwaggerRails.options.before_filter do |request|
-          flash[:error] = "Unauthorized Access"
+        GrapeSwaggerRails.options.before_filter do |_request|
+          flash[:error] = 'Unauthorized Access'
           redirect_to '/'
           false
         end
         visit '/swagger'
       end
       it 'denies access' do
-        expect(current_path).to eq "/"
-        expect(page).to have_content "Unauthorized Access"
+        expect(current_path).to eq '/'
+        expect(page).to have_content 'Unauthorized Access'
       end
     end
-    context "#app_name" do
+    context '#app_name' do
       context 'set' do
         before do
-          GrapeSwaggerRails.options.app_name = "Test App"
+          GrapeSwaggerRails.options.app_name = 'Test App'
           visit '/swagger'
         end
         it 'sets page title' do
-          expect(page.title).to eq "Test App"
+          expect(page.title).to eq 'Test App'
         end
       end
       context 'not set' do
@@ -118,7 +118,7 @@ describe 'Swagger' do
           visit '/swagger'
         end
         it 'defaults page title' do
-          expect(page.title).to eq "Swagger"
+          expect(page.title).to eq 'Swagger'
         end
       end
     end

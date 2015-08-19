@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe GrapeSwaggerRails do
-  context "#options" do
+  context '#options' do
     subject do
       GrapeSwaggerRails.options
     end

@@ -12,8 +12,8 @@ Gem::Specification.new do |spec|
   spec.summary       = 'Swagger UI as Rails Engine for grape-swagger gem'
   spec.homepage      = 'https://github.com/ruby-grape/grape-swagger-rails'
   spec.license       = 'MIT'
-  spec.files         = `git ls-files`.split($/)
-  spec.test_files    = `git ls-files spec`.split($/)
+  spec.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
+  spec.test_files    = `git ls-files spec`.split($INPUT_RECORD_SEPARATOR)
   spec.require_paths = %w(lib)
 
   spec.add_dependency 'railties', '>= 3.2.12'
@@ -33,4 +33,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'grape-swagger-ui'
   spec.add_development_dependency 'sprockets'
   spec.add_development_dependency 'rack-cors'
+  spec.add_development_dependency 'rubocop', '0.33.0'
 end
