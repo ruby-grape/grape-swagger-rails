@@ -1,5 +1,6 @@
 /*
 *= require ./reset
 *= require ./screen
+*= require ./markdown
 *= require_self
 */
