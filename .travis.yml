@@ -9,7 +9,9 @@ language: ruby
 cache: bundler
 
 rvm:
-  - 2.1.2
+  - 2.2.3
+  - 2.1.7
+  - 2.0.0
 
 env:
   - GRAPE_SWAGGER_VERSION=0.8.0
