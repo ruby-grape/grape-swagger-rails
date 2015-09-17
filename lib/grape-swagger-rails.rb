@@ -25,6 +25,8 @@ module GrapeSwaggerRails
     api_key_name:         'api_key', # 'Authorization'
     api_key_type:         'query',   # 'header'
 
+    doc_expansion:        'none',
+
     before_filter_proc:   nil # Proc used as a controller before filter
   )
 end

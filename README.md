@@ -59,6 +59,13 @@ You can specify additional headers to add to each request:
 GrapeSwaggerRails.options.headers['Special-Header'] = 'Some Secret Value'
 ```
 
+You can set docExpansion with "none" or "list" or "full", default is "none".
+See the official Swagger-UI documentation about [SwaggerUi Parameters](https://github.com/swagger-api/swagger-ui#parameters).
+
+```ruby
+GrapeSwaggerRails.options.doc_expansion = 'list'
+```
+
 Using the `headers` option above, you could hard-code Basic Authentication credentials.
 Alternatively, you can configure Basic Authentication through the UI, as described below.
 

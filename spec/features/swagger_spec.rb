@@ -122,6 +122,34 @@ describe 'Swagger' do
         end
       end
     end
+    context '#doc_expansion' do
+      context 'set list' do
+        before do
+          GrapeSwaggerRails.options.doc_expansion = 'list'
+          visit '/swagger'
+        end
+        it 'sets SwaggerUI docExpansion with list' do
+          expect(page.evaluate_script('window.swaggerUi.options.docExpansion == "list"')).to be true
+        end
+      end
+      context 'set full' do
+        before do
+          GrapeSwaggerRails.options.doc_expansion = 'full'
+          visit '/swagger'
+        end
+        it 'sets SwaggerUI docExpansion with full' do
+          expect(page.evaluate_script('window.swaggerUi.options.docExpansion == "full"')).to be true
+        end
+      end
+      context 'not set' do
+        before do
+          visit '/swagger'
+        end
+        it 'defaults SwaggerUI docExpansion' do
+          expect(page.evaluate_script('window.swaggerUi.options.docExpansion == "none"')).to be true
+        end
+      end
+    end
     after do
       GrapeSwaggerRails.options = @options
     end
