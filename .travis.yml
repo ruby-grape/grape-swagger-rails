@@ -12,6 +12,7 @@ rvm:
   - 2.2.3
   - 2.1.7
   - 2.0.0
+  - 1.9.3
 
 env:
   - GRAPE_SWAGGER_VERSION=0.8.0
