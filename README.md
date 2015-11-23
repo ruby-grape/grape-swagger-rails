@@ -45,6 +45,12 @@ Create an initializer (e.g. `./config/initializers/swagger.rb`) and specify the 
 ```ruby
 GrapeSwaggerRails.options.url      = '/swagger_doc.json'
 GrapeSwaggerRails.options.app_url  = 'http://swagger.wordnik.com'
+``````
+
+If you want to set the default app_url according to the request automatically, add code below to `./config/initializers/swagger.rb`:
+
+```ruby
+GrapeSwaggerRails.options.before_filter_proc = proc { GrapeSwaggerRails.options.app_url = request.protocol + request.host_with_port  }
 ```
 
 You can set the app name, default is "Swagger".
