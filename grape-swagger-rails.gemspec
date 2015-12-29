@@ -34,4 +34,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'sprockets'
   spec.add_development_dependency 'rack-cors'
   spec.add_development_dependency 'rubocop', '0.33.0'
+  spec.add_development_dependency 'mime-types', '< 3.0'
 end
