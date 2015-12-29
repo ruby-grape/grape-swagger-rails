@@ -5,6 +5,7 @@ require 'action_view/railtie'
 require 'sprockets/railtie'
 require 'jquery-rails'
 require 'rack/cors'
+require 'rack/no_animations'
 
 Bundler.require(*Rails.groups)
 require 'grape-swagger-rails'
