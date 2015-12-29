@@ -6,6 +6,7 @@
 * Implemented RuboCop, Ruby-style linter - [@dblock](https://github.com/dblock).
 * [#31](https://github.com/ruby-grape/grape-swagger-rails/pull/31): Support Swagger-UI docExpansion option - [@maruware](https://github.com/maruware).
 * [#32](https://github.com/ruby-grape/grape-swagger-rails/pull/32): Fix Ruby 1.9.3 compatibility - [@suan](https://github.com/suan).
+* [#39](https://github.com/ruby-grape/grape-swagger-rails/pull/39): Support CSS media queries - [@alexagranov](https://github.com/alexagranov).
 * Your contribution here.
 
 ### 0.1.0 (February 5, 2015)
