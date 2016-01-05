@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html data-swagger-options="<%= GrapeSwaggerRails.options.to_json %>">
+<html data-swagger-options="<%= GrapeSwaggerRails.options.marshal_dump.to_json %>">
 <head>
-  <title><%= GrapeSwaggerRails.options.app_name %></title>
+  <title><%= GrapeSwaggerRails.options.app_name || 'Swagger UI' %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
   <%= stylesheet_link_tag 'grape_swagger_rails/application.css' %>
   <%= javascript_include_tag 'grape_swagger_rails/application.js' %>
   <script type="text/javascript">
 	$(function () {
 	  var options = $("html").data('swagger-options');
-	  
+
     window.swaggerUi = new SwaggerUi({
       url: options.app_url + options.url,
-      dom_id:"swagger-ui-container",
+      dom_id: "swagger-ui-container",
       supportHeaderParams: true,
-      headers: options.headers,
-      supportedSubmitMethods: ['get', 'post', 'put', 'delete'],
+      supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
       onComplete: function(swaggerApi, swaggerUi){
         if('console' in window) {
           console.log("Loaded SwaggerUI")
@@ -29,28 +29,35 @@
           console.log(data);
         }
       },
-      docExpansion: "none"
+      docExpansion: options.doc_expansion,
+      apisSorter: "alpha"
     });
 
     $('#input_apiKey').change(function() {
       var key = $('#input_apiKey')[0].value;
-      
+
       if(key && key.trim() != "") {
         if (options.api_auth == 'basic') {
           key = "Basic " + Base64.encode(key);
+        } else if (options.api_auth == 'bearer') {
+          key = "Bearer " + key
         }
-        window.authorizations.add("key", new ApiKeyAuthorization(options.api_key_name, key, options.api_key_type));
-
-     } else {
-        window.authorizations.add("key", null);
+        window.swaggerUi.api.clientAuthorizations.add("key", new SwaggerClient.ApiKeyAuthorization(options.api_key_name, key, options.api_key_type));
+      } else {
+        window.swaggerUi.api.clientAuthorizations.add("key", null);
       }
-    })
+    });
+
     window.swaggerUi.load();
+
+    <% GrapeSwaggerRails.options.headers.each_with_index do |(key, value), index| %>
+      <%=raw "window.swaggerUi.api.clientAuthorizations.add('header_#{index}', new SwaggerClient.ApiKeyAuthorization('#{CGI.escapeHTML(key)}', '#{CGI.escapeHTML(value)}', 'header'));" %>
+    <% end %>
   });
   </script>
 </head>
 
-<body>
+<body class="swagger-section">
 <div id='header'>
   <div class="swagger-ui-wrap">
     <a id="logo" href="<%= GrapeSwaggerRails.options.app_url %>"><%= GrapeSwaggerRails.options.app_name %></a>

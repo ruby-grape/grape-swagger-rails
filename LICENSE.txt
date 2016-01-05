@@ -1,4 +1,4 @@
-Copyright (c) 2013 Aleksandr B. Ivanov
+Copyright (c) 2013-2014 Aleksandr B. Ivanov & Contributors
 
 MIT License
 
