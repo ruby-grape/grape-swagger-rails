@@ -23,6 +23,9 @@ describe 'Swagger' do
         visit '/swagger'
       end
       it 'adds headers' do
+        headers = page.evaluate_script('swaggerUi.api.clientAuthorizations')['authz']
+        expect(headers.select { |key| key.to_s.match(/^header/) }).not_to be_blank
+        expect(headers.fetch('header_0', {}).fetch('name', {})).to eq GrapeSwaggerRails.options.headers.keys.first
         find('#endpointListTogger_headers', visible: true).click
         first('a[href="#!/headers/GET_api_headers_format"]', visible: true).click
         click_button 'Try it out!'

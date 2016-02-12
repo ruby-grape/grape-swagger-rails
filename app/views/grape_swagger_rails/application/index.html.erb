@@ -10,11 +10,17 @@
 	$(function () {
 	  var options = $("html").data('swagger-options');
 
+    var headers = {};
+    <% GrapeSwaggerRails.options.headers.each_with_index do |(key, value), index| %>
+      <%=raw "headers.header_#{index} = new SwaggerClient.ApiKeyAuthorization('#{CGI.escapeHTML(key)}', '#{CGI.escapeHTML(value)}', 'header');" %>
+    <% end %>
+
     window.swaggerUi = new SwaggerUi({
       url: options.app_url + options.url,
       dom_id: "swagger-ui-container",
       supportHeaderParams: true,
       supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
+      authorizations: headers,
       onComplete: function(swaggerApi, swaggerUi){
         if('console' in window) {
           console.log("Loaded SwaggerUI")
@@ -50,9 +56,6 @@
 
     window.swaggerUi.load();
 
-    <% GrapeSwaggerRails.options.headers.each_with_index do |(key, value), index| %>
-      <%=raw "window.swaggerUi.api.clientAuthorizations.add('header_#{index}', new SwaggerClient.ApiKeyAuthorization('#{CGI.escapeHTML(key)}', '#{CGI.escapeHTML(value)}', 'header'));" %>
-    <% end %>
   });
   </script>
 </head>
