@@ -1,3 +1,7 @@
+### 0.2.1 (Next)
+
+* Your contribution here.
+
 ### 0.2.0 (February 23, 2016)
 
 * [#6](https://github.com/ruby-grape/grape-swagger-rails/pull/6): Fix: support multiple predefined headers - [@Tyr0](https://github.com/tyr0).
