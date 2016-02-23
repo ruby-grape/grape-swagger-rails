@@ -1,4 +1,4 @@
-### 0.1.1 (Next)
+### 0.2.0 (February 23, 2016)
 
 * [#6](https://github.com/ruby-grape/grape-swagger-rails/pull/6): Fix: support multiple predefined headers - [@Tyr0](https://github.com/tyr0).
 * Upgraded swagger-ui to v2.1.1 - [@dblock](https://github.com/dblock).
@@ -8,7 +8,6 @@
 * [#32](https://github.com/ruby-grape/grape-swagger-rails/pull/32): Fix Ruby 1.9.3 compatibility - [@suan](https://github.com/suan).
 * [#39](https://github.com/ruby-grape/grape-swagger-rails/pull/39): Support CSS media queries - [@alexagranov](https://github.com/alexagranov).
 * [#42](https://github.com/ruby-grape/grape-swagger-rails/pull/42): Headers added on swaggerUi initialization (before swaggerUi.load() call) - [@sedx](https://github.com/sedx).
-* Your contribution here.
 
 ### 0.1.0 (February 5, 2015)
 
