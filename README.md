@@ -74,6 +74,13 @@ See the official Swagger-UI documentation about [SwaggerUi Parameters](https://g
 GrapeSwaggerRails.options.doc_expansion = 'list'
 ```
 
+You can set validatorUrl to your own locally deployed Swagger validator, or disable validation by setting this option to nil.
+This is useful to avoid error messages when running Swagger-UI on a server which is not accessible from outside your network.
+
+```ruby
+GrapeSwaggerRails.options.validator_url = nil
+```
+
 Using the `headers` option above, you could hard-code Basic Authentication credentials.
 Alternatively, you can configure Basic Authentication through the UI, as described below.
 

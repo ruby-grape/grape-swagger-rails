@@ -1,6 +1,6 @@
 ### 0.2.1 (Next)
 
-* Your contribution here.
+* Support Swagger-UI validatorUrl option - [@davidbrewer](https://github.com/davidbrewer).
 
 ### 0.2.0 (February 23, 2016)
 

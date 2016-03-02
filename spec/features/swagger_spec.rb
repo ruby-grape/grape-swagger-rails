@@ -153,6 +153,36 @@ describe 'Swagger' do
         end
       end
     end
+    context '#validator_url' do
+      context 'set null' do
+        before do
+          GrapeSwaggerRails.options.validator_url = nil
+          visit '/swagger'
+        end
+        it 'sets SwaggerUI validatorUrl to null' do
+          expect(page.evaluate_script('window.swaggerUi.options.validatorUrl === null && '\
+            'typeof window.swaggerUi.options.validatorUrl === "object"')).to be true
+        end
+      end
+      context 'set a url' do
+        before do
+          GrapeSwaggerRails.options.validator_url = 'http://www.example.com/'
+          visit '/swagger'
+        end
+        it 'sets SwaggerUI validatorUrl to expected url' do
+          expect(page.evaluate_script('window.swaggerUi.options.validatorUrl === "http://www.example.com/"')).to be true
+        end
+      end
+      context 'not set' do
+        before do
+          visit '/swagger'
+        end
+        it 'defaults SwaggerUI validatorUrl' do
+          expect(page.evaluate_script('window.swaggerUi.options.validatorUrl === undefined && '\
+            'typeof window.swaggerUi.options.validatorUrl === "undefined"')).to be true
+        end
+      end
+    end
     after do
       GrapeSwaggerRails.options = @options
     end
