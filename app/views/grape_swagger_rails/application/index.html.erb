@@ -28,6 +28,7 @@
           console.log(swaggerUi);
         }
         $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
+        addApiKeyAuthorization();
       },
       onFailure: function(data) {
         if('console' in window) {
@@ -40,20 +41,20 @@
       apisSorter: "alpha"
     });
 
-    $('#input_apiKey').change(function() {
+    function addApiKeyAuthorization() {
       var key = $('#input_apiKey')[0].value;
 
-      if(key && key.trim() != "") {
+      if (key && key.trim() != "") {
         if (options.api_auth == 'basic') {
           key = "Basic " + Base64.encode(key);
         } else if (options.api_auth == 'bearer') {
           key = "Bearer " + key
         }
         window.swaggerUi.api.clientAuthorizations.add("key", new SwaggerClient.ApiKeyAuthorization(options.api_key_name, key, options.api_key_type));
-      } else {
-        window.swaggerUi.api.clientAuthorizations.add("key", null);
-      }
-    });
+      } 
+  }
+
+    $('#input_apiKey').change(addApiKeyAuthorization);
 
     window.swaggerUi.load();
 
