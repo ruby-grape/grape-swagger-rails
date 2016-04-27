@@ -16,6 +16,15 @@ describe 'Swagger' do
     before do
       @options = GrapeSwaggerRails.options.dup
     end
+
+    it 'evaluates config options correctly' do
+      visit '/swagger'
+      page_options_json = page.evaluate_script("$('html').data('swagger-options')").to_json
+      warn page.body
+      warn page_options_json
+      expect(page_options_json).to eq(@options.marshal_dump.to_json)
+    end
+
     context '#headers' do
       before do
         GrapeSwaggerRails.options.headers['X-Test-Header'] = 'Test Value'
