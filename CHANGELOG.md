@@ -1,8 +1,9 @@
 ### 0.2.1 (Next)
 
-* Your contribution here.
 * Fixed header-based authorization - [@davidbrewer](https://github.com/davidbrewer).
 * Support Swagger-UI validatorUrl option - [@davidbrewer](https://github.com/davidbrewer).
+* Support for grape 0.14.x through 0.16.x and grape-swagger 0.11.x through 0.20.x - [@dblock](https://github.com/dblock).
+* Your contribution here.
 
 ### 0.2.0 (February 23, 2016)
 

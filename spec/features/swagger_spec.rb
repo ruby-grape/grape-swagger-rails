@@ -27,14 +27,14 @@ describe 'Swagger' do
         expect(headers.select { |key| key.to_s.match(/^header/) }).not_to be_blank
         expect(headers.fetch('header_0', {}).fetch('name', {})).to eq GrapeSwaggerRails.options.headers.keys.first
         find('#endpointListTogger_headers', visible: true).click
-        first('a[href="#!/headers/GET_api_headers_format"]', visible: true).click
+        first('span[class="http_method"] a', visible: true).click
         click_button 'Try it out!'
         expect(page).to have_css 'span.attribute', text: 'X-Test-Header'
         expect(page).to have_css 'span.string', text: 'Test Value'
       end
       it 'supports multiple headers' do
         find('#endpointListTogger_headers', visible: true).click
-        first('a[href="#!/headers/GET_api_headers_format"]', visible: true).click
+        first('span[class="http_method"] a', visible: true).click
         click_button 'Try it out!'
         expect(page).to have_css 'span.attribute', text: 'X-Test-Header'
         expect(page).to have_css 'span.string', text: 'Test Value'
@@ -53,7 +53,7 @@ describe 'Swagger' do
         page.execute_script("$('#input_apiKey').val('username:password')")
         page.execute_script("$('#input_apiKey').trigger('change')")
         find('#endpointListTogger_headers', visible: true).click
-        first('a[href="#!/headers/GET_api_headers_format"]', visible: true).click
+        first('span[class="http_method"] a', visible: true).click
         click_button 'Try it out!'
         expect(page).to have_css 'span.attribute', text: 'Authorization'
         expect(page).to have_css 'span.string', text: "Basic #{Base64.encode64('username:password').strip}"
@@ -70,7 +70,7 @@ describe 'Swagger' do
         page.execute_script("$('#input_apiKey').val('token')")
         page.execute_script("$('#input_apiKey').trigger('change')")
         find('#endpointListTogger_headers', visible: true).click
-        first('a[href="#!/headers/GET_api_headers_format"]', visible: true).click
+        first('span[class="http_method"] a', visible: true).click
         click_button 'Try it out!'
         expect(page).to have_css 'span.attribute', text: 'Authorization'
         expect(page).to have_css 'span.string', text: 'Bearer token'
@@ -86,7 +86,7 @@ describe 'Swagger' do
         page.execute_script("$('#input_apiKey').val('dummy')")
         page.execute_script("$('#input_apiKey').trigger('change')")
         find('#endpointListTogger_params', visible: true).click
-        first('a[href="#!/params/GET_api_params_format"]', visible: true).click
+        first('span[class="http_method"] a', visible: true).click
         click_button 'Try it out!'
         expect(page).to have_css 'span.attribute', text: 'api_token'
         expect(page).to have_css 'span.string', text: 'dummy'
