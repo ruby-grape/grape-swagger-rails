@@ -20,8 +20,6 @@ describe 'Swagger' do
     it 'evaluates config options correctly' do
       visit '/swagger'
       page_options_json = page.evaluate_script("$('html').data('swagger-options')").to_json
-      warn page.body
-      warn page_options_json
       expect(page_options_json).to eq(@options.marshal_dump.to_json)
     end
 
