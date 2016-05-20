@@ -31,6 +31,7 @@ grape  | grape-swagger
 -------|--------------
 0.9.0  | 0.8.0
 0.10.0 | 0.9.0
+0.16.2 | 0.20.2
 
 ## Usage
 
@@ -45,7 +46,7 @@ Create an initializer (e.g. `./config/initializers/swagger.rb`) and specify the 
 ```ruby
 GrapeSwaggerRails.options.url      = '/swagger_doc.json'
 GrapeSwaggerRails.options.app_url  = 'http://swagger.wordnik.com'
-``````
+```
 
 You can dynamically set `app_url` for each request use a `before_filter_proc`:
 
@@ -101,6 +102,16 @@ Now you can specify the username and password to your API in the Swagger "API ke
 The javascript that loads on the Swagger page automatically encodes the username and password and adds the authorization header to your API request.
 See the official Swagger documentation about [Custom Header Parameters](https://github.com/wordnik/swagger-ui#custom-header-parameters---for-basic-auth-etc)
 
+### Pre-fill Authentication
+
+If you will know the Authentication key prior to page load or you wish to set it for debug purposes, you can setup so that the `api_key` field is pre-filled on page load:
+
+```ruby
+GrapeSwaggerRails.options.api_key_default_value = 'your_default_value'
+```
+
+To set it based on the `current_user` or other request-based parameters, try using it inside of your `before_filter` (See Swagger UI Authorization)
+
 ### API Token Authentication
 
 If your application uses token authentication passed as a query param, you can setup Swagger to send the API token along with each request to your API:
@@ -123,6 +134,22 @@ GrapeSwaggerRails.options.before_filter do |request|
   # 3. Redirect or error in case of failure.
 end
 ```
+
+### Hiding the API or Authorization text boxes
+
+If you know in advance that you would like to prevent changing the Swagger API URL, you can hide it using the following:
+
+```ruby
+GrapeSwaggerRails.options.hide_url_input = true
+```
+
+Similarly, you can hide the Authentication input box by adding this:
+
+```ruby
+GrapeSwaggerRails.options.hide_api_key_input = true
+```
+
+By default, these options are false.
 
 ### Updating Swagger UI from Dist
 
