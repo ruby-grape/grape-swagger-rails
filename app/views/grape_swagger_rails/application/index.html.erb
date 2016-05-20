@@ -51,7 +51,7 @@
           key = "Bearer " + key
         }
         window.swaggerUi.api.clientAuthorizations.add("key", new SwaggerClient.ApiKeyAuthorization(options.api_key_name, key, options.api_key_type));
-      } 
+      }
   }
 
     $('#input_apiKey').change(addApiKeyAuthorization);
@@ -60,6 +60,19 @@
 
   });
   </script>
+  <style>
+    input#input_baseUrl, a#explore.exploreBtn {
+      <% if GrapeSwaggerRails.options.hide_url_input %>
+      display: none;
+      <% end %>
+    }
+
+    input#input_apiKey {
+      <% if GrapeSwaggerRails.options.hide_api_key_input %>
+      display: none;
+      <% end %>
+    }
+  </style>
 </head>
 
 <body class="swagger-section">
@@ -69,8 +82,8 @@
 
     <form id='api_selector'>
       <div class='input'><input placeholder="http://example.com/api" id="input_baseUrl" name="baseUrl" type="text"/></div>
-      <div class='input'><input placeholder="api_key" id="input_apiKey" name="apiKey" type="text"/></div>
-      <div class='input'><a id="explore" href="#">Explore</a></div>
+      <div class='input'><input placeholder="api_key" id="input_apiKey" name="apiKey" type="text" value="<%= GrapeSwaggerRails.options.api_key_default_value %>"/></div>
+      <div class='input'><a id="explore" class="exploreBtn" href="#">Explore</a></div>
     </form>
   </div>
 </div>
