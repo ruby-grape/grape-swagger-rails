@@ -15,18 +15,22 @@ module GrapeSwaggerRails
 
   self.options = Options.new(
 
-    url:                  '/swagger_doc',
-    app_name:             'Swagger',
-    app_url:              'http://swagger.wordnik.com',
+    url:                    '/swagger_doc',
+    app_name:               'Swagger',
+    app_url:                'http://swagger.wordnik.com',
 
-    headers:              {},
+    headers:                {},
 
-    api_auth:             '',        # 'basic' or 'bearer'
-    api_key_name:         'api_key', # 'Authorization'
-    api_key_type:         'query',   # 'header'
+    api_auth:               '', # 'basic' or 'bearer'
+    api_key_name:           'api_key', # 'Authorization'
+    api_key_type:           'query', # 'header'
+    api_key_default_value:  '', # Auto populates api_key
 
-    doc_expansion:        'none',
+    doc_expansion:          'none',
 
-    before_filter_proc:   nil # Proc used as a controller before filter
+    before_filter_proc:     nil, # Proc used as a controller before filter
+
+    hide_url_input:         false,
+    hide_api_key_input:     false
   )
 end
