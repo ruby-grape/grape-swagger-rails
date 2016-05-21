@@ -1,3 +1,7 @@
+### 0.2.2 (Next)
+
+* Your contribution here
+
 ### 0.2.1 (May 21, 2016)
 
 * Fixed header-based authorization - [@davidbrewer](https://github.com/davidbrewer).
