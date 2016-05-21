@@ -1,10 +1,9 @@
-### 0.2.1 (Next)
+### 0.2.1 (May 21, 2016)
 
 * Fixed header-based authorization - [@davidbrewer](https://github.com/davidbrewer).
 * Support Swagger-UI validatorUrl option - [@davidbrewer](https://github.com/davidbrewer).
 * Support for grape 0.14.x through 0.16.x and grape-swagger 0.11.x through 0.20.x - [@dblock](https://github.com/dblock).
 * [#55](https://github.com/ruby-grape/grape-swagger-rails/pull/55): Update Swagger-UI assets and add ability to hide input boxes - [@aschuster93](https://github.com/aschuster93).
-* Your contribution here.
 
 ### 0.2.0 (February 23, 2016)
 
