@@ -7,6 +7,7 @@ module GrapeSwaggerRails
     end
 
     def index
+      render layout: GrapeSwaggerRails.options.swagger_ui_layout
     end
   end
 end

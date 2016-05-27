@@ -31,6 +31,8 @@ module GrapeSwaggerRails
     before_filter_proc:     nil, # Proc used as a controller before filter
 
     hide_url_input:         false,
-    hide_api_key_input:     false
+    hide_api_key_input:     false,
+
+    swagger_ui_layout:      'default_layout' # Replace to change layout of the page
   )
 end

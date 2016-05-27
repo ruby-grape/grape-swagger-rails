@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html data-swagger-options="<%= GrapeSwaggerRails.options.marshal_dump.to_json %>">
-<head>
-  <title><%= GrapeSwaggerRails.options.app_name || 'Swagger UI' %></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
-  <%= stylesheet_link_tag 'grape_swagger_rails/application.css' %>
+
+<% content_for :head do %>
   <%= javascript_include_tag 'grape_swagger_rails/application.js' %>
   <script type="text/javascript">
 	$(function () {
-	  var options = $("html").data('swagger-options');
+	  var options = $.parseJSON("<%= escape_javascript(GrapeSwaggerRails.options.to_json.html_safe) %>");
+    options = options.table;
 
     var headers = {};
     <% GrapeSwaggerRails.options.headers.each_with_index do |(key, value), index| %>
@@ -73,7 +69,7 @@
       <% end %>
     }
   </style>
-</head>
+<% end %>
 
 <body class="swagger-section">
 <div id='header'>
@@ -97,5 +93,3 @@
 </div>
 
 </body>
-
-</html>
