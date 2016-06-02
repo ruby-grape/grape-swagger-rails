@@ -75,7 +75,7 @@ See the official Swagger-UI documentation about [SwaggerUi Parameters](https://g
 GrapeSwaggerRails.options.doc_expansion = 'list'
 ```
 
-You can set supportedSubmitMethods with an array of the supported HTTP methods, default is ["get" "post" "put" "delete" "patch"]
+You can set supportedSubmitMethods with an array of the supported HTTP methods, default is ["get" "post" "put" "delete" "patch"].
 See the official Swagger-UI documentation about [SwaggerUi Parameters](https://github.com/swagger-api/swagger-ui#parameters).
 
 ```ruby
