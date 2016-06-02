@@ -75,6 +75,16 @@ See the official Swagger-UI documentation about [SwaggerUi Parameters](https://g
 GrapeSwaggerRails.options.doc_expansion = 'list'
 ```
 
+You can set supportedSubmitMethods with an array of the supported HTTP methods, default is: 
+```ruby
+["get" "post" "put" "delete" "patch"]
+```
+See the official Swagger-UI documentation about [SwaggerUi Parameters](https://github.com/swagger-api/swagger-ui#parameters).
+
+```ruby
+GrapeSwaggerRails.options.supported_submit_methods = ["get"]
+```
+
 You can set validatorUrl to your own locally deployed Swagger validator, or disable validation by setting this option to nil.
 This is useful to avoid error messages when running Swagger-UI on a server which is not accessible from outside your network.
 
