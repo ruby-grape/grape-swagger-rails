@@ -27,6 +27,7 @@ module GrapeSwaggerRails
     api_key_default_value:  '', # Auto populates api_key
 
     doc_expansion:          'none',
+    supported_submit_methods: %w(get post put delete patch),
 
     before_filter_proc:     nil, # Proc used as a controller before filter
 
