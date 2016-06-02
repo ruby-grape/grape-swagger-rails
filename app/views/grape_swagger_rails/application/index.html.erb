@@ -19,7 +19,7 @@
       url: options.app_url + options.url,
       dom_id: "swagger-ui-container",
       supportHeaderParams: true,
-      supportedSubmitMethods: options.supported_submit_methods,
+      supportedSubmitMethods: options.supported_submit_methods || [],
       authorizations: headers,
       onComplete: function(swaggerApi, swaggerUi){
         if('console' in window) {
