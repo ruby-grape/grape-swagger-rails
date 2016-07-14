@@ -1,3 +1,7 @@
+### 0.2.3 (Next)
+
+* Your contribution here.
+
 ### 0.2.2 (July 13, 2016)
 
 * [#57](https://github.com/ruby-grape/grape-swagger-rails/pull/57): Support Swagger-UI supportedSubmitMethods option - [@ShadowWrathOogles](https://github.com/ShadowWrathOogles).
