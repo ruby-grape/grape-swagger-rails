@@ -1,8 +1,7 @@
-### 0.2.2 (Next)
+### 0.2.2 (July 13, 2016)
 
 * [#57](https://github.com/ruby-grape/grape-swagger-rails/pull/57): Support Swagger-UI supportedSubmitMethods option - [@ShadowWrathOogles](https://github.com/ShadowWrathOogles).
 * [#61](https://github.com/ruby-grape/grape-swagger-rails/pull/61): Removed grape and grape-swagger from required dependencies - [@aschuster3](https://github.com/aschuster3).
-* Your contribution here.
 
 ### 0.2.1 (May 21, 2016)
 
