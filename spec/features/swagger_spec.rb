@@ -99,9 +99,9 @@ describe 'Swagger' do
         expect(page).to have_css 'span.hljs-string', text: 'dummy'
       end
     end
-    context '#before_filter' do
+    context '#before_action' do
       before do
-        GrapeSwaggerRails.options.before_filter do |_request|
+        GrapeSwaggerRails.options.before_action do |_request|
           flash[:error] = 'Unauthorized Access'
           redirect_to '/'
           false
