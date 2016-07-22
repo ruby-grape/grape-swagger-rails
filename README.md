@@ -143,6 +143,22 @@ GrapeSwaggerRails.options.before_filter do |request|
 end
 ```
 
+#### Integration with DoorKeeper
+
+Add the following code to the initializer (swagger.rb):
+
+```ruby
+GrapeSwaggerRails.options.before_filter do |request|
+  GrapeSwaggerRails.options.api_key_default_value = current_user.token.token
+end
+```
+
+In your User model (user.rb) add:
+
+```ruby
+has_one :token, -> { order 'created_at DESC' }, class_name: Doorkeeper::AccessToken, foreign_key: :resource_owner_id
+```
+
 ### Hiding the API or Authorization text boxes
 
 If you know in advance that you would like to prevent changing the Swagger API URL, you can hide it using the following:
