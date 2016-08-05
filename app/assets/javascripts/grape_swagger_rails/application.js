@@ -4,12 +4,9 @@
 //= require ./jquery.ba-bbq.min
 //= require ./handlebars-2.0.0
 //= require ./marked
-//= require ./lodash.min
+//= require ./underscore-min
 //= require ./backbone-min
 //= require ./swagger-ui.min
-//= require ./highlight.9.1.0.pack
-//= require ./js-yaml.min
-//= require ./jsoneditor.min
-//= require ./object-assign-pollyfill
+//= require ./highlight.7.3.pack
 //= require ./swagger-oauth
 //= require ./base64
