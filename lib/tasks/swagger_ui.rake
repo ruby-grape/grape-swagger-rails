@@ -27,10 +27,13 @@ namespace :swagger_ui do
           'jquery.ba-bbq.min.js',
           'handlebars-2.0.0.js',
           'marked.js',
-          'underscore-min.js',
+          'lodash.min.js',
           'backbone-min.js',
           'swagger-ui.min.js',
-          'highlight.7.3.pack.js',
+          'highlight.9.1.0.pack.js',
+          'js-yaml.min.js',
+          'jsoneditor.min.js',
+          'object-assign-pollyfill.js',
           'swagger-oauth.js',
           'base64.js'
         ]
