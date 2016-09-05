@@ -20,3 +20,7 @@ when '0.20.2'
 else
   gem 'grape-swagger', version
 end
+
+group :test do
+  gem 'ruby-grape-danger', '~> 0.1.0', require: false
+end

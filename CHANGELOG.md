@@ -1,5 +1,6 @@
 ### 0.2.3 (Next)
 
+* [#68](https://github.com/ruby-grape/grape-swagger-rails/pull/68): Added danger, PR linter - [@dblock](https://github.com/dblock).
 * Your contribution here.
 
 ### 0.2.2 (July 13, 2016)
@@ -27,13 +28,13 @@
 
 ### 0.1.0 (February 5, 2015)
 
-* [41](https://github.com/BrandyMint/grape-swagger-rails/pull/41): Compatibility with grape-swagger 0.8.0 and 0.9.0 - [@dblock](https://github.com/dblock).
+* [#41](https://github.com/BrandyMint/grape-swagger-rails/pull/41): Compatibility with grape-swagger 0.8.0 and 0.9.0 - [@dblock](https://github.com/dblock).
 
 ### 0.0.10 (September 30, 2014)
 
-* [33](https://github.com/BrandyMint/grape-swagger-rails/pull/33): Fix: make the dummy app runnable - [@dblock](https://github.com/dblock).
-* [33](https://github.com/BrandyMint/grape-swagger-rails/pull/33): Fix: headers default to nil - [@dblock](https://github.com/dblock).
-* [33](https://github.com/BrandyMint/grape-swagger-rails/pull/33): Added support for GrapeSwaggerRails.options.headers - [@dblock](https://github.com/dblock).
+* [#33](https://github.com/BrandyMint/grape-swagger-rails/pull/33): Fix: make the dummy app runnable - [@dblock](https://github.com/dblock).
+* [#33](https://github.com/BrandyMint/grape-swagger-rails/pull/33): Fix: headers default to nil - [@dblock](https://github.com/dblock).
+* [#33](https://github.com/BrandyMint/grape-swagger-rails/pull/33): Added support for GrapeSwaggerRails.options.headers - [@dblock](https://github.com/dblock).
 * [#31](https://github.com/BrandyMint/grape-swagger-rails/pull/31): Get Swagger-UI from dist - [@dblock](https://github.com/dblock).
 * [#29](https://github.com/BrandyMint/grape-swagger-rails/pull/29): Add Rails 4.1 support - [@aaronchi](https://github.com/aaronchi).
 * [#21](https://github.com/BrandyMint/grape-swagger-rails/pull/21): Corrected initializer paths - [@mrclmrvn](https://github.com/mrclmrvn).
