@@ -1,8 +1,8 @@
 module GrapeSwaggerRails
   class ApplicationController < ActionController::Base
-    before_filter do
-      if GrapeSwaggerRails.options.before_filter
-        instance_exec(request, &GrapeSwaggerRails.options.before_filter)
+    before_action do
+      if GrapeSwaggerRails.options.before_action
+        instance_exec(request, &GrapeSwaggerRails.options.before_action)
       end
     end
 
