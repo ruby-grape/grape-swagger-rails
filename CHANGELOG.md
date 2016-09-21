@@ -1,6 +1,6 @@
 ### 0.2.3 (Next)
 
-* [#XX](https://github.com/ruby-grape/grape-swagger-rails/pull/XX): Rails 5 support - [@serggl](https://github.com/serggl).
+* [#70](https://github.com/ruby-grape/grape-swagger-rails/pull/70): Rails 5 support - [@serggl](https://github.com/serggl).
 * [#68](https://github.com/ruby-grape/grape-swagger-rails/pull/68): Added danger, PR linter - [@dblock](https://github.com/dblock).
 * Your contribution here.
 
