@@ -1,6 +1,5 @@
 module GrapeSwaggerRails
   class ApplicationController < ActionController::Base
-
     if Rails::VERSION::MAJOR >= 4
       before_action { run_before_action }
     else
@@ -13,8 +12,8 @@ module GrapeSwaggerRails
     private
 
     def run_before_action
-      callback = [GrapeSwaggerRails.options.before_action, GrapeSwaggerRails.options.before_filter].compact.first
-      instance_exec(request, &callback) if callback
+      return unless GrapeSwaggerRails.options.before_action
+      instance_exec(request, &GrapeSwaggerRails.options.before_action)
     end
   end
 end
