@@ -101,7 +101,19 @@ describe 'Swagger' do
     end
     context '#before_filter' do
       before do
-        GrapeSwaggerRails.options.before_filter do |_request|
+        GrapeSwaggerRails.options.before_filter { true }
+      end
+      it 'throws deprecation warning' do
+        allow(ActiveSupport::Deprecation).to receive(:warn)
+
+        visit '/swagger'
+
+        expect(ActiveSupport::Deprecation).to have_received(:warn).with('this option is deprecated and going to be removed soon. Please use `before_action` instead')
+      end
+    end
+    context '#before_action' do
+      before do
+        GrapeSwaggerRails.options.before_action do |_request|
           flash[:error] = 'Unauthorized Access'
           redirect_to '/'
           false

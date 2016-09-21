@@ -48,10 +48,10 @@ GrapeSwaggerRails.options.url      = '/swagger_doc.json'
 GrapeSwaggerRails.options.app_url  = 'http://swagger.wordnik.com'
 ```
 
-You can dynamically set `app_url` for each request use a `before_filter_proc`:
+You can dynamically set `app_url` for each request use a `before_action_proc`:
 
 ```ruby
-GrapeSwaggerRails.options.before_filter_proc = proc {
+GrapeSwaggerRails.options.before_action_proc = proc {
   GrapeSwaggerRails.options.app_url = request.protocol + request.host_with_port
 }
 ```
@@ -118,7 +118,7 @@ If you will know the Authentication key prior to page load or you wish to set it
 GrapeSwaggerRails.options.api_key_default_value = 'your_default_value'
 ```
 
-To set it based on the `current_user` or other request-based parameters, try using it inside of your `before_filter` (See Swagger UI Authorization)
+To set it based on the `current_user` or other request-based parameters, try using it inside of your `before_action` (See Swagger UI Authorization)
 
 ### API Token Authentication
 
@@ -136,7 +136,7 @@ You may want to authenticate users before displaying the Swagger UI, particularl
 Use the `before` option to inspect the request before Swagger UI:
 
 ```ruby
-GrapeSwaggerRails.options.before_filter do |request|
+GrapeSwaggerRails.options.before_action do |request|
   # 1. Inspect the `request` or access the Swagger UI controller via `self`.
   # 2. Check `current_user` or `can? :access, :api`, etc.
   # 3. Redirect or error in case of failure.
@@ -148,7 +148,7 @@ end
 Add the following code to the initializer (swagger.rb):
 
 ```ruby
-GrapeSwaggerRails.options.before_filter do |request|
+GrapeSwaggerRails.options.before_action do |request|
   GrapeSwaggerRails.options.api_key_default_value = current_user.token.token
 end
 ```

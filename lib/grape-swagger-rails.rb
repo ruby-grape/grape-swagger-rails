@@ -3,10 +3,14 @@ require 'grape-swagger-rails/engine'
 module GrapeSwaggerRails
   class Options < OpenStruct
     def before_filter(&block)
+      ActiveSupport::Deprecation.warn('this option is deprecated and going to be removed soon. Please use `before_action` instead')
+      before_action(&block)
+    end
+    def before_action(&block)
       if block_given?
-        self.before_filter_proc = block
+        self.before_action_proc = block
       else
-        before_filter_proc
+        before_action_proc
       end
     end
   end
@@ -29,7 +33,7 @@ module GrapeSwaggerRails
     doc_expansion:          'none',
     supported_submit_methods: %w(get post put delete patch),
 
-    before_filter_proc:     nil, # Proc used as a controller before filter
+    before_action_proc:     nil, # Proc used as a controller before action
 
     hide_url_input:         false,
     hide_api_key_input:     false
