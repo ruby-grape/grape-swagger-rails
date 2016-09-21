@@ -48,12 +48,12 @@ GrapeSwaggerRails.options.url      = '/swagger_doc.json'
 GrapeSwaggerRails.options.app_url  = 'http://swagger.wordnik.com'
 ```
 
-You can dynamically set `app_url` for each request use a `before_action_proc`:
+You can dynamically set `app_url` for each request use a `before_action`:
 
 ```ruby
-GrapeSwaggerRails.options.before_action_proc = proc {
+GrapeSwaggerRails.options.before_action do
   GrapeSwaggerRails.options.app_url = request.protocol + request.host_with_port
-}
+end
 ```
 
 You can set the app name, default is "Swagger".
