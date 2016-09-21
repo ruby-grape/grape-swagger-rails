@@ -108,7 +108,8 @@ describe 'Swagger' do
 
         visit '/swagger'
 
-        expect(ActiveSupport::Deprecation).to have_received(:warn).with('this option is deprecated and going to be removed soon. Please use `before_action` instead')
+        expect(ActiveSupport::Deprecation).to have_received(:warn).with('this option is deprecated ' \
+          'and going to be removed soon. Please use `before_action` instead')
       end
     end
     context '#before_action' do
