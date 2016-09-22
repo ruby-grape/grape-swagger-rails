@@ -1,8 +1,12 @@
+Next Release
+============
+
+* Your contribution here.
+
 ### 0.3.0 (September 22, 2016)
 
 * [#70](https://github.com/ruby-grape/grape-swagger-rails/pull/70): Rails 5 support - [@serggl](https://github.com/serggl).
 * [#68](https://github.com/ruby-grape/grape-swagger-rails/pull/68): Added danger, PR linter - [@dblock](https://github.com/dblock).
-* Your contribution here.
 
 ### 0.2.2 (July 13, 2016)
 
