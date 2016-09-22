@@ -3,7 +3,7 @@ require 'grape-swagger-rails/engine'
 module GrapeSwaggerRails
   class Options < OpenStruct
     def before_filter(&block)
-      ActiveSupport::Deprecation.warn('This option is deprecated and going to be removed in 0.3.0. ' \
+      ActiveSupport::Deprecation.warn('This option is deprecated and going to be removed in 1.0.0. ' \
                                       'Please use `before_action` instead')
       before_action(&block)
     end
