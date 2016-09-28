@@ -15,6 +15,15 @@
       <%=raw "headers.header_#{index} = new SwaggerClient.ApiKeyAuthorization('#{CGI.escapeHTML(key)}', '#{CGI.escapeHTML(value)}', 'header');" %>
     <% end %>
 
+    // In very next line we are going to initialize `SwaggerUi`. But To initialize `SwaggerUi` we need to have authorization header.
+    // And the inside `onComplete` we are adding `Authorization Header` by calling `addApiKeyAuthorization()`.
+    // So, initialization of `SwaggerUi` fails and triggers `onFaiulre` :p
+
+    // And this resolution is to add header before initialize `SwaggerUI`
+    // Some discussions: https://groups.google.com/forum/#!topic/swagger-swaggersocket/tJ0YHdTnBRk
+    // https://github.com/swagger-api/swagger-ui/issues/1171#issuecomment-100374999
+    <%= raw "headers.header_#{GrapeSwaggerRails.options.headers.count} = new SwaggerClient.ApiKeyAuthorization(options.api_key_name, prepareApiKeyAuthorization(), options.api_key_type);" unless GrapeSwaggerRails.options.headers.keys.include?('Authorization') %>
+
     window.swaggerUi = new SwaggerUi({
       url: options.app_url + options.url,
       dom_id: "swagger-ui-container",
@@ -42,6 +51,12 @@
     });
 
     function addApiKeyAuthorization() {
+      var api_key = $('#input_apiKey')[0].value;
+      if (api_key && api_key.trim() != "")
+        window.swaggerUi.api.clientAuthorizations.add("key", new SwaggerClient.ApiKeyAuthorization(options.api_key_name, prepareApiKeyAuthorization(), options.api_key_type));
+    }
+
+    function prepareApiKeyAuthorization() {
       var key = $('#input_apiKey')[0].value;
 
       if (key && key.trim() != "") {
@@ -50,9 +65,9 @@
         } else if (options.api_auth == 'bearer') {
           key = "Bearer " + key
         }
-        window.swaggerUi.api.clientAuthorizations.add("key", new SwaggerClient.ApiKeyAuthorization(options.api_key_name, key, options.api_key_type));
       }
-  }
+      return key;
+    }
 
     $('#input_apiKey').change(addApiKeyAuthorization);
 
