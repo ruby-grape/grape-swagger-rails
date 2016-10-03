@@ -22,7 +22,7 @@
     // And this resolution is to add header before initialize `SwaggerUI`
     // Some discussions: https://groups.google.com/forum/#!topic/swagger-swaggersocket/tJ0YHdTnBRk
     // https://github.com/swagger-api/swagger-ui/issues/1171#issuecomment-100374999
-    <%= raw "headers.header_#{GrapeSwaggerRails.options.headers.count} = new SwaggerClient.ApiKeyAuthorization(options.api_key_name, prepareApiKeyAuthorization(), options.api_key_type);" unless GrapeSwaggerRails.options.headers.keys.include?('Authorization') %>
+    <%#= raw "headers.header_#{GrapeSwaggerRails.options.headers.count} = new SwaggerClient.ApiKeyAuthorization(options.api_key_name, prepareApiKeyAuthorization(), options.api_key_type);" unless GrapeSwaggerRails.options.headers.keys.include?('Authorization') %>
 
     window.swaggerUi = new SwaggerUi({
       url: options.app_url + options.url,
