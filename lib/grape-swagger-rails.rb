@@ -15,6 +15,14 @@ module GrapeSwaggerRails
         before_action_proc
       end
     end
+    
+    def before_index(&block)
+      if block_given?
+        self.before_index_proc = block
+      else
+        before_index_proc
+      end
+    end
   end
 
   mattr_accessor :options
@@ -36,6 +44,7 @@ module GrapeSwaggerRails
     supported_submit_methods: %w(get post put delete patch),
 
     before_action_proc:     nil, # Proc used as a controller before action
+    before_index_proc:      nil, # Proc used as a controller before every index call
 
     hide_url_input:         false,
     hide_api_key_input:     false
