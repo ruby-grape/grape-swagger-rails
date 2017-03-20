@@ -541,12 +541,15 @@ body {
   font-weight: normal!important;
   /* JSONEditor uses bold by default for all labels, we revert that back to normal to not give the impression that by default fields are required */
 }
-.swagger-section .swagger-ui-wrap .editor_holder label.required {
-  font-weight: bold!important;
-}
+
 .swagger-section .swagger-ui-wrap input.parameter {
   width: 300px;
-  border: 1px solid #aaa;
+  padding: 10px 5px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  vertical-align: middle;
+  box-sizing: border-box;
 }
 .swagger-section .swagger-ui-wrap h1 {
   color: black;

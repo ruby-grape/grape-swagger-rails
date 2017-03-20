@@ -1041,8 +1041,8 @@
   color: #0f6ab4;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.get div.content {
-  background-color: #ebf3f9;
-  border: 1px solid #c3d9ec;
+  background-color: #E1F5FE;
+  border: 1px solid #0277BD;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.get div.content h4 {
   color: #0f6ab4;
