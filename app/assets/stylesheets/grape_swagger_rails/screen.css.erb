@@ -516,11 +516,7 @@ body {
 .swagger-section .swagger-ui-wrap .model-signature .signature-container {
   clear: both;
 }
-.swagger-section .swagger-ui-wrap .body-textarea {
-  width: 300px;
-  height: 100px;
-  border: 1px solid #aaa;
-}
+
 .swagger-section .swagger-ui-wrap .markdown p code,
 .swagger-section .swagger-ui-wrap .markdown li code {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -540,6 +536,7 @@ body {
   /* JSONEditor uses bold by default for all labels, we revert that back to normal to not give the impression that by default fields are required */
 }
 
+.swagger-section .swagger-ui-wrap .body-textarea,
 .swagger-section .swagger-ui-wrap input.parameter {
   width: 300px;
   padding: 10px 8px;
@@ -814,12 +811,6 @@ body {
   font-size: 0.7em;
   text-align: center;
   padding: 7px 0 4px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -o-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -khtml-border-radius: 2px;
-  border-radius: 2px;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation div.heading h3 span {
   margin: 0;
@@ -881,9 +872,15 @@ body {
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation div.content div.sandbox_header input.submit {
   display: block;
-  clear: none;
-  float: left;
-  padding: 6px 8px;
+  text-decoration: none;
+  padding: 8px 15px;
+  font-size: 14px;
+  color: white;
+  background-color: #6c6;
+  border-radius: 4px;
+  outline: 0;
+  border: 0;
+  float: right;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation div.content div.sandbox_header span.response_throbber {
   background-image: url(<%= image_path('grape_swagger_rails/throbber.gif') %>);
