@@ -19,8 +19,8 @@ describe 'Swagger' do
 
     it 'evaluates config options correctly' do
       visit '/swagger'
-      page_options_json = page.evaluate_script("$('html').data('swagger-options')").to_json
-      expect(page_options_json).to eq(@options.marshal_dump.to_json)
+      page_options = page.evaluate_script("$('html').data('swagger-options')").symbolize_keys
+      expect(page_options).to eq(@options.marshal_dump)
     end
 
     context '#headers' do
