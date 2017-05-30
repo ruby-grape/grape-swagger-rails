@@ -36,7 +36,7 @@ namespace :swagger_ui do
           'object-assign-pollyfill.js',
           'swagger-oauth.js',
           'base64.js'
-        ]
+        ].freeze
         javascript_files = Dir["#{root}/app/assets/javascripts/grape_swagger_rails/*.js"].map { |f|
           f.split('/').last
         } - ['application.js']
@@ -61,7 +61,7 @@ namespace :swagger_ui do
         CSS_FILES = [
           'reset.css',
           'screen.css'
-        ]
+        ].freeze
         css_files = Dir["#{root}/app/assets/stylesheets/grape_swagger_rails/*.css"].map { |f|
           f.split('/').last
         } - ['application.css']

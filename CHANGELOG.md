@@ -1,7 +1,7 @@
-Next Release
-============
+### Next Release
 
 * Your contribution here.
+* [#82](https://github.com/ruby-grape/grape-swagger-rails/pull/82): Fixed api_key_default_value - [@konto-andrzeja](https://github.com/konto-andrzeja).
 
 ### 0.3.0 (September 22, 2016)
 

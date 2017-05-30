@@ -15,6 +15,12 @@
       <%=raw "headers.header_#{index} = new SwaggerClient.ApiKeyAuthorization('#{CGI.escapeHTML(key)}', '#{CGI.escapeHTML(value)}', 'header');" %>
     <% end %>
 
+    <% if GrapeSwaggerRails.options.api_key_default_value.try(:strip).present? &&
+          GrapeSwaggerRails.options.headers['Authorization'].blank? %>
+      <% headers_count = GrapeSwaggerRails.options.headers.count %>
+      <%= raw "headers.header_#{headers_count} = getApiKeyAuthorization();" %>
+    <% end %>
+
     window.swaggerUi = new SwaggerUi({
       url: options.app_url + options.url,
       dom_id: "swagger-ui-container",
@@ -28,7 +34,6 @@
           console.log(swaggerUi);
         }
         $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
-        addApiKeyAuthorization();
       },
       onFailure: function(data) {
         if('console' in window) {
@@ -41,7 +46,7 @@
       apisSorter: "alpha"
     });
 
-    function addApiKeyAuthorization() {
+    function getApiKeyAuthorization() {
       var key = $('#input_apiKey')[0].value;
 
       if (key && key.trim() != "") {
@@ -50,9 +55,16 @@
         } else if (options.api_auth == 'bearer') {
           key = "Bearer " + key
         }
-        window.swaggerUi.api.clientAuthorizations.add("key", new SwaggerClient.ApiKeyAuthorization(options.api_key_name, key, options.api_key_type));
+        return new SwaggerClient.ApiKeyAuthorization(options.api_key_name, key, options.api_key_type);
       }
-  }
+    }
+
+    function addApiKeyAuthorization() {
+      var apiKeyAuthorization = getApiKeyAuthorization();
+      if (apiKeyAuthorization) {
+        window.swaggerUi.api.clientAuthorizations.add("key", apiKeyAuthorization);
+      }
+    }
 
     $('#input_apiKey').change(addApiKeyAuthorization);
 

@@ -19,8 +19,8 @@ describe 'Swagger' do
 
     it 'evaluates config options correctly' do
       visit '/swagger'
-      page_options_json = page.evaluate_script("$('html').data('swagger-options')").to_json
-      expect(page_options_json).to eq(@options.marshal_dump.to_json)
+      page_options = page.evaluate_script("$('html').data('swagger-options')").symbolize_keys
+      expect(page_options).to eq(@options.marshal_dump)
     end
 
     context '#headers' do
@@ -47,6 +47,21 @@ describe 'Swagger' do
         expect(page).to have_css 'span.hljs-string', text: 'Test Value'
         expect(page).to have_css 'span.hljs-attr', text: 'X-Another-Header'
         expect(page).to have_css 'span.hljs-string', text: 'Another Value'
+      end
+    end
+    context '#api_key_default_value' do
+      before do
+        GrapeSwaggerRails.options.api_auth = 'bearer'
+        GrapeSwaggerRails.options.api_key_name = 'Authorization'
+        GrapeSwaggerRails.options.api_key_type = 'header'
+        GrapeSwaggerRails.options.api_key_default_value = 'token'
+        visit '/swagger'
+      end
+      it 'adds an Authorization header' do
+        headers = page.evaluate_script('swaggerUi.api.clientAuthorizations')['authz']
+        last_header = headers.fetch("header_#{headers.length - 1}", {})
+        expect(last_header.slice('name', 'value'))
+          .to eq('name' => 'Authorization', 'value' => 'Bearer token')
       end
     end
     context '#api_auth:basic' do
