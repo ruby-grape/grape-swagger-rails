@@ -49,6 +49,21 @@ describe 'Swagger' do
         expect(page).to have_css 'span.hljs-string', text: 'Another Value'
       end
     end
+    context '#api_key_default_value' do
+      before do
+        GrapeSwaggerRails.options.api_auth = 'bearer'
+        GrapeSwaggerRails.options.api_key_name = 'Authorization'
+        GrapeSwaggerRails.options.api_key_type = 'header'
+        GrapeSwaggerRails.options.api_key_default_value = 'token'
+        visit '/swagger'
+      end
+      it 'adds an Authorization header' do
+        headers = page.evaluate_script('swaggerUi.api.clientAuthorizations')['authz']
+        last_header = headers.fetch("header_#{headers.length - 1}", {})
+        expect(last_header.slice('name', 'value'))
+          .to eq('name' => 'Authorization', 'value' => 'Bearer token')
+      end
+    end
     context '#api_auth:basic' do
       before do
         GrapeSwaggerRails.options.api_auth = 'basic'
