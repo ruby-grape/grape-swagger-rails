@@ -1,4 +1,10 @@
 /* Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org> */
+
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+}
+
 .swagger-section pre code {
   display: block;
   padding: 0.5em;
@@ -124,7 +130,6 @@
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  background: #F0F0F0;
 }
 .swagger-section .hljs,
 .swagger-section .hljs-subst {
@@ -183,17 +188,18 @@
 }
 .swagger-section .swagger-ui-wrap {
   line-height: 1;
-  font-family: "Droid Sans", sans-serif;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
   min-width: 760px;
-  max-width: 960px;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
   /* JSONEditor specific styling */
 }
 .swagger-section .swagger-ui-wrap b,
 .swagger-section .swagger-ui-wrap strong {
-  font-family: "Droid Sans", sans-serif;
-  font-weight: bold;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
 }
 .swagger-section .swagger-ui-wrap q,
 .swagger-section .swagger-ui-wrap blockquote {
@@ -307,10 +313,12 @@
   display: block;
 }
 .swagger-section .swagger-ui-wrap pre {
-  font-family: "Anonymous Pro", "Menlo", "Consolas", "Bitstream Vera Sans Mono", "Courier New", monospace;
-  background-color: #fcf6db;
-  border: 1px solid #e5e0c6;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  background-color: #ffffff;
+  border: 1px solid #E0E0E0;
   padding: 10px;
+  border-radius: 4px;
 }
 .swagger-section .swagger-ui-wrap pre code {
   line-height: 1.6em;
@@ -334,8 +342,8 @@
 }
 .swagger-section .swagger-ui-wrap .info_title {
   padding-bottom: 10px;
-  font-weight: bold;
-  font-size: 25px;
+  font-size: 28px;
+  color: #212121;
 }
 .swagger-section .swagger-ui-wrap .footer {
   margin-top: 20px;
@@ -396,7 +404,8 @@
   width: 100%;
 }
 .swagger-section .swagger-ui-wrap .model-signature {
-  font-family: "Droid Sans", sans-serif;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
   font-size: 1em;
   line-height: 1.5em;
 }
@@ -507,43 +516,44 @@
 .swagger-section .swagger-ui-wrap .model-signature .signature-container {
   clear: both;
 }
-.swagger-section .swagger-ui-wrap .body-textarea {
-  width: 300px;
-  height: 100px;
-  border: 1px solid #aaa;
-}
+
 .swagger-section .swagger-ui-wrap .markdown p code,
 .swagger-section .swagger-ui-wrap .markdown li code {
-  font-family: "Anonymous Pro", "Menlo", "Consolas", "Bitstream Vera Sans Mono", "Courier New", monospace;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
   background-color: #f0f0f0;
   color: black;
   padding: 1px 3px;
 }
-.swagger-section .swagger-ui-wrap .required {
-  font-weight: bold;
-}
+
 .swagger-section .swagger-ui-wrap .editor_holder {
-  font-family: "Anonymous Pro", "Menlo", "Consolas", "Bitstream Vera Sans Mono", "Courier New", monospace;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
   font-size: 0.9em;
 }
 .swagger-section .swagger-ui-wrap .editor_holder label {
   font-weight: normal!important;
   /* JSONEditor uses bold by default for all labels, we revert that back to normal to not give the impression that by default fields are required */
 }
-.swagger-section .swagger-ui-wrap .editor_holder label.required {
-  font-weight: bold!important;
-}
+
+.swagger-section .swagger-ui-wrap .body-textarea,
 .swagger-section .swagger-ui-wrap input.parameter {
   width: 300px;
-  border: 1px solid #aaa;
+  padding: 10px 8px;
+  display: inline-block;
+  border: 1px solid #E0E0E0;
+  border-radius: 4px;
+  vertical-align: middle;
+  box-sizing: border-box;
+  color: #424242;
 }
 .swagger-section .swagger-ui-wrap h1 {
   color: black;
   font-size: 1.5em;
   line-height: 1.3em;
   padding: 10px 0 10px 0;
-  font-family: "Droid Sans", sans-serif;
-  font-weight: bold;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
 }
 .swagger-section .swagger-ui-wrap .heading_with_menu {
   float: none;
@@ -563,7 +573,7 @@
 }
 .swagger-section .swagger-ui-wrap h2 {
   color: black;
-  font-size: 1.3em;
+  font-size: 1em;
   padding: 10px 0 10px 0;
 }
 .swagger-section .swagger-ui-wrap h2 a {
@@ -591,10 +601,10 @@
   vertical-align: middle;
 }
 .swagger-section .swagger-ui-wrap .code {
-  font-family: "Anonymous Pro", "Menlo", "Consolas", "Bitstream Vera Sans Mono", "Courier New", monospace;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 .swagger-section .swagger-ui-wrap form.formtastic fieldset.inputs ol li.text textarea {
-  font-family: "Droid Sans", sans-serif;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   height: 250px;
   padding: 4px;
   display: block;
@@ -746,8 +756,6 @@
   display: block;
   clear: none;
   float: left;
-  font-family: "Droid Sans", sans-serif;
-  font-weight: bold;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource div.heading h2 a {
   color: #999999;
@@ -785,8 +793,9 @@
   padding-left: 10px;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation div.heading h3 span.path a {
-  color: black;
+  color: #424242;
   text-decoration: none;
+  font-size: 13px;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation div.heading h3 span.path a.toggleOperation.deprecated {
   text-decoration: line-through;
@@ -803,12 +812,6 @@
   font-size: 0.7em;
   text-align: center;
   padding: 7px 0 4px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -o-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -khtml-border-radius: 2px;
-  border-radius: 2px;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation div.heading h3 span {
   margin: 0;
@@ -870,10 +873,22 @@
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation div.content div.sandbox_header input.submit {
   display: block;
-  clear: none;
-  float: left;
-  padding: 6px 8px;
+  text-decoration: none;
+  padding: 8px 15px;
+  font-size: 14px;
+  color: white;
+  background-color: #6c6;
+  border-radius: 4px;
+  outline: 0;
+  border: 0;
+  float: right;
+  font-weight: 300;
 }
+
+.swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation div.content div.sandbox_header input.submit:hover {
+  background-color: #40BF40;
+}
+
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation div.content div.sandbox_header span.response_throbber {
   background-image: url(<%= image_path('grape_swagger_rails/throbber.gif') %>);
   width: 128px;
@@ -890,18 +905,17 @@
   max-width: 300px;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation div.content div.response div.block pre {
-  font-family: "Anonymous Pro", "Menlo", "Consolas", "Bitstream Vera Sans Mono", "Courier New", monospace;
   padding: 10px;
   font-size: 0.9em;
   max-height: 400px;
   overflow-y: auto;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.put div.heading {
-  background-color: #f9f2e9;
-  border: 1px solid #f0e0ca;
+  background-color: #FFF8E1;
+  border: 1px solid #FFE082;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.put div.heading h3 span.http_method a {
-  background-color: #c5862b;
+  background-color: #FFC107;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.put div.heading ul.options li {
   border-right: 1px solid #dddddd;
@@ -912,11 +926,11 @@
   color: #c5862b;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.put div.content {
-  background-color: #faf5ee;
-  border: 1px solid #f0e0ca;
+  background-color: #FFF8E1;
+  border: 1px solid #FFE082;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.put div.content h4 {
-  color: #c5862b;
+  color: #FFA000;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.put div.content div.sandbox_header a {
   color: #dcb67f;
@@ -950,12 +964,11 @@
   color: #6fc992;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.delete div.heading {
-  background-color: #f5e8e8;
-  border: 1px solid #e8c6c7;
+  background-color: #FFEBEE;
+  border: 1px solid #E57373;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.delete div.heading h3 span.http_method a {
-  text-transform: uppercase;
-  background-color: #a41e22;
+  background-color: #F44336;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.delete div.heading ul.options li {
   border-right: 1px solid #dddddd;
@@ -963,24 +976,24 @@
   color: #a41e22;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.delete div.heading ul.options li a {
-  color: #a41e22;
+  color: #D32F2F;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.delete div.content {
-  background-color: #f7eded;
-  border: 1px solid #e8c6c7;
+  background-color: #FFEBEE;
+  border: 1px solid #E57373;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.delete div.content h4 {
-  color: #a41e22;
+  color: #D32F2F;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.delete div.content div.sandbox_header a {
   color: #c8787a;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.post div.heading {
-  background-color: #e7f6ec;
-  border: 1px solid #c3e8d1;
+  background-color: #E8F5E9;
+  border: 1px solid #81C784;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.post div.heading h3 span.http_method a {
-  background-color: #10a54a;
+  background-color: #4CAF50;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.post div.heading ul.options li {
   border-right: 1px solid #dddddd;
@@ -988,14 +1001,14 @@
   color: #10a54a;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.post div.heading ul.options li a {
-  color: #10a54a;
+  color: #43A047;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.post div.content {
-  background-color: #ebf7f0;
-  border: 1px solid #c3e8d1;
+  background-color: #E8F5E9;
+  border: 1px solid #81C784;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.post div.content h4 {
-  color: #10a54a;
+  color: #43A047;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.post div.content div.sandbox_header a {
   color: #6fc992;
@@ -1026,11 +1039,11 @@
   color: #dcb67f;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.get div.heading {
-  background-color: #e7f0f7;
-  border: 1px solid #c3d9ec;
+  background-color: #E1F5FE;
+  border: 1px solid #81D4FA;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.get div.heading h3 span.http_method a {
-  background-color: #0f6ab4;
+  background-color: #03A9F4;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.get div.heading ul.options li {
   border-right: 1px solid #dddddd;
@@ -1038,14 +1051,14 @@
   color: #0f6ab4;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.get div.heading ul.options li a {
-  color: #0f6ab4;
+  color: #0288D1;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.get div.content {
-  background-color: #ebf3f9;
+  background-color: #E1F5FE;
   border: 1px solid #c3d9ec;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.get div.content h4 {
-  color: #0f6ab4;
+  color: #0288D1;
 }
 .swagger-section .swagger-ui-wrap ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.get div.content div.sandbox_header a {
   color: #6fa5d2;
@@ -1131,7 +1144,6 @@
 }
 .swagger-section .swagger-ui-wrap .markdown ol,
 .swagger-section .swagger-ui-wrap .markdown ul {
-  font-family: "Droid Sans", sans-serif;
   margin: 5px 0 10px;
   padding: 0 0 0 18px;
   list-style-type: disc;
@@ -1240,7 +1252,23 @@
   height: 13px;
 }
 .swagger-section #auth_container .authorize__btn {
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 4px 12px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  border-radius: 4px;
   color: #fff;
+  background-color: #6c6;
+  border-color: #6c6;
 }
 .swagger-section .auth_container {
   padding: 0 0 10px;
@@ -1406,10 +1434,12 @@
   cursor: pointer;
 }
 .swagger-section #header {
-  background-color: #89bf04;
-  padding: 9px 14px 19px 14px;
-  height: 23px;
-  min-width: 775px;
+  background-color: #343C46;
+  height: 50px;
+  padding: 10px 15px;
+  font-size: 15px;
+  line-height: 20px;
+  box-sizing: border-box;
 }
 .swagger-section #input_baseUrl {
   width: 400px;
@@ -1425,9 +1455,14 @@
   margin: 0 10px 0 0;
 }
 .swagger-section #api_selector input {
-  font-size: 0.9em;
-  padding: 3px;
+  height: 24px;
+  padding: 3px 8px;
   margin: 0;
+  border-radius: 3px;
+  color: #757575;
+  font-size: 14px;
+  outline: none;
+  border: 0;
 }
 .swagger-section #input_apiKey {
   width: 200px;
@@ -1436,27 +1471,25 @@
 .swagger-section #auth_container .authorize__btn {
   display: block;
   text-decoration: none;
-  font-weight: bold;
-  padding: 6px 8px;
-  font-size: 0.9em;
+  padding: 8px 15px;
+  font-size: 14px;
   color: white;
-  background-color: #547f00;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -o-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -khtml-border-radius: 4px;
+  background-color: #6c6;
   border-radius: 4px;
 }
-.swagger-section #explore:hover,
+
 .swagger-section #auth_container .authorize__btn:hover {
-  background-color: #547f00;
+  background-color: #6c6;
+}
+
+.swagger-section #explore:hover {
+  background-color: #40BF40;
 }
 .swagger-section #header #logo {
-  font-size: 1.5em;
-  font-weight: bold;
-  text-decoration: none;
-  color: white;
+  height: 28px;
+  display: inline-block;
+  width: 130px;
+  background: url(<%= image_path('grape_swagger_rails/logo.svg') %>) no-repeat;
 }
 .swagger-section #header #logo .logo__img {
   display: block;
@@ -1486,4 +1519,21 @@
 .swagger-section .error {
   outline-color: #cc0000;
   background-color: #f2dede;
+}
+
+select {
+  width: 300px;
+  padding: 10px 8px;
+  display: inline-block;
+  border: 1px solid #E0E0E0;
+  border-radius: 4px;
+  vertical-align: middle;
+  box-sizing: border-box;
+  color: #424242;
+  height: 2.25em;
+  background-color: #fff;
+}
+
+select.parameter {
+  min-height: 60px;
 }
