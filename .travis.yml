@@ -20,10 +20,6 @@ language: ruby
 
 cache: bundler
 
-env:
-  global:
-    - MOZ_HEADLESS=1
-
 matrix:
   include:
     - rvm: 2.3.1
