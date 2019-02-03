@@ -68,7 +68,7 @@ GrapeSwaggerRails.options.headers['Special-Header'] = 'Some Secret Value'
 ```
 
 You can set docExpansion with "none" or "list" or "full", default is "none".
-See the official Swagger-UI documentation about [SwaggerUi Parameters](https://github.com/swagger-api/swagger-ui#parameters).
+See the official Swagger-UI documentation about [SwaggerUi Parameters](https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/configuration.md#parameters).
 
 ```ruby
 GrapeSwaggerRails.options.doc_expansion = 'list'
@@ -76,7 +76,7 @@ GrapeSwaggerRails.options.doc_expansion = 'list'
 
 You can set supportedSubmitMethods with an array of the supported HTTP methods, default is `%w{ get post put delete patch }`.
 
-See the official Swagger-UI documentation about [SwaggerUi Parameters](https://github.com/swagger-api/swagger-ui#parameters).
+See the official Swagger-UI documentation about [SwaggerUi Parameters](https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/configuration.md#parameters).
 
 ```ruby
 GrapeSwaggerRails.options.supported_submit_methods = ["get"]
