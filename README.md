@@ -2,7 +2,6 @@
 
 [![Gem Version](https://badge.fury.io/rb/grape-swagger-rails.svg)](http://badge.fury.io/rb/grape-swagger-rails)
 [![Build Status](https://travis-ci.org/ruby-grape/grape-swagger-rails.svg)](https://travis-ci.org/ruby-grape/grape-swagger-rails)
-[![Dependency Status](https://gemnasium.com/ruby-grape/grape-swagger-rails.svg)](https://gemnasium.com/ruby-grape/grape-swagger-rails)
 [![Code Climate](https://codeclimate.com/github/ruby-grape/grape-swagger-rails/badges/gpa.svg)](https://codeclimate.com/github/ruby-grape/grape-swagger-rails)
 
 Swagger UI as Rails Engine for grape-swagger gem.
