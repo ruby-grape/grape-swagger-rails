@@ -7,7 +7,7 @@ before_install:
   - mkdir geckodriver
   - tar -xzf geckodriver-v0.16.1-linux64.tar.gz -C geckodriver
   - export PATH=$PATH:$PWD/geckodriver
-  - gem install bundler
+  - gem install bundler -v'< 2'
 
 language: ruby
 
@@ -36,12 +36,12 @@ matrix:
     - rvm: 2.3.0
     - rvm: 2.2.5
     - rvm: 2.0.0
-    - rvm: rbx-2
+    - rvm: rbx-3.107
     - rvm: ruby-head
     - rvm: jruby-head
   allow_failures:
     - env: GRAPE_SWAGGER_VERSION=HEAD
     - rvm: ruby-head
     - rvm: jruby-head
-    - rvm: rbx-2
+    - rvm: rbx-3.107
 
