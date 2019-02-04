@@ -128,6 +128,20 @@ GrapeSwaggerRails.options.api_key_name = 'api_token'
 GrapeSwaggerRails.options.api_key_type = 'query'
 ```
 
+If your application used token authentication passed as a header, like Rails does (`authenticate_or_request_with_http_token`), you can configure Swagger to send the token in this form:
+
+```
+Authorization: Token token="WCZZYjnOQFUYfJIN2ShH1iD24UHo58A6TI"
+```
+
+by specify:
+
+```ruby
+GrapeSwaggerRails.options.api_auth = 'token'
+GrapeSwaggerRails.options.api_key_name = 'Authorization'
+GrapeSwaggerRails.options.api_key_type = 'header'
+```
+
 You can use the ```api_key``` input box to fill in your API token.
 ### Swagger UI Authorization
 

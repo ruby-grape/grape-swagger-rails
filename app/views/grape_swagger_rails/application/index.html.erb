@@ -53,7 +53,9 @@
         if (options.api_auth == 'basic') {
           key = "Basic " + Base64.encode(key);
         } else if (options.api_auth == 'bearer') {
-          key = "Bearer " + key
+          key = "Bearer " + key;
+        } else if (options.api_auth == 'token') {
+          key = 'Token token="' + key + '"';
         }
         return new SwaggerClient.ApiKeyAuthorization(options.api_key_name, key, options.api_key_type);
       }

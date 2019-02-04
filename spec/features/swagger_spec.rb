@@ -98,6 +98,23 @@ describe 'Swagger' do
         expect(page).to have_css 'span.hljs-string', text: 'Bearer token'
       end
     end
+    context '#api_auth:token and #api_key_type:header' do
+      before do
+        GrapeSwaggerRails.options.api_auth = 'token'
+        GrapeSwaggerRails.options.api_key_name = 'Authorization'
+        GrapeSwaggerRails.options.api_key_type = 'header'
+        visit '/swagger'
+      end
+      it 'adds an Authorization header' do
+        page.execute_script("$('#input_apiKey').val('token')")
+        page.execute_script("$('#input_apiKey').trigger('change')")
+        find('#endpointListTogger_headers', visible: true).click
+        first('span[class="http_method"] a', visible: true).click
+        click_button 'Try it out!'
+        expect(page).to have_css 'span.hljs-attr', text: 'Authorization'
+        expect(page).to have_css 'span.hljs-string', text: 'Token token'
+      end
+    end
     context '#api_auth:token' do
       before do
         GrapeSwaggerRails.options.api_key_name = 'api_token'
