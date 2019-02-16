@@ -1,6 +1,9 @@
 ### Next Release
 
 * Your contribution here.
+
+### 0.3.1 (February 16, 2019)
+
 * [#82](https://github.com/ruby-grape/grape-swagger-rails/pull/82): Fixed api_key_default_value - [@konto-andrzeja](https://github.com/konto-andrzeja).
 * [#84](https://github.com/ruby-grape/grape-swagger-rails/pull/84): Added the token api_auth type - [@Jack12816](https://github.com/Jack12816).
 

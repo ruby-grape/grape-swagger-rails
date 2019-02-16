@@ -56,7 +56,7 @@ Next Release
 * Your contribution here.
 ```
 
-Comit your changes.
+Commit your changes.
 
 ```
 git add CHANGELOG.md
