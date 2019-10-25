@@ -92,6 +92,14 @@ GrapeSwaggerRails.options.validator_url = nil
 Using the `headers` option above, you could hard-code Basic Authentication credentials.
 Alternatively, you can configure Basic Authentication through the UI, as described below.
 
+### HTTP Basic Authentication
+If you want to use HTTP Basic Authentication add:
+
+```ruby
+GrapeSwaggerRails.options.http_base_auth_name = 'admin'
+GrapeSwaggerRails.options.http_base_auth_password = 'admin'
+```
+
 ### Basic Authentication
 
 If your application uses Basic Authentication, you can setup Swagger to send the username and password to the server with each request to your API:
