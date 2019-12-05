@@ -221,18 +221,18 @@ Include CSS stylesheets in `app/assets/stylesheets/application.css`.
 */
 ```
 #### For Rails 6 (Sprockets 4)
-Rails changed it's default logic for determining top-level targets. It will now use only a file at `./app/assets/config/manifest.js` for specifying top-level targets; this file may already exist in your Rails app (although Rails only starts automatically using it once you are using sprockets 4).
+Rails changed its default logic for determining top-level targets. It now uses only a file at `./app/assets/config/manifest.js` for specifying top-level targets. This file may already exist in your Rails app (although Rails only starts automatically using it once you are using sprockets 4).
 
 Since the default logic for determining top-level targets changed, you will have to edit the `manifest.js` to specify `grape-swagger-rails` asset files. 
 
-Add these lines at top of `./app/assets/config/manifest.js`
+Add the following lines at top of `./app/assets/config/manifest.js`
 
 ```javascript
 //= link grape_swagger_rails/application.css
 //= link grape_swagger_rails/application.js
 ```
 
-for further reference see [sprockets changelog](https://github.com/rails/sprockets/blob/master/UPGRADING.md#manifestjs)
+See [sprockets changelog](https://github.com/rails/sprockets/blob/master/UPGRADING.md#manifestjs) for more information.
 
 ## Contributors
 
