@@ -1,5 +1,7 @@
 ### Next Release
 
+* [#98](https://github.com/ruby-grape/grape-swagger-rails/pull/98): Fix: test against Rails 6 - [@dblock](https://github.com/dblock).
+
 * Your contribution here.
 
 ### 0.3.1 (February 16, 2019)
