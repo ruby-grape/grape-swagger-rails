@@ -221,6 +221,17 @@ Include CSS stylesheets in `app/assets/stylesheets/application.css`.
 */
 ```
 
+### Enabling in Rails 6 (Sprokets 5)
+
+Rails 6 top-level targets are determined via `./app/assets/config/manifest.js`. Specify `grape-swagger-rails` asset files as follows.
+
+```javascript
+//= link grape_swagger_rails/application.css
+//= link grape_swagger_rails/application.js
+```
+
+See [Upgrading Sprokets](https://github.com/rails/sprockets/blob/master/UPGRADING.md#manifestjs) for more information.
+
 ## Contributors
 
 * [unloved](https://github.com/unloved)

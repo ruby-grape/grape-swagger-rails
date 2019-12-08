@@ -9,12 +9,6 @@ before_install:
   - mkdir geckodriver
   - tar -xzf geckodriver-v0.18.0-linux64.tar.gz -C geckodriver
   - export PATH=$PATH:$PWD/geckodriver
-  - gem install bundler -v'< 2'
-
-before_script:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
 
 language: ruby
 
@@ -22,32 +16,30 @@ cache: bundler
 
 matrix:
   include:
-    - rvm: 2.3.1
+    - rvm: 2.5.6
       script:
         - bundle exec danger
-    - rvm: 2.3.1
+    - rvm: 2.5.6
       env:
         - GRAPE_SWAGGER_VERSION=0.8.0
-    - rvm: 2.3.1
+    - rvm: 2.5.6
       env:
         - GRAPE_SWAGGER_VERSION=0.9.0
-    - rvm: 2.3.1
+    - rvm: 2.5.6
       env:
         - GRAPE_SWAGGER_VERSION=0.11.0
-    - rvm: 2.3.1
+    - rvm: 2.5.6
       env:
         - GRAPE_SWAGGER_VERSION=0.20.2
-    - rvm: 2.3.1
+    - rvm: 2.5.6
+      env:
+        - GRAPE_SWAGGER_VERSION=0.33.0
+    - rvm: 2.5.6
       env:
         - GRAPE_SWAGGER_VERSION=HEAD
-    - rvm: 2.3.0
-    - rvm: 2.2.5
-    - rvm: 2.0.0
-    - rvm: rbx-2
     - rvm: ruby-head
     - rvm: jruby-head
   allow_failures:
     - env: GRAPE_SWAGGER_VERSION=HEAD
     - rvm: ruby-head
     - rvm: jruby-head
-    - rvm: rbx-2

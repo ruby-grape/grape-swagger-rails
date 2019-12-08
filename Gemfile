@@ -4,7 +4,7 @@ gemspec
 
 case version = ENV['GRAPE_SWAGGER_VERSION'] || '~> 0.9.0'
 when 'HEAD'
-  gem 'grape-swagger', github: 'tim-vandecasteele/grape-swagger'
+  gem 'grape-swagger', github: 'ruby-grape/grape-swagger'
 when '0.8.0'
   gem 'grape', '0.9.0'
   gem 'grape-swagger', '0.8.0'
@@ -21,6 +21,23 @@ else
   gem 'grape-swagger', version
 end
 
-group :test do
+group :development, :test do
   gem 'ruby-grape-danger', '~> 0.1.0', require: false
+  gem 'rake'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'sass'
+  gem 'sass-rails'
+  gem 'uglifier'
+  gem 'coffee-rails'
+  gem 'jquery-rails'
+  gem 'grape-swagger-ui'
+  gem 'sprockets'
+  gem 'rack', '~> 1.6'
+  gem 'rack-cors'
+  gem 'rubocop', '0.77.0'
+  gem 'mime-types', '< 3.0'
+  gem 'rack-no_animations'
+  gem 'nokogiri'
 end
