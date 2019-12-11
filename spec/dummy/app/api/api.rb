@@ -26,5 +26,6 @@ class API < Grape::API
     request.params.as_json
   end
 
+  mount V1::Resources::Animals
   add_swagger_documentation
 end
