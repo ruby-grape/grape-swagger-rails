@@ -26,5 +26,10 @@ class API < Grape::API
     request.params.as_json
   end
 
+  desc 'Return oauth2 token', authorizations: { oauth2: [] }
+  get '/oauth2' do
+    request.headers.slice('Authorization').as_json
+  end
+
   add_swagger_documentation
 end
