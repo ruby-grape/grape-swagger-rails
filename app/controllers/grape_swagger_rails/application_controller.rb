@@ -7,6 +7,7 @@ module GrapeSwaggerRails
     end
 
     def index
+      run_before_index
     end
 
     private
@@ -14,6 +15,11 @@ module GrapeSwaggerRails
     def run_before_action
       return unless GrapeSwaggerRails.options.before_action
       instance_exec(request, &GrapeSwaggerRails.options.before_action)
+    end
+    
+    def run_before_index
+      return unless GrapeSwaggerRails.options.before_index
+      instance_exec(request, &GrapeSwaggerRails.options.before_index)
     end
   end
 end
