@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
   <%= stylesheet_link_tag 'grape_swagger_rails/application.css' %>
+  <% if GrapeSwaggerRails.options.extra_css_path %>
+    <%= stylesheet_link_tag GrapeSwaggerRails.options.extra_css_path %>
+  <% end %>
   <%= javascript_include_tag 'grape_swagger_rails/application.js' %>
   <script type="text/javascript">
 	$(function () {
