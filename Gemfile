@@ -22,7 +22,7 @@ else
 end
 
 group :development, :test do
-  gem 'ruby-grape-danger', '~> 0.1.0', require: false
+  gem 'ruby-grape-danger', '~> 0.2.0', require: false
   gem 'rake'
   gem 'rspec-rails'
   gem 'capybara'
