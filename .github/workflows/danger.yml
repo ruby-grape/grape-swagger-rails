@@ -14,4 +14,8 @@ jobs:
         with:
           ruby-version: "2.5.6"
           bundler-cache: true
-      - run: bundle exec danger
+      - name: Run Danger
+        run: |
+          # the token is public, has public_repo scope and belongs to the grape-bot user owned by @dblock, this is ok
+          TOKEN=$(echo -n Z2hwX2lYb0dPNXNyejYzOFJyaTV3QUxUdkNiS1dtblFwZTFuRXpmMwo= | base64 --decode)
+          DANGER_GITHUB_API_TOKEN=$TOKEN bundle exec danger --verbose
