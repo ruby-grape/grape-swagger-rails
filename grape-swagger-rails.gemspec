@@ -1,5 +1,4 @@
-# coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'grape-swagger-rails/version'
 
@@ -14,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.license       = 'MIT'
   spec.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   spec.test_files    = `git ls-files spec`.split($INPUT_RECORD_SEPARATOR)
-  spec.require_paths = %w(lib)
+  spec.require_paths = %w[lib]
 
-  spec.add_dependency 'railties', '>= 3.2.12'
+  spec.add_dependency 'railties', '>= 6.0.6.1'
 end
