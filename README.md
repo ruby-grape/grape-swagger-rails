@@ -8,22 +8,21 @@ Swagger UI as Rails Engine for grape-swagger gem.
 
 # Table of Contents
 
-- [GrapeSwaggerRails](#grapeswaggerrails)
-  - [Installation](#installation)
-  - [Compatibility](#compatibility)
-  - [Usage](#usage)
-    - [Basic Authentication](#basic-authentication)
-    - [Pre-fill Authentication](#pre-fill-authentication)
-    - [API Token Authentication](#api-token-authentication)
-    - [Swagger UI Authorization](#swagger-ui-authorization)
-      - [Integration with DoorKeeper](#integration-with-doorkeeper)
-    - [Hiding the API or Authorization text boxes](#hiding-the-api-or-authorization-text-boxes)
-    - [Updating Swagger UI from Dist](#updating-swagger-ui-from-dist)
-    - [Enabling in a Rails-API Project](#enabling-in-a-rails-api-project)
-    - [Enabling in Rails 6 (Sprokets 5)](#enabling-in-rails-6-sprokets-5)
-  - [Contributors](#contributors)
-  - [Contributing](#contributing)
-  - [License](#license)
+- [Installation](#installation)
+- [Compatibility](#compatibility)
+- [Usage](#usage)
+  - [Basic Authentication](#basic-authentication)
+  - [Pre-fill Authentication](#pre-fill-authentication)
+  - [API Token Authentication](#api-token-authentication)
+  - [Swagger UI Authorization](#swagger-ui-authorization)
+    - [Integration with DoorKeeper](#integration-with-doorkeeper)
+  - [Hiding the API or Authorization text boxes](#hiding-the-api-or-authorization-text-boxes)
+  - [Updating Swagger UI from Dist](#updating-swagger-ui-from-dist)
+  - [Enabling in a Rails-API Project](#enabling-in-a-rails-api-project)
+  - [Enabling in Rails 6 (Sprokets 5)](#enabling-in-rails-6-sprokets-5)
+- [Contributors](#contributors)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Installation
 
