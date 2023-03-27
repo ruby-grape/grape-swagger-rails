@@ -1,5 +1,5 @@
 name: Tests
-on:  
+on:
   push:
     branches:
       - master
@@ -12,15 +12,15 @@ jobs:
       fail-fast: false
       matrix:
         grape-swagger:
-          - { version: "0.8.0", experimental: false }
-          - { version: "0.9.0", experimental: false }
-          - { version: "0.11.0", experimental: false }
-          - { version: "0.20.2", experimental: false }
-          - { version: "0.33.0", experimental: false }
+          - { version: "1.6.0", experimental: false }
           - { version: "HEAD", experimental: true }
         ruby:
-          - { version: "2.5.6", experimental: false }
+          - { version: "2.7", experimental: false }
+          - { version: "3.0", experimental: false }
+          - { version: "3.1", experimental: false }
+          - { version: "3.2", experimental: false }
           - { version: "ruby-head", experimental: true }
+          - { version: "jruby-9.4.2", experimental: false }
           - { version: "jruby-head", experimental: true }
     env:
       GRAPE_SWAGGER_VERSION: ${{ matrix.grape-swagger.version }}
@@ -34,10 +34,10 @@ jobs:
       - name: Setup Firefox
         uses: browser-actions/setup-firefox@v1
         with:
-          firefox-version: "54.0"
+          firefox-version: "111.0.1"
       - uses: browser-actions/setup-geckodriver@latest
         with:
-          geckodriver-version: "0.18.0"
-      - uses: GabrielBB/xvfb-action@v1
+          geckodriver-version: "0.32.2"
+      - uses: coactions/setup-xvfb@v1
         with:
           run: bundle exec rake spec
