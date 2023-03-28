@@ -11,12 +11,12 @@ bundle install
 rake
 ```
 
-Check that the last build succeeded in [Travis CI](https://travis-ci.org/ruby-grape/grape-swagger-rails) for all supported platforms.
+Check that the last build succeeded in [GitHub Actions](https://github.com/ruby-grape/grape-swagger-rails/actions) for all supported platforms.
 
 Increment the version, modify [lib/grape-swagger-rails/version.rb](lib/grape-swagger-rails/version.rb).
 
-*  Increment the third number if the release has bug fixes and/or very minor features, only (eg. change `0.1.0` to `0.1.1`).
-*  Increment the second number if the release contains major features or breaking API changes (eg. change `0.1.0` to `0.2.0`).
+* Increment the third number if the release has bug fixes and/or very minor features, only (eg. change `0.1.0` to `0.1.1`).
+* Increment the second number if the release contains major features or breaking API changes (eg. change `0.1.0` to `0.2.0`).
 
 Change "Next Release" in [CHANGELOG.md](CHANGELOG.md) to the new version.
 
@@ -50,8 +50,7 @@ Pushed grape-swagger-rails 0.1.1 to rubygems.org.
 Add the next release to [CHANGELOG.md](CHANGELOG.md).
 
 ```
-Next Release
-============
+### Next Release
 
 * Your contribution here.
 ```
