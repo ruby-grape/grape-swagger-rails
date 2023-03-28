@@ -1,3 +1,7 @@
+### Next Release
+
+* Your contribution here.
+
 ### 0.4.0 (2023/03/28)
 
 * [#107](https://github.com/ruby-grape/grape-swagger-rails/pull/107): Add test matrix for multiple ruby versions - [@duffn](https://github.com/duffn).
