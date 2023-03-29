@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+      - duffn/update-test-app
   pull_request:
 jobs:
   test:

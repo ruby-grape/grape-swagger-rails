@@ -1,4 +1,3 @@
-//= link application.js
-//= link application.css
-//= link grape_swagger_rails/application.css
-//= link grape_swagger_rails/application.js
+//= link_directory ../stylesheets .css
+//= link_directory ../javascripts .js
+//= link grape_swagger_rails_manifest.js
