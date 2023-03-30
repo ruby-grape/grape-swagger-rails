@@ -214,6 +214,24 @@ NOTE: This action should be run part of this gem (not your application). In case
 make it up-to-date, clone the repo, run the rake task, examine the diff, fix any bugs, make sure
 tests pass and then send PR here.
 
+### Customizing the CSS
+
+To customize the CSS for your application, use the `extra_css_path` configuration option.
+
+```ruby
+GrapeSwaggerRails.options.extra_css_path = 'my-swagger-customizations.css'
+```
+
+Then you'll need to add a matching .css file in the `app/assets/stylesheets` directory 
+for your application. This file should contain any customizations you want to make over the delivered CSS.
+
+You may also need to reference this CSS file in your `config/initializers/assets.rb` file, in order for Sprockets to include it when your
+CSS files are compiled:
+
+```ruby
+Rails.application.config.assets.precompile += %w( my-swagger-customizations.css )
+```
+
 ### Enabling in a Rails-API Project
 
 The grape-swagger-rails gem uses the Rails asset pipeline for its Javascript and CSS. Enable the asset pipeline with [rails-api](https://github.com/rails-api/rails-api).
