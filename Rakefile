@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'bundler/setup'
 
 APP_RAKEFILE = File.expand_path('spec/dummy/Rakefile', __dir__)
@@ -16,4 +18,4 @@ RSpec::Core::RakeTask.new(:spec)
 require 'rubocop/rake_task'
 RuboCop::RakeTask.new(:rubocop)
 
-task default: [:rubocop, :spec]
+task default: %i[rubocop spec]
