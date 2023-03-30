@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'git'
 
 namespace :swagger_ui do
@@ -9,7 +11,7 @@ namespace :swagger_ui do
         # clone wordnik/swagger-ui
         Git.clone 'git@github.com:wordnik/swagger-ui.git', 'swagger-ui', path: dir, depth: 0
         # prune local files
-        root = File.expand_path '../../..', __FILE__
+        root = File.expand_path '../..', __dir__
         puts "Removing files from #{root} ..."
         repo = Git.open root
         # Javascripts
@@ -17,7 +19,8 @@ namespace :swagger_ui do
         FileUtils.rm_r "#{root}/app/assets/javascripts/grape_swagger_rails"
         FileUtils.cp_r "#{dir}/swagger-ui/dist/lib", "#{root}/app/assets/javascripts"
         FileUtils.mv "#{root}/app/assets/javascripts/lib", "#{root}/app/assets/javascripts/grape_swagger_rails"
-        FileUtils.cp_r Dir.glob("#{dir}/swagger-ui/dist/swagger-ui.min.js"), "#{root}/app/assets/javascripts/grape_swagger_rails"
+        FileUtils.cp_r Dir.glob("#{dir}/swagger-ui/dist/swagger-ui.min.js"),
+                       "#{root}/app/assets/javascripts/grape_swagger_rails"
         FileUtils.cp Dir.glob("#{root}/lib/javascripts/*.js"), "#{root}/app/assets/javascripts/grape_swagger_rails"
         # Generate application.js
         JAVASCRIPT_FILES = [
@@ -74,7 +77,7 @@ namespace :swagger_ui do
         # rewrite screen.css into screen.css.erb with dynamic image paths
         File.open "#{root}/app/assets/stylesheets/grape_swagger_rails/screen.css.erb", 'w+' do |file|
           contents = File.read "#{root}/app/assets/stylesheets/grape_swagger_rails/screen.css"
-          contents.gsub! /url\((\'*).*\/(?<filename>[\w\.]*)(\'*)\)/ do |_match|
+          contents.gsub!(%r{url\(('*).*/(?<filename>[\w.]*)('*)\)}) do |_match|
             "url(<%= image_path('grape_swagger_rails/#{$LAST_MATCH_INFO[:filename]}') %>)"
           end
           file.write contents

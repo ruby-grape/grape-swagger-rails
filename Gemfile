@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 gemspec
@@ -6,8 +8,8 @@ case version = ENV['GRAPE_SWAGGER_VERSION'] || '~> 1.6.0'
 when 'HEAD'
   gem 'grape-swagger', github: 'ruby-grape/grape-swagger'
 else
-  gem 'grape-swagger', version
   gem 'grape', '>= 1.3.0'
+  gem 'grape-swagger', version
 end
 
 group :development, :test do

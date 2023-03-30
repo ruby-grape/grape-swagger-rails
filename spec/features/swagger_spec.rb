@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'Swagger' do
@@ -206,7 +208,7 @@ describe 'Swagger' do
     context '#supported_submit_methods' do
       context 'set all operations' do
         before do
-          GrapeSwaggerRails.options.supported_submit_methods = %w(get post put delete patch)
+          GrapeSwaggerRails.options.supported_submit_methods = %w[get post put delete patch]
           visit '/swagger'
         end
         it 'sets SwaggerUI supportedSubmitMethods with all operations' do
