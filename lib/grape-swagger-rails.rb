@@ -32,6 +32,7 @@ module GrapeSwaggerRails
     api_key_name: 'api_key', # 'Authorization'
     api_key_type: 'query', # 'header'
     api_key_default_value: '', # Auto populates api_key
+    api_key_placeholder: 'api_key', # Placeholder for api_key input
 
     doc_expansion: 'none',
     supported_submit_methods: %w[get post put delete patch],
