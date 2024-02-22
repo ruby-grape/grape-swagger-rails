@@ -66,6 +66,15 @@ describe 'Swagger' do
           .to eq('name' => 'Authorization', 'value' => 'Bearer token')
       end
     end
+    context '#api_key_placeholder' do
+      before do
+        GrapeSwaggerRails.options.api_key_placeholder = 'authorization_code'
+        visit '/swagger'
+      end
+      it 'adds a custom placeholder' do
+        expect(find('#input_apiKey')['placeholder']).to eq 'authorization_code'
+      end
+    end
     context '#api_auth:basic' do
       before do
         GrapeSwaggerRails.options.api_auth = 'basic'
