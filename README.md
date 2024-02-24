@@ -158,9 +158,10 @@ by specify:
 GrapeSwaggerRails.options.api_auth = 'token'
 GrapeSwaggerRails.options.api_key_name = 'Authorization'
 GrapeSwaggerRails.options.api_key_type = 'header'
+GrapeSwaggerRails.options.api_key_placeholder = 'authorization_token'
 ```
 
-You can use the ```api_key``` input box to fill in your API token.
+You can use the ```authorization_token``` input box to fill in your API token.
 ### Swagger UI Authorization
 
 You may want to authenticate users before displaying the Swagger UI, particularly when the API is protected by Basic Authentication.

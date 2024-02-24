@@ -3,6 +3,7 @@
 * Your contribution here.
 * [#110](https://github.com/ruby-grape/grape-swagger-rails/pull/110): Update dummy app to current rails conventions - [@duffn](https://github.com/duffn).
 * [#112](https://github.com/ruby-grape/grape-swagger-rails/pull/112): Add Rubocop Action & autocorrect violations - [@duffn](https://github.com/duffn).
+* [#114](https://github.com/ruby-grape/grape-swagger-rails/pull/114): Add `api_key_placeholder` option - [@SofiaSousa](https://github.com/SofiaSousa).
 
 ### 0.4.0 (2023/03/28)
 
