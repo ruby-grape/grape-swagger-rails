@@ -142,6 +142,23 @@ describe 'Swagger' do
         expect(page).to have_css 'span.hljs-string', text: 'dummy'
       end
     end
+    context '#api_auth:oauth2' do
+      before do
+        GrapeSwaggerRails.options.api_auth = 'bearer'
+        GrapeSwaggerRails.options.api_key_name = 'Authorization'
+        GrapeSwaggerRails.options.api_key_type = 'header'
+        visit '/swagger'
+      end
+      it 'adds a token when the route specifies oauth2 authorization' do
+        page.execute_script("$('#input_apiKey').val('token')")
+        page.execute_script("$('#input_apiKey').trigger('change')")
+        find('#endpointListTogger_oauth2', visible: true).click
+        first('a[href="#!/oauth2/GET_api_oauth2_format"]', visible: true).click
+        click_button 'Try it out!'
+        expect(page).to have_css 'span.attribute', text: 'Authorization'
+        expect(page).to have_css 'span.string', text: 'Bearer token'
+      end
+    end
     context '#before_filter' do
       before do
         allow(ActiveSupport::Deprecation).to receive(:warn)
