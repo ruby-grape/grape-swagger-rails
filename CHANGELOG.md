@@ -6,6 +6,7 @@
 * [#114](https://github.com/ruby-grape/grape-swagger-rails/pull/114): Add `api_key_placeholder` option - [@SofiaSousa](https://github.com/SofiaSousa).
 * [#116](https://github.com/ruby-grape/grape-swagger-rails/pull/116): Ensure that `ostruct` is loaded - [@jrmhaig](https://github.com/jrmhaig).
 * [#117](https://github.com/ruby-grape/grape-swagger-rails/pull/117): Fix rubygems source code location metadata - [@dblock](https://github.com/dblock).
+* [#118](https://github.com/ruby-grape/grape-swagger-rails/pull/118): Split the test matrix, fix JRuby tests - [@dblock](https://github.com/dblock).
 
 ### 0.4.0 (2023/03/28)
 
