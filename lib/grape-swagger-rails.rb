@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'grape-swagger-rails/engine'
+require 'ostruct'
 
 module GrapeSwaggerRails
   class Options < OpenStruct
