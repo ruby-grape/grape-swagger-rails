@@ -1,19 +1,16 @@
-name: Tests
-on: [push, pull_request]
+name: Tests (HEAD)
+on: [pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
+    continue-on-error: true
     strategy:
       fail-fast: false
       matrix:
         entry:
-          - { ruby: "2.7", grape-swagger: "1.6.1" }
-          - { ruby: "3.0", grape-swagger: "1.6.1" }
-          - { ruby: "3.1", grape-swagger: "1.6.1" }
-          - { ruby: "3.2", grape-swagger: "1.6.1" }
-          - { ruby: "3.2", grape-swagger: "2.0.2" }
-          - { ruby: "jruby-9.4.6", grape-swagger: "1.6.1" }
-          - { ruby: "jruby-9.4.6", grape-swagger: "2.0.2" }
+          - { ruby: "3.2", grape-swagger: "HEAD" }
+          - { ruby: "ruby-head", grape-swagger: "HEAD" }
+          - { ruby: "jruby-head", grape-swagger: "HEAD" }
     env:
       GRAPE_SWAGGER_VERSION: ${{ matrix.entry.grape-swagger }}
     steps:

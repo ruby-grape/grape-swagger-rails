@@ -14,7 +14,6 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/ruby-grape/grape-swagger-rails'
   spec.license       = 'MIT'
   spec.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
-  spec.test_files    = `git ls-files spec`.split($INPUT_RECORD_SEPARATOR)
   spec.require_paths = %w[lib]
   spec.add_dependency 'railties', '>= 6.0.6.1'
   spec.metadata = {
