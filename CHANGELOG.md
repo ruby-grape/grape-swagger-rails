@@ -1,7 +1,8 @@
 ### 0.5.1 (Next)
 
 * Your contribution here.
- 
+* [#120](https://github.com/ruby-grape/grape-swagger-rails/pull/120): Regenerate .rubocop_todo.yml - [@kakubin](https://github.com/kakubin).
+
 ### 0.5.0 (2024/04/06)
 
 * [#110](https://github.com/ruby-grape/grape-swagger-rails/pull/110): Update dummy app to current rails conventions - [@duffn](https://github.com/duffn).

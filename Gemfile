@@ -25,7 +25,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'rubocop-capybara'
   gem 'rubocop-rake'
-  gem 'rubocop-rspec'
+  gem 'rubocop-rspec', '>= 3.0.0'
   gem 'ruby-grape-danger', '~> 0.2.0', require: false
   gem 'selenium-webdriver'
   gem 'sprockets-rails', require: 'sprockets/railtie'
