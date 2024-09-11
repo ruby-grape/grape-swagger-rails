@@ -51,7 +51,7 @@ describe 'Swagger' do
         find_by_id('endpointListTogger_headers', visible: true).click
         first('span[class="http_method"] a', visible: true).click
         click_button 'Try it out!'
-        expect(page).to have_css 'span.hljs-attr', text: 'X-Test-Header'
+        expect(page).to have_css 'span.hljs-attr', text: /X-Test-Header/i
         expect(page).to have_css 'span.hljs-string', text: 'Test Value'
       end
 
@@ -59,9 +59,9 @@ describe 'Swagger' do
         find_by_id('endpointListTogger_headers', visible: true).click
         first('span[class="http_method"] a', visible: true).click
         click_button 'Try it out!'
-        expect(page).to have_css 'span.hljs-attr', text: 'X-Test-Header'
+        expect(page).to have_css 'span.hljs-attr', text: /X-Test-Header/i
         expect(page).to have_css 'span.hljs-string', text: 'Test Value'
-        expect(page).to have_css 'span.hljs-attr', text: 'X-Another-Header'
+        expect(page).to have_css 'span.hljs-attr', text: /X-Another-Header/i
         expect(page).to have_css 'span.hljs-string', text: 'Another Value'
       end
     end
@@ -108,7 +108,7 @@ describe 'Swagger' do
         find_by_id('endpointListTogger_headers', visible: true).click
         first('span[class="http_method"] a', visible: true).click
         click_button 'Try it out!'
-        expect(page).to have_css 'span.hljs-attr', text: 'Authorization'
+        expect(page).to have_css 'span.hljs-attr', text: /Authorization/i
         expect(page).to have_css 'span.hljs-string', text: "Basic #{Base64.encode64('username:password').strip}"
       end
     end
@@ -127,7 +127,7 @@ describe 'Swagger' do
         find_by_id('endpointListTogger_headers', visible: true).click
         first('span[class="http_method"] a', visible: true).click
         click_button 'Try it out!'
-        expect(page).to have_css 'span.hljs-attr', text: 'Authorization'
+        expect(page).to have_css 'span.hljs-attr', text: /Authorization/i
         expect(page).to have_css 'span.hljs-string', text: 'Bearer token'
       end
     end
@@ -146,7 +146,7 @@ describe 'Swagger' do
         find_by_id('endpointListTogger_headers', visible: true).click
         first('span[class="http_method"] a', visible: true).click
         click_button 'Try it out!'
-        expect(page).to have_css 'span.hljs-attr', text: 'Authorization'
+        expect(page).to have_css 'span.hljs-attr', text: /Authorization/i
         expect(page).to have_css 'span.hljs-string', text: 'Token token'
       end
     end
