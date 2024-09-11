@@ -171,14 +171,16 @@ describe 'Swagger' do
 
     describe '#before_filter' do
       before do
-        allow(ActiveSupport::Deprecation).to receive(:warn)
+        allow(GrapeSwaggerRails.deprecator).to receive(:warn)
       end
 
       it 'throws deprecation warning' do
         GrapeSwaggerRails.options.before_filter { true }
 
-        expect(ActiveSupport::Deprecation).to have_received(:warn).with('This option is deprecated ' \
-                                                                        'and going to be removed in 1.0.0. Please use `before_action` instead')
+        expect(GrapeSwaggerRails.deprecator).to have_received(:warn).with(
+          'This option is deprecated and going to be removed in 1.0.0. ' \
+          'Please use `before_action` instead'
+        )
       end
     end
 
