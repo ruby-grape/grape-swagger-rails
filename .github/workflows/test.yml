@@ -12,6 +12,7 @@ jobs:
           - { ruby: "3.1", grape-swagger: "1.6.1" }
           - { ruby: "3.2", grape-swagger: "1.6.1" }
           - { ruby: "3.2", grape-swagger: "2.0.2" }
+          - { ruby: "3.3", grape-swagger: "2.0.2" }
           - { ruby: "jruby-9.4.6", grape-swagger: "1.6.1" }
           - { ruby: "jruby-9.4.6", grape-swagger: "2.0.2" }
     env:
