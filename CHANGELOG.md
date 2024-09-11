@@ -1,7 +1,7 @@
 ### 0.5.1 (Next)
 
-* Your contribution here.
- 
+* [#122](https://github.com/ruby-grape/grape-swagger-rails/pull/122): Add ostruct to gemspec dependencies - [@padde](https://github.com/padde).
+
 ### 0.5.0 (2024/04/06)
 
 * [#110](https://github.com/ruby-grape/grape-swagger-rails/pull/110): Update dummy app to current rails conventions - [@duffn](https://github.com/duffn).

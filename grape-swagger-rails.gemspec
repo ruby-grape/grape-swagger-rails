@@ -16,6 +16,7 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   spec.require_paths = %w[lib]
   spec.add_dependency 'railties', '>= 6.0.6.1'
+  spec.add_dependency 'ostruct'
   spec.metadata = {
     'bug_tracker_uri' => 'https://github.com/ruby-grape/grape-swagger-rails/issues',
     'changelog_uri' => 'https://github.com/ruby-grape/grape-swagger-rails/blob/master/CHANGELOG.md',
