@@ -4,12 +4,19 @@ source 'https://rubygems.org'
 
 gemspec
 
-case version = ENV['GRAPE_SWAGGER_VERSION'] || '~> 1.6.0'
+case grape_swagger_version = ENV.fetch('GRAPE_SWAGGER_VERSION', '~> 1.6.0')
 when 'HEAD'
   gem 'grape-swagger', github: 'ruby-grape/grape-swagger'
 else
   gem 'grape', '>= 1.3.0'
-  gem 'grape-swagger', version
+  gem 'grape-swagger', grape_swagger_version
+end
+
+case rails_version = ENV.fetch('RAILS_VERSION', '>= 6.0.6.1')
+when 'edge'
+  gem 'railties', github: 'rails/rails', branch: 'main'
+else
+  gem 'railties', rails_version
 end
 
 group :development, :test do
