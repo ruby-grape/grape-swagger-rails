@@ -12,13 +12,13 @@ jobs:
           - { ruby: "3.1", rails: "6.1.7", grape-swagger: "1.6.1" }
           - { ruby: "3.1", rails: "7.2.1", grape-swagger: "1.6.1" }
           - { ruby: "3.2", rails: "6.1.7", grape-swagger: "1.6.1" }
-          - { ruby: "3.2", rails: "6.1.7", grape-swagger: "2.0.2" }
+          - { ruby: "3.2", rails: "6.1.7", grape-swagger: "2.1.1" }
           - { ruby: "3.2", rails: "7.2.1", grape-swagger: "1.6.1" }
-          - { ruby: "3.2", rails: "7.2.1", grape-swagger: "2.0.2" }
+          - { ruby: "3.2", rails: "7.2.1", grape-swagger: "2.1.1" }
           - { ruby: "jruby-9.4.6", rails: "6.1.7", grape-swagger: "1.6.1" }
-          - { ruby: "jruby-9.4.6", rails: "6.1.7", grape-swagger: "2.0.2" }
+          - { ruby: "jruby-9.4.6", rails: "6.1.7", grape-swagger: "2.1.1" }
           - { ruby: "jruby-9.4.6", rails: "7.2.1", grape-swagger: "1.6.1" }
-          - { ruby: "jruby-9.4.6", rails: "7.2.1", grape-swagger: "2.0.2" }
+          - { ruby: "jruby-9.4.6", rails: "7.2.1", grape-swagger: "2.1.1" }
     env:
       GRAPE_SWAGGER_VERSION: ${{ matrix.entry.grape-swagger }}
       RAILS_VERSION: ${{ matrix.entry.rails }}
