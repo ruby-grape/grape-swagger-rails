@@ -38,10 +38,10 @@ jobs:
       - name: Setup Firefox
         uses: browser-actions/setup-firefox@v1
         with:
-          firefox-version: "111.0.1"
+          firefox-version: "130.0"
       - uses: browser-actions/setup-geckodriver@latest
         with:
-          geckodriver-version: "0.32.2"
+          geckodriver-version: "0.35.0"
       - uses: coactions/setup-xvfb@v1
         with:
           run: bundle exec rake spec
