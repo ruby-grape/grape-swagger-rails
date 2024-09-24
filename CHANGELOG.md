@@ -2,6 +2,7 @@
 
 * [#124](https://github.com/ruby-grape/grape-swagger-rails/pull/124): Rails 7 compatibility - [@padde](https://github.com/padde).
 * [#125](https://github.com/ruby-grape/grape-swagger-rails/pull/125): Add rails versions to CI matrix - [@padde](https://github.com/padde).
+* [#127](https://github.com/ruby-grape/grape-swagger-rails/pull/127): Bump Firefox and geckodriver - [@padde](https://github.com/padde).
 * Your contribution here.
 
 ### 0.5.0 (2024/04/06)
