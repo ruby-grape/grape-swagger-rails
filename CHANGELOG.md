@@ -1,3 +1,7 @@
+### 0.6.1 (Next)
+
+* Your contribution here.
+
 ### 0.6.0 (2024/11/21)
 
 * [#124](https://github.com/ruby-grape/grape-swagger-rails/pull/124): Rails 7 compatibility - [@padde](https://github.com/padde).
