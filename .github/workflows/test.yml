@@ -30,7 +30,15 @@ jobs:
       - uses: browser-actions/setup-geckodriver@latest
         with:
           geckodriver-version: "0.35.0"
-      - name: Run tests
+      - name: Run tests with Sprockets
         uses: coactions/setup-xvfb@v1
+        env:
+          ASSET_PIPELINE: sprockets
+        with:
+          run: bundle exec rake spec
+      - name: Run tests with Propshaft
+        uses: coactions/setup-xvfb@v1
+        env:
+          ASSET_PIPELINE: propshaft
         with:
           run: bundle exec rake spec

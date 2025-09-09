@@ -2,6 +2,15 @@
 
 ENV['RAILS_ENV'] ||= 'test'
 
+asset_pipeline = ENV.fetch('ASSET_PIPELINE', 'sprockets')
+case asset_pipeline
+when 'propshaft'
+  require 'rails/railtie'
+  require 'propshaft'
+else
+  require 'sprockets/railtie'
+end
+
 require File.expand_path('dummy/config/environment.rb', __dir__)
 require 'rspec/rails'
 
