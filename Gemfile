@@ -35,6 +35,7 @@ group :development, :test do
   gem 'rubocop-rspec'
   gem 'ruby-grape-danger', '~> 0.2.0', require: false
   gem 'selenium-webdriver'
+  gem 'sprockets', ENV.fetch('SPROCKETS_VERSION', '>= 4.0.0')
   gem 'sprockets-rails', require: 'sprockets/railtie'
   gem 'uglifier'
   gem 'webrick'
