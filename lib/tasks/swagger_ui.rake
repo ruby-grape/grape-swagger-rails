@@ -40,9 +40,9 @@ namespace :swagger_ui do
           'swagger-oauth.js',
           'base64.js'
         ].freeze
-        javascript_files = Dir["#{root}/app/assets/javascripts/grape_swagger_rails/*.js"].map { |f|
+        javascript_files = Dir["#{root}/app/assets/javascripts/grape_swagger_rails/*.js"].map do |f|
           f.split('/').last
-        } - ['application.js']
+        end - ['application.js']
         (javascript_files - JAVASCRIPT_FILES).each do |filename|
           puts "WARNING: add #{filename} to swagger_ui.rake"
         end
@@ -65,9 +65,9 @@ namespace :swagger_ui do
           'reset.css',
           'screen.css'
         ].freeze
-        css_files = Dir["#{root}/app/assets/stylesheets/grape_swagger_rails/*.css"].map { |f|
+        css_files = Dir["#{root}/app/assets/stylesheets/grape_swagger_rails/*.css"].map do |f|
           f.split('/').last
-        } - ['application.css']
+        end - ['application.css']
         (css_files - CSS_FILES).each do |filename|
           puts "WARNING: add #{filename} to swagger_ui.rake"
         end
