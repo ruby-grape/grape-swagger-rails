@@ -19,15 +19,15 @@ jobs:
           - { ruby: "3.3", rails: "6.1.7", grape-swagger: "2.1.1" }
           - { ruby: "3.3", rails: "7.2.1", grape-swagger: "1.6.1" }
           - { ruby: "3.3", rails: "7.2.1", grape-swagger: "2.1.1" }
-          - { ruby: "jruby-9.4.6", rails: "6.1.7", grape-swagger: "1.6.1" }
-          - { ruby: "jruby-9.4.6", rails: "6.1.7", grape-swagger: "2.1.1" }
-          - { ruby: "jruby-9.4.6", rails: "7.2.1", grape-swagger: "1.6.1" }
-          - { ruby: "jruby-9.4.6", rails: "7.2.1", grape-swagger: "2.1.1" }
+          - { ruby: "jruby-9.4", rails: "6.1.7", grape-swagger: "1.6.1" }
+          - { ruby: "jruby-9.4", rails: "6.1.7", grape-swagger: "2.1.1" }
+          - { ruby: "jruby-9.4", rails: "7.2.1", grape-swagger: "1.6.1" }
+          - { ruby: "jruby-9.4", rails: "7.2.1", grape-swagger: "2.1.1" }
     env:
       GRAPE_SWAGGER_VERSION: ${{ matrix.entry.grape-swagger }}
       RAILS_VERSION: ${{ matrix.entry.rails }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -42,6 +42,7 @@ jobs:
       - uses: browser-actions/setup-geckodriver@latest
         with:
           geckodriver-version: "0.35.0"
-      - uses: coactions/setup-xvfb@v1
+      - name: Run tests
+        uses: coactions/setup-xvfb@v1
         with:
           run: bundle exec rake spec

@@ -19,6 +19,8 @@ else
   gem 'railties', rails_version
 end
 
+gem 'logger'
+
 group :development, :test do
   gem 'capybara'
   gem 'grape-swagger-ui'
