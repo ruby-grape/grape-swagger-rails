@@ -7,19 +7,18 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        entry:
-          - { ruby: "3.2", rails: "edge", grape-swagger: "HEAD" }
-          - { ruby: "ruby-head", rails: "edge", grape-swagger: "HEAD" }
-          - { ruby: "jruby-head", rails: "edge", grape-swagger: "HEAD" }
+        ruby: ['3.2', 'ruby-head', 'jruby-head']
+        rails: ['edge']
+        grape-swagger: ['HEAD']
     env:
-      GRAPE_SWAGGER_VERSION: ${{ matrix.entry.grape-swagger }}
-      RAILS_VERSION: ${{ matrix.entry.rails }}
+      GRAPE_SWAGGER_VERSION: ${{ matrix.grape-swagger }}
+      RAILS_VERSION: ${{ matrix.rails }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ matrix.entry.ruby }}
+          ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
       - name: Print Bundler Versions
         run: bundle show
@@ -30,6 +29,7 @@ jobs:
       - uses: browser-actions/setup-geckodriver@latest
         with:
           geckodriver-version: "0.35.0"
-      - uses: coactions/setup-xvfb@v1
+      - name: Run tests
+        uses: coactions/setup-xvfb@v1
         with:
           run: bundle exec rake spec
