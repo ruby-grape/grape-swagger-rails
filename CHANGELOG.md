@@ -1,6 +1,7 @@
-### 0.6.1 (Next)
+### 0.7.0 (Next)
 
 * Your contribution here.
+* [#132](https://github.com/ruby-grape/grape-swagger-rails/pull/132): Automatically register assets with Sprockets - [@olivier-thatch](https://github.com/olivier-thatch).
 
 ### 0.6.0 (2024/11/21)
 

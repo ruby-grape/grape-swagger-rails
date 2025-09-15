@@ -18,8 +18,6 @@ Swagger UI as Rails Engine for grape-swagger gem.
     - [Integration with DoorKeeper](#integration-with-doorkeeper)
   - [Hiding the API or Authorization text boxes](#hiding-the-api-or-authorization-text-boxes)
   - [Updating Swagger UI from Dist](#updating-swagger-ui-from-dist)
-  - [Enabling in a Rails-API Project](#enabling-in-a-rails-api-project)
-  - [Enabling in Rails 6 (Sprokets 5)](#enabling-in-rails-6-sprokets-5)
 - [Contributors](#contributors)
 - [Contributing](#contributing)
 - [License](#license)
@@ -216,42 +214,6 @@ To update Swagger UI from its [distribution](https://github.com/wordnik/swagger-
 NOTE: This action should be run part of this gem (not your application). In case if you want to
 make it up-to-date, clone the repo, run the rake task, examine the diff, fix any bugs, make sure
 tests pass and then send PR here.
-
-### Enabling in a Rails-API Project
-
-The grape-swagger-rails gem uses the Rails asset pipeline for its Javascript and CSS. Enable the asset pipeline with [rails-api](https://github.com/rails-api/rails-api).
-
-Add sprockets to `config/application.rb`.
-
-```ruby
-require 'sprockets/railtie'
-```
-
-Include JavaScript in `app/assets/javascripts/application.js`.
-
-```javascript
-//
-//= require_tree .
-```
-
-Include CSS stylesheets in `app/assets/stylesheets/application.css`.
-
-```css
-/*
-*= require_tree .
-*/
-```
-
-### Enabling in Rails 6 (Sprokets 5)
-
-Rails 6 top-level targets are determined via `./app/assets/config/manifest.js`. Specify `grape-swagger-rails` asset files as follows.
-
-```javascript
-//= link grape_swagger_rails/application.css
-//= link grape_swagger_rails/application.js
-```
-
-See [Upgrading Sprokets](https://github.com/rails/sprockets/blob/master/UPGRADING.md#manifestjs) for more information.
 
 ## Contributors
 
