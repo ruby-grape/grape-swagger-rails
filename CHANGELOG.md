@@ -1,6 +1,5 @@
-### 0.7.0 (Next)
+### 0.7.0 (2025/09/16)
 
-* Your contribution here.
 * [#132](https://github.com/ruby-grape/grape-swagger-rails/pull/132): Automatically register assets with Sprockets - [@olivier-thatch](https://github.com/olivier-thatch).
 * [#130](https://github.com/ruby-grape/grape-swagger-rails/pull/130): Propshaft support - [@olivier-thatch](https://github.com/olivier-thatch).
 
