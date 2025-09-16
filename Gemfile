@@ -25,6 +25,7 @@ group :development, :test do
   gem 'jquery-rails'
   gem 'mime-types'
   gem 'nokogiri'
+  gem 'propshaft', require: false
   gem 'rack', '< 3.0'
   gem 'rack-cors'
   gem 'rake'
@@ -35,8 +36,8 @@ group :development, :test do
   gem 'rubocop-rspec'
   gem 'ruby-grape-danger', '~> 0.2.0', require: false
   gem 'selenium-webdriver'
-  gem 'sprockets', ENV.fetch('SPROCKETS_VERSION', '>= 4.0.0')
-  gem 'sprockets-rails', require: 'sprockets/railtie'
+  gem 'sprockets', ENV.fetch('SPROCKETS_VERSION', '>= 4.0.0'), require: false
+  gem 'sprockets-rails', require: false
   gem 'uglifier'
   gem 'webrick'
 end
