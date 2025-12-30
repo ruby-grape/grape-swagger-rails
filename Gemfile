@@ -21,6 +21,10 @@ end
 
 group :development, :test do
   gem 'capybara'
+  gem 'danger', require: false
+  gem 'danger-changelog', require: false
+  gem 'danger-pr-comment', require: false
+  gem 'danger-toc', require: false
   gem 'grape-swagger-ui'
   gem 'jquery-rails'
   gem 'mime-types'
@@ -34,7 +38,6 @@ group :development, :test do
   gem 'rubocop-capybara'
   gem 'rubocop-rake'
   gem 'rubocop-rspec'
-  gem 'ruby-grape-danger', '~> 0.2.0', require: false
   gem 'selenium-webdriver'
   gem 'sprockets', ENV.fetch('SPROCKETS_VERSION', '>= 4.0.0'), require: false
   gem 'sprockets-rails', require: false
