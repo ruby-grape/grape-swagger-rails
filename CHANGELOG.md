@@ -1,5 +1,6 @@
 ### Next Release
 
+* [#150](https://github.com/ruby-grape/grape-swagger-rails/pull/150): Remove unused application.js and application.css from Sprockets precompile list - [@moskvin](https://github.com/moskvin).
 * [#149](https://github.com/ruby-grape/grape-swagger-rails/pull/149): Add CLAUDE.md and copilot-instructions.md for AI agent guidance - [@moskvin](https://github.com/moskvin).
 * [#138](https://github.com/ruby-grape/grape-swagger-rails/pull/138): Migrate Danger to use danger-pr-comment workflow - [@dblock](https://github.com/dblock).
 * [#140](https://github.com/ruby-grape/grape-swagger-rails/pull/140): Update CI matrix and compatibility documentation - [@moskvin](https://github.com/moskvin).
