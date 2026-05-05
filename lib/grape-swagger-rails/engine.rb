@@ -11,8 +11,6 @@ module GrapeSwaggerRails
         sprockets_4_or_later = Gem::Version.new(Sprockets::VERSION) >= Gem::Version.new('4')
 
         %w[
-          grape_swagger_rails/application.js
-          grape_swagger_rails/application.css
           grape_swagger_rails/favicon.ico
           grape_swagger_rails/swagger-ui.css
           grape_swagger_rails/index.css
