@@ -14,7 +14,6 @@
         %label#spec-selector-wrapper.swagger-auth{ hidden: true }
           %select#spec-selector.swagger-select{ name: 'spec-selector' }
         %label.swagger-auth
-          %span.swagger-label= GrapeSwaggerRails.options.api_key_placeholder
           %input#input_apiKey.swagger-input{ name: 'apiKey', type: 'text', value: GrapeSwaggerRails.options.api_key_default_value, placeholder: GrapeSwaggerRails.options.api_key_placeholder }
     #swagger-ui-container
     = javascript_include_tag 'grape_swagger_rails/swagger-ui-bundle'

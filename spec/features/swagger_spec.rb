@@ -485,6 +485,7 @@ describe 'Swagger' do
 
       it 'adds a custom placeholder' do
         expect(find_by_id('input_apiKey')['placeholder']).to eq 'authorization_code'
+        expect(page).to have_no_css('.swagger-auth .swagger-label')
       end
     end
 
