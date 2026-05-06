@@ -118,6 +118,21 @@ function initializeSwaggerPage() {
         });
         specSelectorWrapper.hidden = false;
     }
+    function hideInfoUrlPlugin() {
+        return {
+            wrapComponents: {
+                InfoUrl: function () { return function () { return null; }; },
+            },
+        };
+    }
+    function swaggerPlugins() {
+        var configuredPlugins = options.swagger_ui_config && options.swagger_ui_config.plugins;
+        var plugins = Array.isArray(configuredPlugins) ? configuredPlugins.slice() : [];
+        if (options.hide_url_input) {
+            plugins.push(hideInfoUrlPlugin);
+        }
+        return plugins;
+    }
     applyTheme(getTheme());
     if (themeToggle) {
         themeToggle.addEventListener("click", function () {
@@ -135,6 +150,7 @@ function initializeSwaggerPage() {
         validatorUrl: options.validator_url,
         layout: "BaseLayout",
         presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
+        plugins: swaggerPlugins(),
         requestInterceptor: function (request) {
             var headers = options.headers || {};
             Object.keys(headers).forEach(function (key) {
