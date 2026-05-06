@@ -125,6 +125,10 @@ html[data-hide-api-key="true"] .swagger-auth {
   display: none;
 }
 
+html[data-hide-url="true"] .swagger-ui .info > a.link {
+  display: none;
+}
+
 html[data-theme="dark"] .swagger-ui {
   background: transparent;
   color: #e2e8f0;
