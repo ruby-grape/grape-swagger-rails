@@ -263,7 +263,7 @@ has_one :token, -> { order 'created_at DESC' }, class_name: Doorkeeper::AccessTo
 If you know in advance that you would like to prevent changing the Swagger API URL, you can hide the Swagger UI source URL using the following:
 
 ```ruby
-GrapeSwaggerRails.options.hide_url_input = true
+GrapeSwaggerRails.options.hide_info_url = true
 ```
 
 Similarly, you can hide the Authentication input box by adding this:

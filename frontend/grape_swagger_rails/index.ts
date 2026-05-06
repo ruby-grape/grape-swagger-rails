@@ -13,7 +13,7 @@ interface SwaggerPageOptions {
   doc_expansion: string;
   headers: Record<string, string>;
   hide_api_key_input: boolean;
-  hide_url_input: boolean;
+  hide_info_url: boolean;
   supported_submit_methods: string[];
   theme: string;
   url: string;
@@ -208,11 +208,11 @@ function initializeSwaggerPage(): void {
     };
   }
 
-  function swaggerPlugins(): unknown[] {
+  function buildPlugins(): unknown[] {
     const configuredPlugins = options.swagger_ui_config && options.swagger_ui_config.plugins;
     const plugins = Array.isArray(configuredPlugins) ? configuredPlugins.slice() : [];
 
-    if (options.hide_url_input) {
+    if (options.hide_info_url) {
       plugins.push(hideInfoUrlPlugin);
     }
 
@@ -239,7 +239,7 @@ function initializeSwaggerPage(): void {
     validatorUrl: options.validator_url,
     layout: "BaseLayout",
     presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
-    plugins: swaggerPlugins(),
+    plugins: buildPlugins(),
     requestInterceptor: (request: SwaggerRequest) => {
       const headers = options.headers || {};
       Object.keys(headers).forEach((key) => {
