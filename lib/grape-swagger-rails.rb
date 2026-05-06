@@ -48,7 +48,7 @@ module GrapeSwaggerRails
 
     before_action_proc: nil, # Proc used as a controller before action
 
-    hide_url_input: false,
+    hide_info_url: false,
     hide_api_key_input: false
   )
 

@@ -125,10 +125,10 @@ function initializeSwaggerPage() {
             },
         };
     }
-    function swaggerPlugins() {
+    function buildPlugins() {
         var configuredPlugins = options.swagger_ui_config && options.swagger_ui_config.plugins;
         var plugins = Array.isArray(configuredPlugins) ? configuredPlugins.slice() : [];
-        if (options.hide_url_input) {
+        if (options.hide_info_url) {
             plugins.push(hideInfoUrlPlugin);
         }
         return plugins;
@@ -150,7 +150,7 @@ function initializeSwaggerPage() {
         validatorUrl: options.validator_url,
         layout: "BaseLayout",
         presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
-        plugins: swaggerPlugins(),
+        plugins: buildPlugins(),
         requestInterceptor: function (request) {
             var headers = options.headers || {};
             Object.keys(headers).forEach(function (key) {

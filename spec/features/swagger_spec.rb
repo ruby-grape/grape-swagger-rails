@@ -137,7 +137,7 @@ describe 'Swagger' do
     expect(GrapeSwaggerRails::VERSION).not_to be_blank
   end
 
-  describe 'add_swagger_documentation hide_documentation_path' do
+  describe 'hide_info_url option' do
     around do |example|
       options = GrapeSwaggerRails.options.dup
       example.run
@@ -152,7 +152,7 @@ describe 'Swagger' do
     end
 
     it 'does not render its own documentation path in Swagger UI' do
-      GrapeSwaggerRails.options.hide_url_input = true
+      GrapeSwaggerRails.options.hide_info_url = true
       visit_swagger
 
       expect(swagger_document.fetch('paths').keys.grep(/swagger_doc/)).to be_empty

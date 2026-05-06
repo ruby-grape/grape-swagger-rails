@@ -125,7 +125,7 @@ html[data-hide-api-key="true"] .swagger-auth {
   display: none;
 }
 
-html[data-hide-url="true"] .swagger-ui .info > a.link {
+html[data-hide-info-url="true"] .swagger-ui .info > a.link {
   display: none;
 }
 

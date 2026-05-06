@@ -9,7 +9,7 @@ module GrapeSwaggerRails
       {
         swagger_options: options.marshal_dump.to_json,
         hide_api_key: options.hide_api_key_input,
-        hide_url: options.hide_url_input
+        hide_info_url: options.hide_info_url
       }
     end
   end
