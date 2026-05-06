@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 gemspec
 
-case grape_version = ENV.fetch('GRAPE_VERSION', nil)
+case grape_version = ENV.fetch('GRAPE_VERSION', '~> 2.2.0')
 when nil, ''
   gem 'grape', '>= 1.3.0'
 when 'HEAD'
@@ -13,7 +13,7 @@ else
   gem 'grape', grape_version
 end
 
-case grape_swagger_version = ENV.fetch('GRAPE_SWAGGER_VERSION', '~> 1.6.0')
+case grape_swagger_version = ENV.fetch('GRAPE_SWAGGER_VERSION', '~> 2.1.3')
 when 'HEAD'
   gem 'grape-swagger', github: 'ruby-grape/grape-swagger'
 else
