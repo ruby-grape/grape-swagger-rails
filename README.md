@@ -260,7 +260,7 @@ has_one :token, -> { order 'created_at DESC' }, class_name: Doorkeeper::AccessTo
 
 ### Hiding the API or Authorization text boxes
 
-If you know in advance that you would like to prevent changing the Swagger API URL, you can hide it using the following:
+If you know in advance that you would like to prevent changing the Swagger API URL, you can hide the Swagger UI source URL using the following:
 
 ```ruby
 GrapeSwaggerRails.options.hide_url_input = true

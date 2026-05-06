@@ -38,6 +38,10 @@ interface SwaggerRequest {
   headers?: Record<string, string> | Headers;
 }
 
+interface SwaggerPlugin {
+  wrapComponents?: Record<string, unknown>;
+}
+
 declare const SwaggerUIBundle: any;
 declare const SwaggerUIStandalonePreset: any;
 
@@ -196,6 +200,25 @@ function initializeSwaggerPage(): void {
     specSelectorWrapper.hidden = false;
   }
 
+  function hideInfoUrlPlugin(): SwaggerPlugin {
+    return {
+      wrapComponents: {
+        InfoUrl: () => () => null,
+      },
+    };
+  }
+
+  function swaggerPlugins(): unknown[] {
+    const configuredPlugins = options.swagger_ui_config && options.swagger_ui_config.plugins;
+    const plugins = Array.isArray(configuredPlugins) ? configuredPlugins.slice() : [];
+
+    if (options.hide_url_input) {
+      plugins.push(hideInfoUrlPlugin);
+    }
+
+    return plugins;
+  }
+
   applyTheme(getTheme());
 
   if (themeToggle) {
@@ -216,6 +239,7 @@ function initializeSwaggerPage(): void {
     validatorUrl: options.validator_url,
     layout: "BaseLayout",
     presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
+    plugins: swaggerPlugins(),
     requestInterceptor: (request: SwaggerRequest) => {
       const headers = options.headers || {};
       Object.keys(headers).forEach((key) => {

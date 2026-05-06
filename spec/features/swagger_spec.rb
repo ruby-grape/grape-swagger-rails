@@ -16,6 +16,23 @@ describe 'Swagger' do
     JSON.parse(session.html)
   end
 
+  def build_documented_api(swagger_options = {})
+    Class.new(Grape::API) do
+      prefix 'api'
+
+      desc 'Get health.'
+      get '/health' do
+        { status: 'ok' }
+      end
+
+      add_swagger_documentation(swagger_options)
+    end
+  end
+
+  def swagger_documentation_route_paths(api)
+    api.combined_namespace_routes.fetch('swagger_doc').map(&:path)
+  end
+
   def swagger_configs
     page.evaluate_script(<<~JS)
       (function() {
@@ -118,6 +135,40 @@ describe 'Swagger' do
   it "uses grape-swagger=#{GrapeSwagger::VERSION} grape-swagger-rails=#{GrapeSwaggerRails::VERSION}" do
     expect(GrapeSwagger::VERSION).not_to be_blank
     expect(GrapeSwaggerRails::VERSION).not_to be_blank
+  end
+
+  describe 'add_swagger_documentation hide_documentation_path' do
+    around do |example|
+      options = GrapeSwaggerRails.options.dup
+      example.run
+    ensure
+      GrapeSwaggerRails.options = options
+    end
+
+    it 'hides its own documentation routes by default' do
+      api = build_documented_api
+
+      expect(swagger_documentation_route_paths(api)).to be_empty
+    end
+
+    it 'does not render its own documentation path in Swagger UI' do
+      GrapeSwaggerRails.options.hide_url_input = false
+      visit_swagger
+
+      expect(swagger_document.fetch('paths').keys.grep(/swagger_doc/)).to be_empty
+      expect(page).to have_no_css('.swagger-ui .info a.link[href="http://localhost:3000/api/swagger_doc"]')
+      expect(page).to have_css('.opblock-tag', text: 'foos')
+      expect(page).to have_no_css('.opblock-tag, .opblock-summary-path', text: 'swagger_doc')
+    end
+
+    it 'includes its own documentation routes when disabled' do
+      api = build_documented_api(hide_documentation_path: false)
+
+      expect(swagger_documentation_route_paths(api)).to contain_exactly(
+        '/api/swagger_doc(.json)',
+        '/api/swagger_doc/:name(.json)'
+      )
+    end
   end
 
   context 'swaggerUi' do
