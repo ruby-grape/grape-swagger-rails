@@ -14,6 +14,8 @@ interface SwaggerPageOptions {
   headers: Record<string, string>;
   hide_api_key_input: boolean;
   hide_info_url: boolean;
+  hide_doc_version: boolean;
+  hide_version_stamp: boolean;
   supported_submit_methods: string[];
   theme: string;
   url: string;
@@ -208,12 +210,36 @@ function initializeSwaggerPage(): void {
     };
   }
 
+  function hideDocVersionPlugin(): SwaggerPlugin {
+    return {
+      wrapComponents: {
+        VersionStamp: () => () => null,
+      },
+    };
+  }
+
+  function hideVersionStampPlugin(): SwaggerPlugin {
+    return {
+      wrapComponents: {
+        OpenAPIVersion: () => () => null,
+      },
+    };
+  }
+
   function buildPlugins(): unknown[] {
     const configuredPlugins = options.swagger_ui_config && options.swagger_ui_config.plugins;
     const plugins = Array.isArray(configuredPlugins) ? configuredPlugins.slice() : [];
 
     if (options.hide_info_url) {
       plugins.push(hideInfoUrlPlugin);
+    }
+
+    if (options.hide_doc_version) {
+      plugins.push(hideDocVersionPlugin);
+    }
+
+    if (options.hide_version_stamp) {
+      plugins.push(hideVersionStampPlugin);
     }
 
     return plugins;

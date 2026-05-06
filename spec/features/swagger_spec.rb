@@ -137,13 +137,17 @@ describe 'Swagger' do
     expect(GrapeSwaggerRails::VERSION).not_to be_blank
   end
 
-  describe 'hide_info_url option' do
+  shared_context 'with isolated options' do
     around do |example|
       options = GrapeSwaggerRails.options.dup
       example.run
     ensure
       GrapeSwaggerRails.options = options
     end
+  end
+
+  describe 'hide_info_url option' do
+    include_context 'with isolated options'
 
     it 'hides its own documentation routes by default' do
       api = build_documented_api
@@ -168,6 +172,45 @@ describe 'Swagger' do
         '/api/swagger_doc(.json)',
         '/api/swagger_doc/:name(.json)'
       )
+    end
+  end
+
+  describe 'hide_doc_version option' do
+    include_context 'with isolated options'
+
+    it 'shows the document version by default' do
+      visit_swagger
+
+      # The VersionStamp component renders info.version outside of .version-stamp
+      expect(page).to have_css('.swagger-ui .info small:not(.version-stamp) .version')
+    end
+
+    it 'hides the document version when enabled' do
+      GrapeSwaggerRails.options.hide_doc_version = true
+      visit_swagger
+
+      # VersionStamp is suppressed, but the OAS badge (.version-stamp) remains
+      expect(page).to have_no_css('.swagger-ui .info small:not(.version-stamp) .version')
+      expect(page).to have_css('.swagger-ui .info .version-stamp .version', text: 'OAS 2.0')
+    end
+  end
+
+  describe 'hide_version_stamp option' do
+    include_context 'with isolated options'
+
+    it 'shows the OAS version stamp by default' do
+      visit_swagger
+
+      expect(page).to have_css('.swagger-ui .info .version-stamp .version', text: 'OAS 2.0')
+    end
+
+    it 'hides the OAS version stamp when enabled' do
+      GrapeSwaggerRails.options.hide_version_stamp = true
+      visit_swagger
+
+      expect(page).to have_no_css('.swagger-ui .info .version-stamp')
+      # The document version (VersionStamp) remains visible
+      expect(page).to have_css('.swagger-ui .info small:not(.version-stamp) .version')
     end
   end
 
