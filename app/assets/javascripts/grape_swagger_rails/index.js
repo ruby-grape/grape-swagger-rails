@@ -125,11 +125,31 @@ function initializeSwaggerPage() {
             },
         };
     }
+    function hideDocVersionPlugin() {
+        return {
+            wrapComponents: {
+                VersionStamp: function () { return function () { return null; }; },
+            },
+        };
+    }
+    function hideVersionStampPlugin() {
+        return {
+            wrapComponents: {
+                OpenAPIVersion: function () { return function () { return null; }; },
+            },
+        };
+    }
     function buildPlugins() {
         var configuredPlugins = options.swagger_ui_config && options.swagger_ui_config.plugins;
         var plugins = Array.isArray(configuredPlugins) ? configuredPlugins.slice() : [];
         if (options.hide_info_url) {
             plugins.push(hideInfoUrlPlugin);
+        }
+        if (options.hide_doc_version) {
+            plugins.push(hideDocVersionPlugin);
+        }
+        if (options.hide_version_stamp) {
+            plugins.push(hideVersionStampPlugin);
         }
         return plugins;
     }
