@@ -152,7 +152,7 @@ describe 'Swagger' do
     end
 
     it 'does not render its own documentation path in Swagger UI' do
-      GrapeSwaggerRails.options.hide_url_input = false
+      GrapeSwaggerRails.options.hide_url_input = true
       visit_swagger
 
       expect(swagger_document.fetch('paths').keys.grep(/swagger_doc/)).to be_empty
