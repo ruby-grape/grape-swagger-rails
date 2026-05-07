@@ -139,30 +139,20 @@ describe 'Swagger' do
 
   shared_context 'with isolated options' do
     around do |example|
-      options = GrapeSwaggerRails.options.dup
+      saved = GrapeSwaggerRails.options
+      deep = saved.marshal_dump.transform_values { |v| v.dup rescue v }
+      deep[:before_action_proc] = saved.before_action_proc
       example.run
     ensure
-      GrapeSwaggerRails.options = options
+      GrapeSwaggerRails.options = GrapeSwaggerRails::Options.new(**deep)
     end
   end
 
-  describe 'display[:info_url] option' do
-    include_context 'with isolated options'
-
+  describe 'hide_documentation_path behavior' do
     it 'hides its own documentation routes by default' do
       api = build_documented_api
 
       expect(swagger_documentation_route_paths(api)).to be_empty
-    end
-
-    it 'does not render its own documentation path in Swagger UI' do
-      GrapeSwaggerRails.options.display = GrapeSwaggerRails.options.display.merge(info_url: false)
-      visit_swagger
-
-      expect(swagger_document.fetch('paths').keys.grep(/swagger_doc/)).to be_empty
-      expect(page).to have_no_css('.swagger-ui .info a.link[href="http://localhost:3000/api/swagger_doc"]')
-      expect(page).to have_css('.opblock-tag', text: 'foos')
-      expect(page).to have_no_css('.opblock-tag, .opblock-summary-path', text: 'swagger_doc')
     end
 
     it 'includes its own documentation routes when disabled' do
@@ -172,6 +162,29 @@ describe 'Swagger' do
         '/api/swagger_doc(.json)',
         '/api/swagger_doc/:name(.json)'
       )
+    end
+
+    it 'does not include swagger_doc paths in the served document' do
+      expect(swagger_document.fetch('paths').keys.grep(/swagger_doc/)).to be_empty
+    end
+  end
+
+  describe 'display[:info_url] option' do
+    include_context 'with isolated options'
+
+    it 'shows the info URL link by default' do
+      visit_swagger
+
+      expect(page).to have_css('.swagger-ui .info a.link')
+    end
+
+    it 'hides the info URL link when disabled' do
+      GrapeSwaggerRails.options.display = GrapeSwaggerRails.options.display.merge(info_url: false)
+      visit_swagger
+
+      expect(page).to have_no_css('.swagger-ui .info a.link[href="http://localhost:3000/api/swagger_doc"]')
+      expect(page).to have_css('.opblock-tag', text: 'foos')
+      expect(page).to have_no_css('.opblock-tag, .opblock-summary-path', text: 'swagger_doc')
     end
   end
 
