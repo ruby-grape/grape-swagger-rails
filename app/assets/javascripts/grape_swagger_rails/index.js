@@ -142,7 +142,8 @@ function initializeSwaggerPage() {
     function buildPlugins() {
         var configuredPlugins = options.swagger_ui_config && options.swagger_ui_config.plugins;
         var plugins = Array.isArray(configuredPlugins) ? configuredPlugins.slice() : [];
-        var display = options.display || {};
+        var displayDefaults = { api_key_input: true, info_url: true, doc_version: true, version_stamp: true };
+        var display = Object.assign({}, displayDefaults, options.display || {});
         if (!display.info_url) {
             plugins.push(hideInfoUrlPlugin);
         }
