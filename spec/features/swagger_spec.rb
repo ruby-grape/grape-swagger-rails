@@ -146,7 +146,7 @@ describe 'Swagger' do
     end
   end
 
-  describe 'hide_info_url option' do
+  describe 'display[:info_url] option' do
     include_context 'with isolated options'
 
     it 'hides its own documentation routes by default' do
@@ -156,7 +156,7 @@ describe 'Swagger' do
     end
 
     it 'does not render its own documentation path in Swagger UI' do
-      GrapeSwaggerRails.options.hide_info_url = true
+      GrapeSwaggerRails.options.display = GrapeSwaggerRails.options.display.merge(info_url: false)
       visit_swagger
 
       expect(swagger_document.fetch('paths').keys.grep(/swagger_doc/)).to be_empty
@@ -175,7 +175,7 @@ describe 'Swagger' do
     end
   end
 
-  describe 'hide_doc_version option' do
+  describe 'display[:doc_version] option' do
     include_context 'with isolated options'
 
     it 'shows the document version by default' do
@@ -185,8 +185,8 @@ describe 'Swagger' do
       expect(page).to have_css('.swagger-ui .info small:not(.version-stamp) .version')
     end
 
-    it 'hides the document version when enabled' do
-      GrapeSwaggerRails.options.hide_doc_version = true
+    it 'hides the document version when disabled' do
+      GrapeSwaggerRails.options.display = GrapeSwaggerRails.options.display.merge(doc_version: false)
       visit_swagger
 
       # VersionStamp is suppressed, but the OAS badge (.version-stamp) remains
@@ -195,7 +195,7 @@ describe 'Swagger' do
     end
   end
 
-  describe 'hide_version_stamp option' do
+  describe 'display[:version_stamp] option' do
     include_context 'with isolated options'
 
     it 'shows the OAS version stamp by default' do
@@ -204,8 +204,8 @@ describe 'Swagger' do
       expect(page).to have_css('.swagger-ui .info .version-stamp .version', text: 'OAS 2.0')
     end
 
-    it 'hides the OAS version stamp when enabled' do
-      GrapeSwaggerRails.options.hide_version_stamp = true
+    it 'hides the OAS version stamp when disabled' do
+      GrapeSwaggerRails.options.display = GrapeSwaggerRails.options.display.merge(version_stamp: false)
       visit_swagger
 
       expect(page).to have_no_css('.swagger-ui .info .version-stamp')
@@ -331,6 +331,7 @@ describe 'Swagger' do
     it 'evaluates config options correctly' do
       visit_swagger
       page_options = swagger_options_data.symbolize_keys
+      page_options[:display] = page_options[:display].symbolize_keys if page_options[:display].is_a?(Hash)
       expect(page_options).to eq(@options.marshal_dump)
     end
 

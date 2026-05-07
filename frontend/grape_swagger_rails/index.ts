@@ -12,10 +12,12 @@ interface SwaggerPageOptions {
   app_url: string;
   doc_expansion: string;
   headers: Record<string, string>;
-  hide_api_key_input: boolean;
-  hide_info_url: boolean;
-  hide_doc_version: boolean;
-  hide_version_stamp: boolean;
+  display: {
+    api_key_input: boolean;
+    info_url: boolean;
+    doc_version: boolean;
+    version_stamp: boolean;
+  };
   supported_submit_methods: string[];
   theme: string;
   url: string;
@@ -229,16 +231,17 @@ function initializeSwaggerPage(): void {
   function buildPlugins(): unknown[] {
     const configuredPlugins = options.swagger_ui_config && options.swagger_ui_config.plugins;
     const plugins = Array.isArray(configuredPlugins) ? configuredPlugins.slice() : [];
+    const display = options.display || {};
 
-    if (options.hide_info_url) {
+    if (!display.info_url) {
       plugins.push(hideInfoUrlPlugin);
     }
 
-    if (options.hide_doc_version) {
+    if (!display.doc_version) {
       plugins.push(hideDocVersionPlugin);
     }
 
-    if (options.hide_version_stamp) {
+    if (!display.version_stamp) {
       plugins.push(hideVersionStampPlugin);
     }
 
