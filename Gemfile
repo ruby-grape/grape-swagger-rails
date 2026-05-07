@@ -5,8 +5,6 @@ source 'https://rubygems.org'
 gemspec
 
 case grape_version = ENV.fetch('GRAPE_VERSION', '~> 2.2.0')
-when nil, ''
-  gem 'grape', '>= 1.3.0'
 when 'HEAD'
   gem 'grape', github: 'ruby-grape/grape'
 else
@@ -20,7 +18,7 @@ else
   gem 'grape-swagger', grape_swagger_version
 end
 
-case rails_version = ENV.fetch('RAILS_VERSION', '>= 6.0.6.1')
+case rails_version = ENV.fetch('RAILS_VERSION', '>= 7.2.3.1')
 when 'edge'
   gem 'railties', github: 'rails/rails', branch: 'main'
 else
