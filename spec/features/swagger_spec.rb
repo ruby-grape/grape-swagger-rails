@@ -140,7 +140,11 @@ describe 'Swagger' do
   shared_context 'with isolated options' do
     around do |example|
       saved = GrapeSwaggerRails.options
-      deep = saved.marshal_dump.transform_values { |v| v.dup rescue v }
+      deep = saved.marshal_dump.transform_values do |v|
+        v.dup
+      rescue TypeError
+        v
+      end
       deep[:before_action_proc] = saved.before_action_proc
       example.run
     ensure
