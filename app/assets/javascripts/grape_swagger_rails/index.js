@@ -142,13 +142,14 @@ function initializeSwaggerPage() {
     function buildPlugins() {
         var configuredPlugins = options.swagger_ui_config && options.swagger_ui_config.plugins;
         var plugins = Array.isArray(configuredPlugins) ? configuredPlugins.slice() : [];
-        if (options.hide_info_url) {
+        var display = options.display || {};
+        if (!display.info_url) {
             plugins.push(hideInfoUrlPlugin);
         }
-        if (options.hide_doc_version) {
+        if (!display.doc_version) {
             plugins.push(hideDocVersionPlugin);
         }
-        if (options.hide_version_stamp) {
+        if (!display.version_stamp) {
             plugins.push(hideVersionStampPlugin);
         }
         return plugins;
