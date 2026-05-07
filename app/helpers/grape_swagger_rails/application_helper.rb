@@ -5,7 +5,8 @@ module GrapeSwaggerRails
   module ApplicationHelper
     def swagger_data_attributes
       options = GrapeSwaggerRails.options
-      display = options.display || {}
+      display_defaults = { api_key_input: true, info_url: true, doc_version: true, version_stamp: true }
+      display = display_defaults.merge((options.display || {}).transform_keys(&:to_sym))
 
       {
         swagger_options: options.marshal_dump.to_json,
