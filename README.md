@@ -289,15 +289,6 @@ tests pass and then send PR here.
 * [dblock](https://github.com/dblock)
 * ... and [more](https://github.com/ruby-grape/grape-swagger-rails/graphs/contributors) ...
 
-## AI Agents
-
-If you're an AI agent working on this project, read the instructions file for your tool:
-
-- **[CLAUDE.md](CLAUDE.md)** — Claude Code
-- **[.github/copilot-instructions.md](.github/copilot-instructions.md)** — GitHub Copilot
-
-These files contain architecture context, commands, and coding conventions.
-
 ## Contributing
 
 See [CONTRIBUTING](CONTRIBUTING.md).
