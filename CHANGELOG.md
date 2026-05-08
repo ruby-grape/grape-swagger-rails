@@ -6,6 +6,7 @@
 * [#142](https://github.com/ruby-grape/grape-swagger-rails/pull/142): Convert view to haml and extract javascript to typescript - [@moskvin](https://github.com/moskvin).
 * [#143](https://github.com/ruby-grape/grape-swagger-rails/pull/143): Add swagger_ui_config pass-through to swaggeruibundle - [@moskvin](https://github.com/moskvin).
 * [#144](https://github.com/ruby-grape/grape-swagger-rails/pull/144): Add support for multiple api specifications in swagger ui - [@moskvin](https://github.com/moskvin).
+* [#147](https://github.com/ruby-grape/grape-swagger-rails/pull/147): Replace `urls_primary_name` with per-item `default: true` - [@moskvin](https://github.com/moskvin).
 * [#146](https://github.com/ruby-grape/grape-swagger-rails/pull/146): Consolidate UI visibility flags into display options hash - [@moskvin](https://github.com/moskvin).
 * Your contribution here.
 
