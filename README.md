@@ -20,6 +20,7 @@ Swagger UI as Rails Engine for grape-swagger gem.
   - [Hiding the API or Authorization text boxes](#hiding-the-api-or-authorization-text-boxes)
   - [Updating Swagger UI from Dist](#updating-swagger-ui-from-dist)
 - [Contributors](#contributors)
+- [AI Agents](#ai-agents)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -288,6 +289,15 @@ tests pass and then send PR here.
 * [joelvh](https://github.com/joelvh)
 * [dblock](https://github.com/dblock)
 * ... and [more](https://github.com/ruby-grape/grape-swagger-rails/graphs/contributors) ...
+
+## AI Agents
+
+If you're an AI agent working on this project, read the instructions file for your tool:
+
+- **[CLAUDE.md](CLAUDE.md)** — Claude Code
+- **[.github/copilot-instructions.md](.github/copilot-instructions.md)** — GitHub Copilot
+
+These files contain architecture context, commands, and coding conventions.
 
 ## Contributing
 
