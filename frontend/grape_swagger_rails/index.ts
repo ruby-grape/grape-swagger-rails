@@ -22,7 +22,6 @@ interface SwaggerPageOptions {
   theme: string;
   url: string;
   urls: Array<string | SwaggerUrlOption> | null;
-  urls_primary_name: string;
   validator_url: string | null | undefined;
   swagger_ui_config?: Record<string, unknown>;
 }
@@ -30,11 +29,13 @@ interface SwaggerPageOptions {
 interface SwaggerUrlOption {
   name?: string;
   url: string;
+  default?: boolean;
 }
 
 interface NormalizedSwaggerUrl {
   name: string;
   url: string;
+  default: boolean;
 }
 
 interface SwaggerRequest {
@@ -147,12 +148,13 @@ function initializeSwaggerPage(): void {
     return options.urls
       .map((entry, index): NormalizedSwaggerUrl => {
         if (typeof entry === "string") {
-          return { name: entry, url: absoluteSpecUrl(entry) };
+          return { name: entry, url: absoluteSpecUrl(entry), default: false };
         }
 
         return {
           name: entry.name || entry.url || "Spec " + (index + 1),
           url: absoluteSpecUrl(entry.url),
+          default: Boolean(entry.default),
         };
       })
       .filter((entry) => Boolean(entry.url));
@@ -163,11 +165,9 @@ function initializeSwaggerPage(): void {
       return null;
     }
 
-    if (options.urls_primary_name) {
-      for (let i = 0; i < urls.length; i += 1) {
-        if (urls[i].name === options.urls_primary_name) {
-          return urls[i];
-        }
+    for (let i = 0; i < urls.length; i += 1) {
+      if (urls[i].default) {
+        return urls[i];
       }
     }
 

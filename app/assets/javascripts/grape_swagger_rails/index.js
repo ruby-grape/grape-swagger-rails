@@ -73,11 +73,12 @@ function initializeSwaggerPage() {
         return options.urls
             .map(function (entry, index) {
             if (typeof entry === "string") {
-                return { name: entry, url: absoluteSpecUrl(entry) };
+                return { name: entry, url: absoluteSpecUrl(entry), default: false };
             }
             return {
                 name: entry.name || entry.url || "Spec " + (index + 1),
                 url: absoluteSpecUrl(entry.url),
+                default: Boolean(entry.default),
             };
         })
             .filter(function (entry) { return Boolean(entry.url); });
@@ -86,11 +87,9 @@ function initializeSwaggerPage() {
         if (!urls.length) {
             return null;
         }
-        if (options.urls_primary_name) {
-            for (var i = 0; i < urls.length; i += 1) {
-                if (urls[i].name === options.urls_primary_name) {
-                    return urls[i];
-                }
+        for (var i = 0; i < urls.length; i += 1) {
+            if (urls[i].default) {
+                return urls[i];
             }
         }
         if (options.url) {

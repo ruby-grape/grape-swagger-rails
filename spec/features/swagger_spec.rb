@@ -397,9 +397,8 @@ describe 'Swagger' do
       before do
         GrapeSwaggerRails.options.urls = [
           { name: 'v1', url: '/api/swagger_doc' },
-          { name: 'v2', url: '/api/v2/swagger_doc' }
+          { name: 'v2', url: '/api/v2/swagger_doc', default: true }
         ]
-        GrapeSwaggerRails.options.urls_primary_name = 'v2'
         GrapeSwaggerRails.options.url = '/api/swagger_doc'
         visit_swagger
       end
@@ -427,6 +426,21 @@ describe 'Swagger' do
         # v1 exposes foos namespace; wait for it to appear in the rendered spec
         expect(page).to have_css('.opblock-tag', text: 'foos', wait: 10)
         expect(page).to have_no_css('.errors-wrapper')
+      end
+
+      context 'when no url has default: true' do
+        before do
+          GrapeSwaggerRails.options.urls = [
+            { name: 'v1', url: '/api/swagger_doc' },
+            { name: 'v2', url: '/api/v2/swagger_doc' }
+          ]
+          GrapeSwaggerRails.options.url = '/api/swagger_doc'
+          visit_swagger
+        end
+
+        it 'falls back to the url option to determine the default selection' do
+          expect(page).to have_select('spec-selector', selected: 'v1', options: %w[v1 v2])
+        end
       end
     end
 
