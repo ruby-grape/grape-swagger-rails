@@ -17,7 +17,7 @@ Swagger UI as Rails Engine for grape-swagger gem.
   - [API Token Authentication](#api-token-authentication)
   - [Swagger UI Authorization](#swagger-ui-authorization)
     - [Integration with DoorKeeper](#integration-with-doorkeeper)
-  - [Hiding the API or Authorization text boxes](#hiding-the-api-or-authorization-text-boxes)
+  - [Show or Hide Swagger UI Elements](#show-or-hide-swagger-ui-elements)
   - [Updating Swagger UI from Dist](#updating-swagger-ui-from-dist)
 - [Contributors](#contributors)
 - [AI Agents](#ai-agents)
@@ -258,21 +258,27 @@ In your User model (user.rb) add:
 has_one :token, -> { order 'created_at DESC' }, class_name: Doorkeeper::AccessToken, foreign_key: :resource_owner_id
 ```
 
-### Hiding the API or Authorization text boxes
+### Show or Hide Swagger UI Elements
 
-If you know in advance that you would like to prevent changing the Swagger API URL, you can hide it using the following:
-
-```ruby
-GrapeSwaggerRails.options.hide_url_input = true
-```
-
-Similarly, you can hide the Authentication input box by adding this:
+Use `display` to control visibility of the built-in Swagger UI header elements:
 
 ```ruby
-GrapeSwaggerRails.options.hide_api_key_input = true
+GrapeSwaggerRails.options.display = {
+  api_key_input: false,
+  info_url: false,
+  doc_version: false,
+  version_stamp: false
+}
 ```
 
-By default, these options are false.
+Supported keys:
+
+- `api_key_input`: show or hide the authentication input box
+- `info_url`: show or hide the API document URL link
+- `doc_version`: show or hide the API document version label
+- `version_stamp`: show or hide the `OAS 2.0` version stamp
+
+By default, all of these options are `true`.
 
 ### Updating Swagger UI from Dist
 
