@@ -10,7 +10,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Alexander Logunov']
   spec.email         = ['unlovedru@gmail.com']
   spec.summary       = 'Rails engine for serving Swagger UI for grape-swagger.'
-  spec.description   = 'Embeds Swagger UI into Rails applications as an engine for grape-swagger-generated API documentation.'
+  spec.description   =
+    'Embeds Swagger UI into Rails applications as an engine for grape-swagger-generated API documentation.'
   spec.homepage      = 'https://github.com/ruby-grape/grape-swagger-rails'
   spec.license       = 'MIT'
   spec.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
