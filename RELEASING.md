@@ -1,17 +1,24 @@
 # Releasing Grape-Swagger-Rails
 
-There're no particular rules about when to release grape-swagger-rails. Release bug fixes frequenty, features not so frequently and breaking API changes rarely.
+There are no particular rules about when to release grape-swagger-rails.
+Release bug fixes frequent, features not so frequently and breaking API changes rarely.
 
 ### Release
 
-Run tests, check that all tests succeed locally.
+Release from a clean checkout of `master` after the release PR has been merged.
+
+Run tests and build checks locally.
 
 ```
 bundle install
-rake
+yarn install --immutable
+yarn typecheck
+yarn build:frontend
+git diff --exit-code app/assets/javascripts/grape_swagger_rails/index.js
+bundle exec rake
 ```
 
-Check that the last build succeeded in [GitHub Actions](https://github.com/ruby-grape/grape-swagger-rails/actions) for all supported platforms.
+Check that the latest [GitHub Actions](https://github.com/ruby-grape/grape-swagger-rails/actions) runs succeeded for both `Tests` and `Frontend`.
 
 Increment the version, modify [lib/grape-swagger-rails/version.rb](lib/grape-swagger-rails/version.rb).
 
@@ -26,18 +33,29 @@ Change "Next Release" in [CHANGELOG.md](CHANGELOG.md) to the new version.
 
 Remove the line with "Your contribution here.", since there will be no more contributions to this release.
 
+Update [README.md](README.md) and [UPGRADING.md](UPGRADING.md) for any user-visible, compatibility, or breaking changes.
+
 Commit your changes.
 
 ```
-git add CHANGELOG.md lib/grape-swagger-rails/version.rb
+git add CHANGELOG.md README.md UPGRADING.md lib/grape-swagger-rails/version.rb
 git commit -m "Preparing for release, 0.1.1."
 git push origin master
 ```
 
-Release.
+Build the gem once before publishing to confirm packaging still works.
 
 ```
-$ rake release
+gem build grape-swagger-rails.gemspec
+```
+
+Release from a clean `master` checkout.
+
+```
+git checkout master
+git pull --ff-only origin master
+git status --short
+bundle exec rake release
 
 grape-swagger-rails 0.1.1 built to pkg/grape-swagger-rails-0.1.1.gem.
 Tagged v0.1.1.
