@@ -37,7 +37,7 @@ jobs:
             grape-swagger: '2.1.4'
           - ruby: 'jruby-10.0.5.0'
             java: '21'
-            rails: '7.2.2.2'
+            rails: '7.1.6'
             grape: '~> 3.1.0'
             grape-swagger: '2.1.4'
     env:
