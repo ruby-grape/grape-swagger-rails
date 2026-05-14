@@ -236,6 +236,18 @@ function initializeSwaggerPage() {
         if (operationId) {
             window.ui.layoutActions.show(["operations", tag, operationId], true);
         }
+        // Scroll to the expanded element. Swagger UI uses id="operations-{tag}-{operationId}"
+        // for operations and id="operations-tag-{tag}" for tag sections. Use a small delay
+        // to allow the DOM to update after the layout action.
+        var targetId = operationId
+            ? "operations-" + tag + "-" + operationId
+            : "operations-tag-" + tag;
+        requestAnimationFrame(function () {
+            var element = document.getElementById(targetId);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        });
     });
 }
 if (document.readyState === "loading") {
