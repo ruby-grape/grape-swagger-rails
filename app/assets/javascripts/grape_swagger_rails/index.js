@@ -220,6 +220,15 @@ function initializeSwaggerPage() {
     // Listen for hash changes so that navigating to a deep-link URL in the same
     // tab (e.g. pasting a copied operation URL into the address bar) expands the
     // target operation without requiring a full page refresh.
+    //
+    // NOTE: We intentionally do NOT use `layoutActions.parseDeepLinkHash()` here.
+    // That method is Swagger UI's built-in deep linking plugin action, designed to
+    // run during initial spec load (inside the `onComplete` callback). When called
+    // after spec rendering is complete, it fails to expand operations — likely
+    // because it depends on internal state or lifecycle context that no longer applies.
+    //
+    // Instead, we directly call `layoutActions.show()` which reliably toggles the
+    // visibility of tags/operations, then scroll into view manually.
     window.addEventListener("hashchange", function () {
         var hash = window.location.hash;
         if (!hash || hash === "#") {
