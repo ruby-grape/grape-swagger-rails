@@ -323,6 +323,30 @@ function initializeSwaggerPage(): void {
       window.ui.specActions.download(url);
     });
   }
+
+  // Listen for hash changes so that navigating to a deep-link URL in the same
+  // tab (e.g. pasting a copied operation URL into the address bar) expands the
+  // target operation without requiring a full page refresh.
+  window.addEventListener("hashchange", () => {
+    const hash = window.location.hash;
+    if (!hash || hash === "#") {
+      return;
+    }
+
+    // Hash format used by Swagger UI deep linking: #/tag/operationId
+    const parts = hash.replace(/^#\/?/, "").split("/").filter(Boolean);
+    if (parts.length === 0) {
+      return;
+    }
+
+    const tag = decodeURIComponent(parts[0]);
+    const operationId = parts.length > 1 ? decodeURIComponent(parts[1]) : null;
+
+    window.ui.layoutActions.show(["operations-tag", tag], true);
+    if (operationId) {
+      window.ui.layoutActions.show(["operations", tag, operationId], true);
+    }
+  });
 }
 
 if (document.readyState === "loading") {
