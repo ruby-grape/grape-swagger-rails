@@ -1,5 +1,13 @@
 "use strict";
-function initializeSwaggerPage() {
+var safeDecodeURIComponent = function (value) {
+    try {
+        return decodeURIComponent(value);
+    }
+    catch (_a) {
+        return value;
+    }
+};
+var initializeSwaggerPage = function () {
     var optionsElement = document.documentElement.dataset.swaggerOptions;
     if (!optionsElement ||
         typeof SwaggerUIBundle === "undefined" ||
@@ -12,10 +20,10 @@ function initializeSwaggerPage() {
     var specSelectorWrapper = document.getElementById("spec-selector-wrapper");
     var themeToggle = document.getElementById("theme-toggle");
     var root = document.documentElement;
-    function getTheme() {
+    var getTheme = function () {
         return options.theme === "dark" ? "dark" : "light";
-    }
-    function applyTheme(theme) {
+    };
+    var applyTheme = function (theme) {
         root.dataset.theme = theme;
         root.classList.toggle("dark-mode", theme === "dark");
         if (!themeToggle) {
@@ -23,8 +31,8 @@ function initializeSwaggerPage() {
         }
         themeToggle.textContent = theme === "dark" ? "Light Mode" : "Dark Mode";
         themeToggle.setAttribute("aria-pressed", String(theme === "dark"));
-    }
-    function getApiKeyValue() {
+    };
+    var getApiKeyValue = function () {
         if (!authInput) {
             return "";
         }
@@ -42,22 +50,22 @@ function initializeSwaggerPage() {
             return "Token token=\"".concat(key, "\"");
         }
         return key;
-    }
-    function ensureRequestHeaders(request) {
+    };
+    var ensureRequestHeaders = function (request) {
         if (!request.headers) {
             request.headers = {};
         }
         return request.headers;
-    }
-    function setRequestHeader(request, key, value) {
+    };
+    var setRequestHeader = function (request, key, value) {
         var headers = ensureRequestHeaders(request);
         if (headers instanceof Headers) {
             headers.set(key, value);
             return;
         }
         headers[key] = value;
-    }
-    function absoluteSpecUrl(url) {
+    };
+    var absoluteSpecUrl = function (url) {
         if (!url) {
             return "";
         }
@@ -65,8 +73,8 @@ function initializeSwaggerPage() {
             return url;
         }
         return options.app_url + url;
-    }
-    function normalizeSwaggerUrls() {
+    };
+    var normalizeSwaggerUrls = function () {
         if (!Array.isArray(options.urls)) {
             return [];
         }
@@ -82,8 +90,8 @@ function initializeSwaggerPage() {
             };
         })
             .filter(function (entry) { return Boolean(entry.url); });
-    }
-    function selectedSwaggerUrl(urls) {
+    };
+    var selectedSwaggerUrl = function (urls) {
         if (!urls.length) {
             return null;
         }
@@ -101,8 +109,8 @@ function initializeSwaggerPage() {
             }
         }
         return urls[0];
-    }
-    function setupSpecSelector(urls, selectedUrl) {
+    };
+    var setupSpecSelector = function (urls, selectedUrl) {
         if (!specSelector || !specSelectorWrapper || urls.length < 2) {
             return;
         }
@@ -116,29 +124,29 @@ function initializeSwaggerPage() {
             specSelector.appendChild(option);
         });
         specSelectorWrapper.hidden = false;
-    }
-    function hideInfoUrlPlugin() {
+    };
+    var hideInfoUrlPlugin = function () {
         return {
             wrapComponents: {
                 InfoUrl: function () { return function () { return null; }; },
             },
         };
-    }
-    function hideDocVersionPlugin() {
+    };
+    var hideDocVersionPlugin = function () {
         return {
             wrapComponents: {
                 VersionStamp: function () { return function () { return null; }; },
             },
         };
-    }
-    function hideVersionStampPlugin() {
+    };
+    var hideVersionStampPlugin = function () {
         return {
             wrapComponents: {
                 OpenAPIVersion: function () { return function () { return null; }; },
             },
         };
-    }
-    function buildPlugins() {
+    };
+    var buildPlugins = function () {
         var configuredPlugins = options.swagger_ui_config && options.swagger_ui_config.plugins;
         var plugins = Array.isArray(configuredPlugins) ? configuredPlugins.slice() : [];
         var displayDefaults = { api_key_input: true, info_url: true, doc_version: true, version_stamp: true };
@@ -153,7 +161,7 @@ function initializeSwaggerPage() {
             plugins.push(hideVersionStampPlugin);
         }
         return plugins;
-    }
+    };
     applyTheme(getTheme());
     if (themeToggle) {
         themeToggle.addEventListener("click", function () {
@@ -239,8 +247,8 @@ function initializeSwaggerPage() {
         if (parts.length === 0) {
             return;
         }
-        var tag = decodeURIComponent(parts[0]);
-        var operationId = parts.length > 1 ? decodeURIComponent(parts[1]) : null;
+        var tag = safeDecodeURIComponent(parts[0]);
+        var operationId = parts.length > 1 ? safeDecodeURIComponent(parts[1]) : null;
         window.ui.layoutActions.show(["operations-tag", tag], true);
         if (operationId) {
             window.ui.layoutActions.show(["operations", tag, operationId], true);
@@ -258,7 +266,7 @@ function initializeSwaggerPage() {
             }
         });
     });
-}
+};
 if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initializeSwaggerPage);
 }
