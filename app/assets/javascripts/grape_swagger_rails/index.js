@@ -204,6 +204,10 @@ function initializeSwaggerPage() {
         bundleConfig.url = absoluteSpecUrl(options.url);
     }
     window.ui = SwaggerUIBundle(bundleConfig);
+    if (selectedUrl) {
+        window.ui.specActions.updateUrl(selectedUrl.url);
+        window.ui.specActions.download(selectedUrl.url);
+    }
     setupSpecSelector(swaggerUrls, selectedUrl);
     if (specSelector && swaggerUrls.length > 1) {
         specSelector.addEventListener("change", function (event) {

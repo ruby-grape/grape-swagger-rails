@@ -96,6 +96,43 @@ body {
   color: var(--swagger-input-placeholder);
 }
 
+.swagger-select {
+  min-width: 160px;
+  padding: 10px 36px 10px 12px;
+  border: 1px solid var(--swagger-input-border);
+  border-radius: 6px;
+  background-color: var(--swagger-input-background);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='none' stroke='%23ffffff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' d='M1 1l4 4 4-4'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 10px 6px;
+  color: var(--swagger-input-color);
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.2;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.swagger-select:focus,
+.swagger-input:focus {
+  outline: none;
+  border-color: var(--swagger-input-color);
+}
+
+.swagger-select option {
+  color: #122033;
+  background: #fff;
+}
+
+html[data-theme="dark"] .swagger-select option {
+  color: #f8fafc;
+  background: #0f172a;
+}
+
 .swagger-theme-toggle {
   padding: 10px 14px;
   border: 1px solid var(--swagger-toggle-border);
@@ -223,6 +260,7 @@ html[data-theme="dark"] .swagger-ui .model-box {
   }
 
   .swagger-input,
+  .swagger-select,
   .swagger-theme-toggle {
     width: 100%;
     min-width: 0;

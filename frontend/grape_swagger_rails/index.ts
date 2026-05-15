@@ -308,6 +308,11 @@ function initializeSwaggerPage(): void {
 
   window.ui = SwaggerUIBundle(bundleConfig);
 
+  if (selectedUrl) {
+    window.ui.specActions.updateUrl(selectedUrl.url);
+    window.ui.specActions.download(selectedUrl.url);
+  }
+
   setupSpecSelector(swaggerUrls, selectedUrl);
 
   if (specSelector && swaggerUrls.length > 1) {
