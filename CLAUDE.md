@@ -14,7 +14,9 @@ bundle exec rake spec       # Run all RSpec tests only
 bundle exec rake rubocop    # Run RuboCop linting only
 bundle exec rspec spec/features/swagger_spec.rb  # Run a single spec file
 
-yarn build:frontend         # Compile TypeScript → app/assets/javascripts/grape_swagger_rails/index.js
+yarn build:frontend         # tsc → index.js, then esbuild → index.min.js (+ .map)
+yarn build:frontend:js      # Just tsc (readable bundle)
+yarn build:frontend:min     # Just esbuild (minified bundle, consumes index.js)
 yarn typecheck              # Type-check TypeScript without emitting
 
 bundle exec rake swagger_ui:dist:update          # Update bundled Swagger UI assets
@@ -23,7 +25,7 @@ SWAGGER_UI_VERSION=v5.32.5 bundle exec rake swagger_ui:dist:update  # Pin to a v
 
 Tests use Capybara + Selenium with Firefox. Firefox and geckodriver must be installed locally. On macOS, `xvfb` is not needed (unlike CI). Tests launch a real browser to validate UI behavior.
 
-**After editing TypeScript**, run `yarn build:frontend` before running specs — the specs exercise `app/assets/javascripts/grape_swagger_rails/index.js`, which is the compiled output. Never edit the compiled JS directly.
+**After editing TypeScript**, run `yarn build:frontend` before running specs — the specs exercise `app/assets/javascripts/grape_swagger_rails/index.js`, which is the compiled output. Never edit the compiled JS directly. The build also emits `index.min.js` (+ sourcemap); the view picks the minified bundle in production (`Rails.env.production?`) via `grape_swagger_rails_runtime_asset` and the readable one everywhere else.
 
 ## Architecture
 
@@ -33,7 +35,7 @@ The gem has minimal moving parts:
 - **`lib/grape-swagger-rails/engine.rb`** — Rails Engine. Configures asset precompilation for both Sprockets and Propshaft pipelines.
 - **`app/controllers/grape_swagger_rails/application_controller.rb`** — Single `index` action. Runs `options.before_action_proc` in controller context for authorization.
 - **`app/views/grape_swagger_rails/application/index.html.haml`** — The entire UI. Serializes `GrapeSwaggerRails.options` as JSON into `data-swagger-options`, then JavaScript parses it to initialize SwaggerUIBundle. Handles theme toggling and auth injection via Swagger UI's `requestInterceptor`.
-- **`frontend/grape_swagger_rails/index.ts`** — TypeScript source for the browser runtime. Compiles (via `tsconfig.json`) to `app/assets/javascripts/grape_swagger_rails/index.js`. The TypeScript interface `SwaggerPageOptions` is the authoritative schema for options consumed by JS.
+- **`frontend/grape_swagger_rails/index.ts`** — TypeScript source for the browser runtime. `tsc` compiles it to `app/assets/javascripts/grape_swagger_rails/index.js` (readable, ES5); `esbuild` then minifies that into `index.min.js` (+ `.map`). Both files are checked in so they ship with the gem. The TypeScript interface `SwaggerPageOptions` is the authoritative schema for options consumed by JS.
 - **`config/routes.rb`** — Single root route → `ApplicationController#index`.
 - **`lib/tasks/swagger_ui.rake`** — Rake task that clones `swagger-api/swagger-ui` and copies dist files into `app/assets/`.
 
