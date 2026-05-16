@@ -3,10 +3,13 @@
   "private": true,
   "packageManager": "yarn@4.14.1",
   "scripts": {
-    "build:frontend": "tsc -p tsconfig.json",
+    "build:frontend": "yarn build:frontend:js && yarn build:frontend:min",
+    "build:frontend:js": "tsc -p tsconfig.json",
+    "build:frontend:min": "esbuild app/assets/javascripts/grape_swagger_rails/index.js --minify --sourcemap --outfile=app/assets/javascripts/grape_swagger_rails/index.min.js",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "devDependencies": {
+    "esbuild": "^0.24.0",
     "typescript": "^5.8.3"
   }
 }

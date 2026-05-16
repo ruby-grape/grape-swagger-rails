@@ -22,4 +22,8 @@ jobs:
       - name: Build frontend
         run: yarn build:frontend
       - name: Check compiled output is committed
-        run: git diff --exit-code app/assets/javascripts/grape_swagger_rails/index.js
+        run: |
+          git diff --exit-code \
+            app/assets/javascripts/grape_swagger_rails/index.js \
+            app/assets/javascripts/grape_swagger_rails/index.min.js \
+            app/assets/javascripts/grape_swagger_rails/index.min.js.map

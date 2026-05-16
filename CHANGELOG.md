@@ -1,6 +1,7 @@
 ### Next Release
 
 * [#155](https://github.com/ruby-grape/grape-swagger-rails/pull/155): Fix: autoload default spec and restyle version dropdown - [@moskvin](https://github.com/moskvin).
+* [#154](https://github.com/ruby-grape/grape-swagger-rails/pull/154): Add minified and sourcemap assets for swagger ui integration - [@moskvin](https://github.com/moskvin).
 * Your contribution here.
 
 ### 1.0.0 (2026/05/09)

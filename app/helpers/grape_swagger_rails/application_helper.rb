@@ -14,5 +14,9 @@ module GrapeSwaggerRails
         hide_info_url: !display[:info_url]
       }
     end
+
+    def grape_swagger_rails_runtime_asset
+      Rails.env.production? ? 'grape_swagger_rails/index.min' : 'grape_swagger_rails/index'
+    end
   end
 end
