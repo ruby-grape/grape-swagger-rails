@@ -1,5 +1,6 @@
 ### Next Release
 
+* [#158](https://github.com/ruby-grape/grape-swagger-rails/pull/158): Switch yarn to project-local cache for portable zero-installs - [@moskvin](https://github.com/moskvin).
 * Your contribution here.
 
 ### 1.0.1 (2026/05/17)
