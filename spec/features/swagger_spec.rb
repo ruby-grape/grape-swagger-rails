@@ -418,6 +418,13 @@ describe 'Swagger' do
         expect(page).to have_select('spec-selector', selected: 'v2', options: %w[v1 v2])
       end
 
+      it 'auto-loads the default spec on first paint without manual selection' do
+        # v2 exposes the `status` tag; it must render without the user touching the dropdown.
+        expect(page).to have_css('.opblock-tag', text: 'status', wait: 10)
+        expect(page).to have_no_css('.errors-wrapper')
+        expect(page).to have_no_text('No API definition provided')
+      end
+
       it 'switches specs via the dropdown without errors' do
         expect(page).to have_select('spec-selector', selected: 'v2')
 
