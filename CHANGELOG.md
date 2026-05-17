@@ -1,11 +1,14 @@
 ### Next Release
 
+* Your contribution here.
+
+### 1.0.1 (2026/05/17)
+
 * [#155](https://github.com/ruby-grape/grape-swagger-rails/pull/155): Fix: autoload default spec and restyle version dropdown - [@moskvin](https://github.com/moskvin).
 * [#154](https://github.com/ruby-grape/grape-swagger-rails/pull/154): Add minified and sourcemap assets for swagger ui integration - [@moskvin](https://github.com/moskvin).
 * [#153](https://github.com/ruby-grape/grape-swagger-rails/pull/153): Fix same-session deep link navigation not expanding operations - [@moskvin](https://github.com/moskvin).
 * [#156](https://github.com/ruby-grape/grape-swagger-rails/pull/156): Bump esbuild from 0.24.2 to 0.25.0 - [@moskvin](https://github.com/moskvin).
 * [#157](https://github.com/ruby-grape/grape-swagger-rails/pull/157): Bump swagger ui version to 5.32.6 - [@moskvin](https://github.com/moskvin).
-* Your contribution here.
 
 ### 1.0.0 (2026/05/09)
 
