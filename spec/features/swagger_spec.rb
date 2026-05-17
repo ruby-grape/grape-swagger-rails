@@ -231,6 +231,42 @@ describe 'Swagger' do
     end
   end
 
+  describe 'same-session deep link navigation' do
+    # Regression tests for: navigating to a Swagger deep-link URL in the same
+    # tab/session should expand the target operation without a full page refresh.
+
+    it 'expands the target operation when navigating to a deep link URL in the same tab' do
+      visit_swagger
+      expect(page).to have_css('.opblock-tag', text: 'foos')
+      expect(page).to have_no_css('#operations-foos-getApiFoos .opblock-summary')
+
+      # Simulate pasting/navigating to a deep-link URL in the same session (same tab)
+      # This mimics a user copying an operation URL and opening it in the address bar
+      # without opening a new tab.
+      visit '/swagger#/foos/getApiFoos'
+
+      expect(page).to have_css('.swagger-ui', wait: 5)
+      expect(page).to have_css('#operations-foos-getApiFoos.is-open', wait: 5)
+    end
+
+    it 'navigates to a different operation deep link after already viewing one' do
+      visit '/swagger#/foos/getApiFoos'
+      expect(page).to have_css('.swagger-ui', wait: 5)
+      expect(page).to have_css('#operations-foos-getApiFoos.is-open', wait: 5)
+
+      visit '/swagger#/foos/getApiFoosId'
+      expect(page).to have_css('.swagger-ui', wait: 5)
+      expect(page).to have_css('#operations-foos-getApiFoosId.is-open', wait: 5)
+    end
+
+    it 'expands the target operation when the hash fragment changes via JS in the same page' do
+      visit_swagger
+
+      page.execute_script("window.location.hash = '#/foos/getApiFoos'")
+      expect(page).to have_css('#operations-foos-getApiFoos.is-open', wait: 5)
+    end
+  end
+
   context 'swaggerUi' do
     before do
       visit_swagger

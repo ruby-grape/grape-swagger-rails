@@ -50,7 +50,15 @@ interface SwaggerPlugin {
 declare const SwaggerUIBundle: any;
 declare const SwaggerUIStandalonePreset: any;
 
-function initializeSwaggerPage(): void {
+const safeDecodeURIComponent = (value: string): string => {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
+  }
+};
+
+const initializeSwaggerPage = (): void => {
   const optionsElement = document.documentElement.dataset.swaggerOptions;
   if (
     !optionsElement ||
@@ -67,11 +75,11 @@ function initializeSwaggerPage(): void {
   const themeToggle = document.getElementById("theme-toggle") as HTMLButtonElement | null;
   const root = document.documentElement;
 
-  function getTheme(): string {
+  const getTheme = (): string => {
     return options.theme === "dark" ? "dark" : "light";
-  }
+  };
 
-  function applyTheme(theme: string): void {
+  const applyTheme = (theme: string): void => {
     root.dataset.theme = theme;
     root.classList.toggle("dark-mode", theme === "dark");
 
@@ -83,7 +91,7 @@ function initializeSwaggerPage(): void {
     themeToggle.setAttribute("aria-pressed", String(theme === "dark"));
   }
 
-  function getApiKeyValue(): string {
+  const getApiKeyValue = (): string => {
     if (!authInput) {
       return "";
     }
@@ -109,7 +117,7 @@ function initializeSwaggerPage(): void {
     return key;
   }
 
-  function ensureRequestHeaders(request: SwaggerRequest): Record<string, string> | Headers {
+  const ensureRequestHeaders = (request: SwaggerRequest): Record<string, string> | Headers => {
     if (!request.headers) {
       request.headers = {};
     }
@@ -117,7 +125,7 @@ function initializeSwaggerPage(): void {
     return request.headers as Record<string, string> | Headers;
   }
 
-  function setRequestHeader(request: SwaggerRequest, key: string, value: string): void {
+  const setRequestHeader = (request: SwaggerRequest, key: string, value: string): void => {
     const headers = ensureRequestHeaders(request);
 
     if (headers instanceof Headers) {
@@ -128,7 +136,7 @@ function initializeSwaggerPage(): void {
     (headers as Record<string, string>)[key] = value;
   }
 
-  function absoluteSpecUrl(url: string): string {
+  const absoluteSpecUrl = (url: string): string => {
     if (!url) {
       return "";
     }
@@ -140,7 +148,7 @@ function initializeSwaggerPage(): void {
     return options.app_url + url;
   }
 
-  function normalizeSwaggerUrls(): NormalizedSwaggerUrl[] {
+  const normalizeSwaggerUrls = (): NormalizedSwaggerUrl[] => {
     if (!Array.isArray(options.urls)) {
       return [];
     }
@@ -160,7 +168,7 @@ function initializeSwaggerPage(): void {
       .filter((entry) => Boolean(entry.url));
   }
 
-  function selectedSwaggerUrl(urls: NormalizedSwaggerUrl[]): NormalizedSwaggerUrl | null {
+  const selectedSwaggerUrl = (urls: NormalizedSwaggerUrl[]): NormalizedSwaggerUrl | null => {
     if (!urls.length) {
       return null;
     }
@@ -184,7 +192,7 @@ function initializeSwaggerPage(): void {
     return urls[0];
   }
 
-  function setupSpecSelector(urls: NormalizedSwaggerUrl[], selectedUrl: NormalizedSwaggerUrl | null): void {
+  const setupSpecSelector = (urls: NormalizedSwaggerUrl[], selectedUrl: NormalizedSwaggerUrl | null): void => {
     if (!specSelector || !specSelectorWrapper || urls.length < 2) {
       return;
     }
@@ -204,7 +212,7 @@ function initializeSwaggerPage(): void {
     specSelectorWrapper.hidden = false;
   }
 
-  function hideInfoUrlPlugin(): SwaggerPlugin {
+  const hideInfoUrlPlugin = (): SwaggerPlugin => {
     return {
       wrapComponents: {
         InfoUrl: () => () => null,
@@ -212,7 +220,7 @@ function initializeSwaggerPage(): void {
     };
   }
 
-  function hideDocVersionPlugin(): SwaggerPlugin {
+  const hideDocVersionPlugin = (): SwaggerPlugin => {
     return {
       wrapComponents: {
         VersionStamp: () => () => null,
@@ -220,7 +228,7 @@ function initializeSwaggerPage(): void {
     };
   }
 
-  function hideVersionStampPlugin(): SwaggerPlugin {
+  const hideVersionStampPlugin = (): SwaggerPlugin => {
     return {
       wrapComponents: {
         OpenAPIVersion: () => () => null,
@@ -228,7 +236,7 @@ function initializeSwaggerPage(): void {
     };
   }
 
-  function buildPlugins(): unknown[] {
+  const buildPlugins = (): unknown[] => {
     const configuredPlugins = options.swagger_ui_config && options.swagger_ui_config.plugins;
     const plugins = Array.isArray(configuredPlugins) ? configuredPlugins.slice() : [];
     const displayDefaults = { api_key_input: true, info_url: true, doc_version: true, version_stamp: true };
@@ -323,6 +331,53 @@ function initializeSwaggerPage(): void {
       window.ui.specActions.download(url);
     });
   }
+
+  // Listen for hash changes so that navigating to a deep-link URL in the same
+  // tab (e.g. pasting a copied operation URL into the address bar) expands the
+  // target operation without requiring a full page refresh.
+  //
+  // NOTE: We intentionally do NOT use `layoutActions.parseDeepLinkHash()` here.
+  // That method is Swagger UI's built-in deep linking plugin action, designed to
+  // run during initial spec load (inside the `onComplete` callback). When called
+  // after spec rendering is complete, it fails to expand operations — likely
+  // because it depends on internal state or lifecycle context that no longer applies.
+  //
+  // Instead, we directly call `layoutActions.show()` which reliably toggles the
+  // visibility of tags/operations, then scroll into view manually.
+  window.addEventListener("hashchange", () => {
+    const hash = window.location.hash;
+    if (!hash || hash === "#") {
+      return;
+    }
+
+    // Hash format used by Swagger UI deep linking: #/tag/operationId
+    const parts = hash.replace(/^#\/?/, "").split("/").filter(Boolean);
+    if (parts.length === 0) {
+      return;
+    }
+
+    const tag = safeDecodeURIComponent(parts[0]);
+    const operationId = parts.length > 1 ? safeDecodeURIComponent(parts[1]) : null;
+
+    window.ui.layoutActions.show(["operations-tag", tag], true);
+    if (operationId) {
+      window.ui.layoutActions.show(["operations", tag, operationId], true);
+    }
+
+    // Scroll to the expanded element. Swagger UI uses id="operations-{tag}-{operationId}"
+    // for operations and id="operations-tag-{tag}" for tag sections. Use a small delay
+    // to allow the DOM to update after the layout action.
+    const targetId = operationId
+      ? "operations-" + tag + "-" + operationId
+      : "operations-tag-" + tag;
+
+    requestAnimationFrame(() => {
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  });
 }
 
 if (document.readyState === "loading") {
