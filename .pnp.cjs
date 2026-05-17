@@ -271,7 +271,7 @@ const RAW_RUNTIME_STATE =
     ]],\
     ["esbuild", [\
       ["npm:0.25.12", {\
-        "packageLocation": "../../.yarn/berry/cache/esbuild-npm-0.25.12-352393c4bd-10c0.zip/node_modules/esbuild/",\
+        "packageLocation": "./.yarn/cache/esbuild-npm-0.25.12-352393c4bd-c205357531.zip/node_modules/esbuild/",\
         "packageDependencies": [\
           ["@esbuild/aix-ppc64", "npm:0.25.12"],\
           ["@esbuild/android-arm", "npm:0.25.12"],\
@@ -317,7 +317,7 @@ const RAW_RUNTIME_STATE =
     ]],\
     ["typescript", [\
       ["patch:typescript@npm%3A5.9.3#optional!builtin<compat/typescript>::version=5.9.3&hash=5786d5", {\
-        "packageLocation": "../../.yarn/berry/cache/typescript-patch-6fda4d02cf-10c0.zip/node_modules/typescript/",\
+        "packageLocation": "./.yarn/cache/typescript-patch-6fda4d02cf-ad09fdf7a7.zip/node_modules/typescript/",\
         "packageDependencies": [\
           ["typescript", "patch:typescript@npm%3A5.9.3#optional!builtin<compat/typescript>::version=5.9.3&hash=5786d5"]\
         ],\
