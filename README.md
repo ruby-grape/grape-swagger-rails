@@ -46,9 +46,9 @@ This gem is continuously tested against the following stack:
 
 | Ruby | Rails   | Grape   | grape-swagger | Swagger UI |
 |-----:|--------:|--------:|--------------:|-----------:|
-| 3.4  | 7.2.2.2 | 1.8.x   | 1.6.1         | 5.32.5     |
-| 3.2+ | 7.2.2.2 | 3.1.x   | 2.1.4         | 5.32.5     |
-| 3.2+ | 8.1.x   | 3.1.x   | 2.1.4         | 5.32.5     |
+| 3.4  | 7.2.2.2 | 1.8.x   | 1.6.1         | 5.32.6     |
+| 3.2+ | 7.2.2.2 | 3.1.x   | 2.1.4         | 5.32.6     |
+| 3.2+ | 8.1.x   | 3.1.x   | 2.1.4         | 5.32.6     |
 
 The dummy app and CI also exercise both supported Rails asset pipelines: Sprockets and Propshaft.
 
@@ -282,7 +282,7 @@ By default, all of these options are `true`.
 
 ### Updating Swagger UI from Dist
 
-To update Swagger UI from its [distribution](https://github.com/wordnik/swagger-ui), run `bundle exec rake swagger_ui:dist:update`. Examine the changes carefully.
+To update Swagger UI from its [distribution](https://github.com/swagger-api/swagger-ui), run `bundle exec rake swagger_ui:dist:update`. Examine the changes carefully.
 
 NOTE: This action should be run part of this gem (not your application). In case if you want to
 make it up-to-date, clone the repo, run the rake task, examine the diff, fix any bugs, make sure
