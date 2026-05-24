@@ -1,5 +1,6 @@
 ### Next Release
 
+* [#159](https://github.com/ruby-grape/grape-swagger-rails/pull/159): :sparkles: added github action update swagger ui version - [@moskvin](https://github.com/moskvin).
 * Your contribution here.
 
 ### 1.0.1 (2026/05/17)
