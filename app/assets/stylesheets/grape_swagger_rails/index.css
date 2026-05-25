@@ -1,6 +1,5 @@
 html {
   box-sizing: border-box;
-  overflow: -moz-scrollbars-vertical;
   overflow-y: scroll;
 }
 
@@ -230,6 +229,10 @@ html[data-theme="dark"] .swagger-ui select {
 html[data-theme="dark"] .swagger-ui .btn,
 html[data-theme="dark"] .swagger-ui .model-box {
   border-color: #475569;
+}
+
+.swagger-ui .model-box table.model tr.property-row > td {
+  vertical-align: baseline;
 }
 
 @media (max-width: 767px) {
