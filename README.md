@@ -46,9 +46,9 @@ This gem is continuously tested against the following stack:
 
 | Ruby | Rails   | Grape   | grape-swagger | Swagger UI |
 |-----:|--------:|--------:|--------------:|-----------:|
-| 3.4  | 7.2.2.2 | 1.8.x   | 1.6.1         | 5.32.5     |
-| 3.2+ | 7.2.2.2 | 3.1.x   | 2.1.4         | 5.32.5     |
-| 3.2+ | 8.1.x   | 3.1.x   | 2.1.4         | 5.32.5     |
+| 3.4  | 7.2.2.2 | 1.8.x   | 1.6.1         | 5.32.6     |
+| 3.2+ | 7.2.2.2 | 3.1.x   | 2.1.4         | 5.32.6     |
+| 3.2+ | 8.1.x   | 3.1.x   | 2.1.4         | 5.32.6     |
 
 The dummy app and CI also exercise both supported Rails asset pipelines: Sprockets and Propshaft.
 
@@ -267,7 +267,8 @@ GrapeSwaggerRails.options.display = {
   api_key_input: false,
   info_url: false,
   doc_version: false,
-  version_stamp: false
+  version_stamp: false,
+  clear_button: true
 }
 ```
 
@@ -277,12 +278,13 @@ Supported keys:
 - `info_url`: show or hide the API document URL link
 - `doc_version`: show or hide the API document version label
 - `version_stamp`: show or hide the `OAS 2.0` version stamp
+- `clear_button`: show or hide Swagger UI's "Clear" button that appears next to "Execute" after "Try it out". Hidden by default because the upstream button only resets internal request/response state and leaves user-typed input values on screen, which is confusing (see [swagger-api/swagger-ui#5283](https://github.com/swagger-api/swagger-ui/issues/5283)).
 
-By default, all of these options are `true`.
+By default, all of these options are `true` except `clear_button`, which defaults to `false`.
 
 ### Updating Swagger UI from Dist
 
-To update Swagger UI from its [distribution](https://github.com/wordnik/swagger-ui), run `bundle exec rake swagger_ui:dist:update`. Examine the changes carefully.
+To update Swagger UI from its [distribution](https://github.com/swagger-api/swagger-ui), run `bundle exec rake swagger_ui:dist:update`. Examine the changes carefully.
 
 NOTE: This action should be run part of this gem (not your application). In case if you want to
 make it up-to-date, clone the repo, run the rake task, examine the diff, fix any bugs, make sure

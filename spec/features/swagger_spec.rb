@@ -231,6 +231,32 @@ describe 'Swagger' do
     end
   end
 
+  describe 'display[:clear_button] option' do
+    include_context 'with isolated options'
+
+    it 'hides the Clear button by default after Execute' do
+      visit_swagger
+      open_operation('operations-tag-foos', 'operations-foos-getApiFoos')
+      execute_operation('operations-foos-getApiFoos')
+
+      within('#operations-foos-getApiFoos') do
+        expect(page).to have_css('.responses-wrapper')
+        expect(page).to have_no_css('.btn-clear')
+      end
+    end
+
+    it 'shows the Clear button when enabled' do
+      GrapeSwaggerRails.options.display = GrapeSwaggerRails.options.display.merge(clear_button: true)
+      visit_swagger
+      open_operation('operations-tag-foos', 'operations-foos-getApiFoos')
+      execute_operation('operations-foos-getApiFoos')
+
+      within('#operations-foos-getApiFoos') do
+        expect(page).to have_css('.btn-clear', text: 'Clear')
+      end
+    end
+  end
+
   describe 'same-session deep link navigation' do
     # Regression tests for: navigating to a Swagger deep-link URL in the same
     # tab/session should expand the target operation without a full page refresh.

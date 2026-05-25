@@ -1,6 +1,8 @@
 ### Next Release
 
 * [#162](https://github.com/ruby-grape/grape-swagger-rails/pull/162): Fix vertical alignment for property rows in swagger ui model box - [@moskvin](https://github.com/moskvin).
+* [#160](https://github.com/ruby-grape/grape-swagger-rails/pull/160): Hide Swagger UI's confusing "Clear" button by default; expose `display[:clear_button]` to opt back in - [@moskvin](https://github.com/moskvin).
+* [#159](https://github.com/ruby-grape/grape-swagger-rails/pull/159): Added github action update swagger ui version - [@moskvin](https://github.com/moskvin).
 * Your contribution here.
 
 ### 1.0.1 (2026/05/17)

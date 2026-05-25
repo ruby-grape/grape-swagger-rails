@@ -8,7 +8,14 @@ namespace :swagger_ui do
   namespace :dist do
     desc 'Update Swagger UI assets from swagger-api/swagger-ui.'
     task :update do
-      version = ENV.fetch('SWAGGER_UI_VERSION', 'v5.32.5')
+      root = File.expand_path('../..', __dir__)
+      version_file = File.join(root, 'lib/grape-swagger-rails/version.rb')
+      match = File.read(version_file).match(/SWAGGER_UI_VERSION = '([^']+)'/)
+      raise "Could not find SWAGGER_UI_VERSION in #{version_file}" unless match
+
+      current_version = match[1]
+      version = ENV.fetch('SWAGGER_UI_VERSION', "v#{current_version}")
+      version = "v#{version}" unless version.start_with?('v')
 
       Dir.mktmpdir('swagger-ui') do |dir|
         puts "Cloning swagger-api/swagger-ui #{version} into #{dir} ..."
@@ -20,7 +27,6 @@ namespace :swagger_ui do
           branch: version
         )
 
-        root = File.expand_path('../..', __dir__)
         dist = File.join(dir, 'swagger-ui', 'dist')
 
         raise "Missing dist directory at #{dist}" unless Dir.exist?(dist)
@@ -39,11 +45,22 @@ namespace :swagger_ui do
                      File.join(root, 'app/assets/stylesheets/grape_swagger_rails/swagger-ui.css')
 
         semver = version.sub(/\Av/, '')
-        version_file = File.join(root, 'lib/grape-swagger-rails/version.rb')
         content = File.read(version_file)
         updated = content.gsub(/SWAGGER_UI_VERSION = '[^']*'/, "SWAGGER_UI_VERSION = '#{semver}'")
         File.write(version_file, updated)
         puts "Updated SWAGGER_UI_VERSION to #{semver} in #{version_file}"
+
+        readme_file = File.join(root, 'README.md')
+        readme = File.read(readme_file)
+        compatibility_table = readme.match(/(## Compatibility.*?)(\n\nThe dummy app)/m)
+        raise 'Could not find README compatibility table' unless compatibility_table
+
+        updated_table = compatibility_table[1].gsub(
+          /^(\|\s*[^|\n]+\|\s*[^|\n]+\|\s*[^|\n]+\|\s*[^|\n]+\|\s*)\d+\.\d+\.\d+(\s*\|)$/m,
+          "\\1#{semver}\\2"
+        )
+        File.write(readme_file, readme.sub(compatibility_table[1], updated_table))
+        puts "Updated Swagger UI compatibility table to #{semver} in #{readme_file}"
       end
     end
   end

@@ -146,10 +146,27 @@ var initializeSwaggerPage = function () {
             },
         };
     };
+    // Swagger UI's "Clear" button (next to Execute) is confusing — it resets
+    // the internal request / response state but does not clear values still visible
+    // in the rendered input fields. Upstream issue swagger-api/swagger-ui#5283
+    // has acknowledged the UX problem since 2019 without a fix. Hide by default.
+    var hideClearButtonPlugin = function () {
+        return {
+            wrapComponents: {
+                clear: function () { return function () { return null; }; },
+            },
+        };
+    };
     var buildPlugins = function () {
         var configuredPlugins = options.swagger_ui_config && options.swagger_ui_config.plugins;
         var plugins = Array.isArray(configuredPlugins) ? configuredPlugins.slice() : [];
-        var displayDefaults = { api_key_input: true, info_url: true, doc_version: true, version_stamp: true };
+        var displayDefaults = {
+            api_key_input: true,
+            info_url: true,
+            doc_version: true,
+            version_stamp: true,
+            clear_button: false,
+        };
         var display = Object.assign({}, displayDefaults, options.display || {});
         if (!display.info_url) {
             plugins.push(hideInfoUrlPlugin);
@@ -159,6 +176,9 @@ var initializeSwaggerPage = function () {
         }
         if (!display.version_stamp) {
             plugins.push(hideVersionStampPlugin);
+        }
+        if (!display.clear_button) {
+            plugins.push(hideClearButtonPlugin);
         }
         return plugins;
     };

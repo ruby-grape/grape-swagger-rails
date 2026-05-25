@@ -51,7 +51,8 @@ module GrapeSwaggerRails
       api_key_input: true,
       info_url: true,
       doc_version: true,
-      version_stamp: true
+      version_stamp: true,
+      clear_button: false
     }
   )
 
