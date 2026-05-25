@@ -1,5 +1,6 @@
 ### Next Release
 
+* [#161](https://github.com/ruby-grape/grape-swagger-rails/pull/161): Fix packagelocation paths in .pnp.cjs for esbuild and typescript - [@moskvin](https://github.com/moskvin).
 * Your contribution here.
 
 ### 1.0.1 (2026/05/17)
