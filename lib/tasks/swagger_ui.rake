@@ -10,7 +10,10 @@ namespace :swagger_ui do
     task :update do
       root = File.expand_path('../..', __dir__)
       version_file = File.join(root, 'lib/grape-swagger-rails/version.rb')
-      current_version = File.read(version_file).match(/SWAGGER_UI_VERSION = '([^']+)'/)[1]
+      match = File.read(version_file).match(/SWAGGER_UI_VERSION = '([^']+)'/)
+      raise "Could not find SWAGGER_UI_VERSION in #{version_file}" unless match
+
+      current_version = match[1]
       version = ENV.fetch('SWAGGER_UI_VERSION', "v#{current_version}")
       version = "v#{version}" unless version.start_with?('v')
 
