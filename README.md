@@ -267,7 +267,8 @@ GrapeSwaggerRails.options.display = {
   api_key_input: false,
   info_url: false,
   doc_version: false,
-  version_stamp: false
+  version_stamp: false,
+  clear_button: true
 }
 ```
 
@@ -277,8 +278,9 @@ Supported keys:
 - `info_url`: show or hide the API document URL link
 - `doc_version`: show or hide the API document version label
 - `version_stamp`: show or hide the `OAS 2.0` version stamp
+- `clear_button`: show or hide Swagger UI's "Clear" button that appears next to "Execute" after "Try it out". Hidden by default because the upstream button only resets internal request/response state and leaves user-typed input values on screen, which is confusing (see [swagger-api/swagger-ui#5283](https://github.com/swagger-api/swagger-ui/issues/5283)).
 
-By default, all of these options are `true`.
+By default, all of these options are `true` except `clear_button`, which defaults to `false`.
 
 ### Updating Swagger UI from Dist
 
