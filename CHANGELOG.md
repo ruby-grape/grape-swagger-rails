@@ -1,5 +1,6 @@
 ### Next Release
 
+* [#163](https://github.com/ruby-grape/grape-swagger-rails/pull/163): Copy to clipboard title - [@moskvin](https://github.com/moskvin).
 * Your contribution here.
 
 ### 1.0.2 (2026/05/26)
