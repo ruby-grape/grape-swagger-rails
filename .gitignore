@@ -18,7 +18,4 @@ tmp
 .idea
 .project
 .ruby-version
-# Yarn PnP - track cache and unplugged for zero-installs portability
-.yarn/*
-!.yarn/cache
-!.yarn/unplugged
+.yarn
