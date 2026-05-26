@@ -51,6 +51,25 @@ interface SwaggerPlugin {
 declare const SwaggerUIBundle: any;
 declare const SwaggerUIStandalonePreset: any;
 
+const COPY_BUTTON_LABEL = "Copy to clipboard";
+
+const labelCopyButtons = (root: ParentNode): void => {
+  const targets =
+    root instanceof Element && root.matches(".copy-to-clipboard")
+      ? [root, ...Array.from(root.querySelectorAll(".copy-to-clipboard"))]
+      : Array.from(root.querySelectorAll(".copy-to-clipboard"));
+
+  targets.forEach((node) => {
+    const el = node as HTMLElement;
+    if (!el.getAttribute("title")) {
+      el.setAttribute("title", COPY_BUTTON_LABEL);
+    }
+    if (!el.getAttribute("aria-label")) {
+      el.setAttribute("aria-label", COPY_BUTTON_LABEL);
+    }
+  });
+};
+
 const safeDecodeURIComponent = (value: string): string => {
   try {
     return decodeURIComponent(value);
@@ -338,6 +357,25 @@ const initializeSwaggerPage = (): void => {
   }
 
   window.ui = SwaggerUIBundle(bundleConfig);
+
+  // Swagger UI's `.copy-to-clipboard` elements (the icon next to
+  // operation paths, cURL examples, OAuth redirect URLs, etc.) ship without
+  // a `title` or `aria-label` in some renderings, so on hover users see no
+  // tooltip and screen readers announce nothing. Label any unlabeled
+  // instances as Swagger UI renders or re-renders the tree.
+  labelCopyButtons(document.body);
+  const container = document.getElementById("swagger-ui-container");
+  if (container) {
+    new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            labelCopyButtons(node as Element);
+          }
+        });
+      });
+    }).observe(container, { childList: true, subtree: true });
+  }
 
   if (selectedUrl) {
     window.ui.specActions.updateUrl(selectedUrl.url);

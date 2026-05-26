@@ -123,6 +123,23 @@ describe 'Swagger' do
     end
   end
 
+  def find_unlabeled_copy_buttons
+    page.evaluate_script(<<~JS)
+      Array.from(document.querySelectorAll('.copy-to-clipboard'))
+        .filter(function(el) {
+          return !el.getAttribute('title') || !el.getAttribute('aria-label');
+        })
+        .map(function(el) {
+          return {
+            tag: el.tagName,
+            className: el.className,
+            title: el.getAttribute('title'),
+            ariaLabel: el.getAttribute('aria-label')
+          };
+        });
+    JS
+  end
+
   def fill_echo_form
     within('#operations-echo-postApiEcho') do
       find('.try-out__btn').click
@@ -254,6 +271,24 @@ describe 'Swagger' do
       within('#operations-foos-getApiFoos') do
         expect(page).to have_css('.btn-clear', text: 'Clear')
       end
+    end
+  end
+
+  describe 'Copy button accessible label (swagger-ui#9584, #10699)' do
+    # Swagger UI's `.copy-to-clipboard` elements ship without a `title` or
+    # `aria-label` in several renderings, so hovering shows no tooltip and
+    # screen readers announce nothing. The TypeScript runtime labels them
+    # at boot and again as Swagger UI re-renders the tree.
+
+    it 'labels every copy-to-clipboard element with title and aria-label' do
+      visit_swagger
+      open_operation('operations-tag-foos', 'operations-foos-getApiFoos')
+      expect(page).to have_css('.copy-to-clipboard', wait: 5)
+
+      unlabeled = find_unlabeled_copy_buttons
+
+      expect(unlabeled).to be_empty,
+                           "Expected all .copy-to-clipboard elements to be labeled. Got: #{unlabeled.inspect}"
     end
   end
 
