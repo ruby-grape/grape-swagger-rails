@@ -1,4 +1,27 @@
 "use strict";
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
+var COPY_BUTTON_LABEL = "Copy to clipboard";
+var labelCopyButtons = function (root) {
+    var targets = root instanceof Element && root.matches(".copy-to-clipboard")
+        ? __spreadArray([root], Array.from(root.querySelectorAll(".copy-to-clipboard")), true) : Array.from(root.querySelectorAll(".copy-to-clipboard"));
+    targets.forEach(function (node) {
+        var el = node;
+        if (!el.getAttribute("title")) {
+            el.setAttribute("title", COPY_BUTTON_LABEL);
+        }
+        if (!el.getAttribute("aria-label")) {
+            el.setAttribute("aria-label", COPY_BUTTON_LABEL);
+        }
+    });
+};
 var safeDecodeURIComponent = function (value) {
     try {
         return decodeURIComponent(value);
@@ -232,6 +255,24 @@ var initializeSwaggerPage = function () {
         bundleConfig.url = absoluteSpecUrl(options.url);
     }
     window.ui = SwaggerUIBundle(bundleConfig);
+    // Swagger UI's `.copy-to-clipboard` elements (the icon next to
+    // operation paths, cURL examples, OAuth redirect URLs, etc.) ship without
+    // a `title` or `aria-label` in some renderings, so on hover users see no
+    // tooltip and screen readers announce nothing. Label any unlabeled
+    // instances as Swagger UI renders or re-renders the tree.
+    labelCopyButtons(document.body);
+    var container = document.getElementById("swagger-ui-container");
+    if (container) {
+        new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+                mutation.addedNodes.forEach(function (node) {
+                    if (node.nodeType === Node.ELEMENT_NODE) {
+                        labelCopyButtons(node);
+                    }
+                });
+            });
+        }).observe(container, { childList: true, subtree: true });
+    }
     if (selectedUrl) {
         window.ui.specActions.updateUrl(selectedUrl.url);
         window.ui.specActions.download(selectedUrl.url);
