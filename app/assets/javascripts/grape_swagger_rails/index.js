@@ -157,17 +157,21 @@ var initializeSwaggerPage = function () {
             },
         };
     };
+    var displayDefaults = {
+        api_key_input: true,
+        info_url: true,
+        doc_version: true,
+        version_stamp: true,
+        clear_button: false,
+        validator_badge: true,
+    };
+    var resolvedDisplay = function () {
+        return Object.assign({}, displayDefaults, options.display || {});
+    };
     var buildPlugins = function () {
         var configuredPlugins = options.swagger_ui_config && options.swagger_ui_config.plugins;
         var plugins = Array.isArray(configuredPlugins) ? configuredPlugins.slice() : [];
-        var displayDefaults = {
-            api_key_input: true,
-            info_url: true,
-            doc_version: true,
-            version_stamp: true,
-            clear_button: false,
-        };
-        var display = Object.assign({}, displayDefaults, options.display || {});
+        var display = resolvedDisplay();
         if (!display.info_url) {
             plugins.push(hideInfoUrlPlugin);
         }
@@ -181,6 +185,41 @@ var initializeSwaggerPage = function () {
             plugins.push(hideClearButtonPlugin);
         }
         return plugins;
+    };
+    var renderValidatorBadge = function (specUrl) {
+        var footer = document.querySelector(".swagger-validator-footer");
+        if (!footer) {
+            return;
+        }
+        footer.innerHTML = "";
+        var display = resolvedDisplay();
+        var validatorUrl = options.validator_url;
+        if (!display.validator_badge || !validatorUrl || validatorUrl === "none" || !specUrl) {
+            return;
+        }
+        var absolute;
+        try {
+            absolute = new URL(specUrl, window.location.href).toString();
+        }
+        catch (_a) {
+            return;
+        }
+        if (/^https?:\/\/(localhost|127\.0\.0\.1)(:|\/|$)/i.test(absolute)) {
+            return;
+        }
+        var encoded = encodeURIComponent(absolute);
+        var span = document.createElement("span");
+        span.className = "float-right";
+        var anchor = document.createElement("a");
+        anchor.target = "_blank";
+        anchor.rel = "noopener noreferrer";
+        anchor.href = "".concat(validatorUrl, "/debug?url=").concat(encoded);
+        var img = document.createElement("img");
+        img.src = "".concat(validatorUrl, "?url=").concat(encoded);
+        img.alt = "Online validator badge";
+        anchor.appendChild(img);
+        span.appendChild(anchor);
+        footer.appendChild(span);
     };
     applyTheme(getTheme());
     if (themeToggle) {
@@ -236,6 +275,7 @@ var initializeSwaggerPage = function () {
         window.ui.specActions.updateUrl(selectedUrl.url);
         window.ui.specActions.download(selectedUrl.url);
     }
+    renderValidatorBadge(selectedUrl ? selectedUrl.url : absoluteSpecUrl(options.url));
     setupSpecSelector(swaggerUrls, selectedUrl);
     if (specSelector && swaggerUrls.length > 1) {
         specSelector.addEventListener("change", function (event) {
@@ -243,6 +283,7 @@ var initializeSwaggerPage = function () {
             var url = target.value;
             window.ui.specActions.updateUrl(url);
             window.ui.specActions.download(url);
+            renderValidatorBadge(url);
         });
     }
     // Listen for hash changes so that navigating to a deep-link URL in the same
