@@ -221,6 +221,7 @@ var initializeSwaggerPage = function () {
         span.appendChild(anchor);
         footer.appendChild(span);
     };
+    window.grapeSwaggerRails = { renderValidatorBadge: renderValidatorBadge };
     applyTheme(getTheme());
     if (themeToggle) {
         themeToggle.addEventListener("click", function () {
