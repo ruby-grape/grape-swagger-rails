@@ -1,5 +1,8 @@
 interface Window {
   ui: any;
+  grapeSwaggerRails?: {
+    renderValidatorBadge: (specUrl: string) => void;
+  };
 }
 
 interface SwaggerPageOptions {
@@ -330,6 +333,8 @@ const initializeSwaggerPage = (): void => {
     span.appendChild(anchor);
     footer.appendChild(span);
   }
+
+  window.grapeSwaggerRails = { renderValidatorBadge };
 
   applyTheme(getTheme());
 
