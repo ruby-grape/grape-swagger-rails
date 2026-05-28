@@ -236,6 +236,16 @@ html[data-theme="dark"] .swagger-ui .model-box {
   vertical-align: baseline;
 }
 
+.swagger-validator-footer {
+  display: block;
+  padding: 16px 20px;
+  overflow: auto;
+}
+
+.swagger-validator-footer:empty {
+  display: none;
+}
+
 @media (max-width: 767px) {
   .swagger-header {
     flex-direction: column;

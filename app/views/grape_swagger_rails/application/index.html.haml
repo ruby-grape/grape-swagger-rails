@@ -16,6 +16,7 @@
         %label.swagger-auth
           %input#input_apiKey.swagger-input{ name: 'apiKey', type: 'text', value: GrapeSwaggerRails.options.api_key_default_value, placeholder: GrapeSwaggerRails.options.api_key_placeholder }
     #swagger-ui-container
+    %footer.swagger-ui.swagger-validator-footer
     = javascript_include_tag 'grape_swagger_rails/swagger-ui-bundle'
     = javascript_include_tag 'grape_swagger_rails/swagger-ui-standalone-preset'
     = javascript_include_tag grape_swagger_rails_runtime_asset

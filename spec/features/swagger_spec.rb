@@ -838,10 +838,66 @@ describe 'Swagger' do
           visit_swagger
         end
 
-        it 'defaults SwaggerUI validatorUrl' do
-          expect(swagger_configs.fetch('validatorUrl')).to eq 'undefined'
+        it 'defaults SwaggerUI validatorUrl to the swagger.io validator' do
+          expect(swagger_configs.fetch('validatorUrl')).to eq 'https://validator.swagger.io/validator'
           expect(swagger_configs.fetch('validatorType')).to eq 'string'
         end
+      end
+    end
+
+    describe 'online validator badge' do
+      include_context 'with isolated options'
+
+      def badge_anchor_href
+        page.evaluate_script(
+          "(function() { var a = document.querySelector('.swagger-validator-footer a'); return a && a.href; })()"
+        )
+      end
+
+      def badge_image_src
+        page.evaluate_script(
+          "(function() { var i = document.querySelector('.swagger-validator-footer img'); return i && i.src; })()"
+        )
+      end
+
+      it 'auto-hides on localhost spec URLs even when enabled' do
+        visit_swagger
+
+        expect(page).to have_no_css('.swagger-validator-footer img')
+      end
+
+      it 'renders the rswag-style badge for a non-localhost spec URL' do
+        GrapeSwaggerRails.options.url = 'https://example.com/swagger.json'
+        visit_swagger
+        encoded = 'https%3A%2F%2Fexample.com%2Fswagger.json'
+
+        expect(page).to have_css('.swagger-validator-footer span.float-right a img', wait: 5)
+        expect(badge_image_src).to eq("https://validator.swagger.io/validator?url=#{encoded}")
+        expect(badge_anchor_href).to eq("https://validator.swagger.io/validator/debug?url=#{encoded}")
+      end
+
+      it 'hides the badge when display.validator_badge is false' do
+        GrapeSwaggerRails.options.url = 'https://example.com/swagger.json'
+        GrapeSwaggerRails.options.display = GrapeSwaggerRails.options.display.merge(validator_badge: false)
+        visit_swagger
+
+        expect(page).to have_no_css('.swagger-validator-footer img')
+      end
+
+      it 'hides the badge when validator_url is nil' do
+        GrapeSwaggerRails.options.url = 'https://example.com/swagger.json'
+        GrapeSwaggerRails.options.validator_url = nil
+        visit_swagger
+
+        expect(page).to have_no_css('.swagger-validator-footer img')
+      end
+
+      it 'hides the badge when validator_url is "none"' do
+        GrapeSwaggerRails.options.url = 'https://example.com/swagger.json'
+        GrapeSwaggerRails.options.validator_url = 'none'
+        visit_swagger
+
+        expect(page).to have_no_css('.swagger-validator-footer img')
       end
     end
   end

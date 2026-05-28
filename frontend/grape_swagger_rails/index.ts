@@ -18,6 +18,7 @@ interface SwaggerPageOptions {
     doc_version: boolean;
     version_stamp: boolean;
     clear_button: boolean;
+    validator_badge: boolean;
   };
   supported_submit_methods: string[];
   theme: string;
@@ -249,17 +250,23 @@ const initializeSwaggerPage = (): void => {
     };
   }
 
+  const displayDefaults = {
+    api_key_input: true,
+    info_url: true,
+    doc_version: true,
+    version_stamp: true,
+    clear_button: false,
+    validator_badge: true,
+  };
+
+  const resolvedDisplay = (): typeof displayDefaults => {
+    return Object.assign({}, displayDefaults, options.display || {});
+  }
+
   const buildPlugins = (): unknown[] => {
     const configuredPlugins = options.swagger_ui_config && options.swagger_ui_config.plugins;
     const plugins = Array.isArray(configuredPlugins) ? configuredPlugins.slice() : [];
-    const displayDefaults = {
-      api_key_input: true,
-      info_url: true,
-      doc_version: true,
-      version_stamp: true,
-      clear_button: false,
-    };
-    const display = Object.assign({}, displayDefaults, options.display || {});
+    const display = resolvedDisplay();
 
     if (!display.info_url) {
       plugins.push(hideInfoUrlPlugin);
@@ -278,6 +285,50 @@ const initializeSwaggerPage = (): void => {
     }
 
     return plugins;
+  }
+
+  const renderValidatorBadge = (specUrl: string): void => {
+    const footer = document.querySelector(".swagger-validator-footer") as HTMLElement | null;
+    if (!footer) {
+      return;
+    }
+
+    footer.innerHTML = "";
+
+    const display = resolvedDisplay();
+    const validatorUrl = options.validator_url;
+
+    if (!display.validator_badge || !validatorUrl || validatorUrl === "none" || !specUrl) {
+      return;
+    }
+
+    let absolute: string;
+    try {
+      absolute = new URL(specUrl, window.location.href).toString();
+    } catch {
+      return;
+    }
+
+    if (/^https?:\/\/(localhost|127\.0\.0\.1)(:|\/|$)/i.test(absolute)) {
+      return;
+    }
+
+    const encoded = encodeURIComponent(absolute);
+    const span = document.createElement("span");
+    span.className = "float-right";
+
+    const anchor = document.createElement("a");
+    anchor.target = "_blank";
+    anchor.rel = "noopener noreferrer";
+    anchor.href = `${validatorUrl}/debug?url=${encoded}`;
+
+    const img = document.createElement("img");
+    img.src = `${validatorUrl}?url=${encoded}`;
+    img.alt = "Online validator badge";
+
+    anchor.appendChild(img);
+    span.appendChild(anchor);
+    footer.appendChild(span);
   }
 
   applyTheme(getTheme());
@@ -344,6 +395,8 @@ const initializeSwaggerPage = (): void => {
     window.ui.specActions.download(selectedUrl.url);
   }
 
+  renderValidatorBadge(selectedUrl ? selectedUrl.url : absoluteSpecUrl(options.url));
+
   setupSpecSelector(swaggerUrls, selectedUrl);
 
   if (specSelector && swaggerUrls.length > 1) {
@@ -352,6 +405,7 @@ const initializeSwaggerPage = (): void => {
       const url = target.value;
       window.ui.specActions.updateUrl(url);
       window.ui.specActions.download(url);
+      renderValidatorBadge(url);
     });
   }
 

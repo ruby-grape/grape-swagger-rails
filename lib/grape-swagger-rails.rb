@@ -45,6 +45,8 @@ module GrapeSwaggerRails
     doc_expansion: 'none',
     supported_submit_methods: %w[get post put delete patch],
 
+    validator_url: 'https://validator.swagger.io/validator',
+
     before_action_proc: nil, # Proc used as a controller before action
 
     display: {
@@ -52,7 +54,8 @@ module GrapeSwaggerRails
       info_url: true,
       doc_version: true,
       version_stamp: true,
-      clear_button: false
+      clear_button: false,
+      validator_badge: true
     }
   )
 

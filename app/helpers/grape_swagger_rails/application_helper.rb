@@ -3,10 +3,17 @@
 module GrapeSwaggerRails
   # View helpers for the Swagger UI page.
   module ApplicationHelper
+    DISPLAY_DEFAULTS = {
+      api_key_input: true,
+      doc_version: true,
+      info_url: true,
+      validator_badge: true,
+      version_stamp: true
+    }.freeze
+
     def swagger_data_attributes
       options = GrapeSwaggerRails.options
-      display_defaults = { api_key_input: true, info_url: true, doc_version: true, version_stamp: true }
-      display = display_defaults.merge((options.display || {}).transform_keys(&:to_sym))
+      display = DISPLAY_DEFAULTS.merge((options.display || {}).transform_keys(&:to_sym))
 
       {
         swagger_options: options.marshal_dump.to_json,
