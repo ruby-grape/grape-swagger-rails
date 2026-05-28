@@ -231,6 +231,7 @@ html[data-theme="dark"] .swagger-ui .model-box {
   border-color: #475569;
 }
 
+.swagger-ui .model-box table.model tr.description > td,
 .swagger-ui .model-box table.model tr.property-row > td {
   vertical-align: baseline;
 }
