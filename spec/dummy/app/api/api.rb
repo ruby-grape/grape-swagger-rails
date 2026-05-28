@@ -18,7 +18,7 @@ class API < Grape::API
     end
   end
 
-  desc 'Get headers.'
+  desc 'Get headers.', security: [{ api_key: [] }]
   get '/headers' do
     request.headers.as_json
   end
@@ -74,7 +74,11 @@ class API < Grape::API
     }
   end
 
-  add_swagger_documentation
+  add_swagger_documentation(
+    security_definitions: {
+      api_key: { type: 'apiKey', name: 'Authorization', in: 'header' }
+    }
+  )
 end
 
 class APIv2 < Grape::API
