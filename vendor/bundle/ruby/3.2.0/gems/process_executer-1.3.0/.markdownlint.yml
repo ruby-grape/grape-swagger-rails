@@ -1,0 +1,25 @@
+default: true
+
+# Unordered list indentation
+MD007: { indent: 2 }
+
+# Line length
+MD013: { line_length: 90, tables: false, code_blocks: false }
+
+# Heading duplication is allowed for non-sibling headings
+MD024: { siblings_only: true }
+
+# Do not allow the specified trailing punctuation in a header
+MD026: { punctuation: '.,;:' }
+
+# Order list items must have a prefix that increases in numerical order
+MD029: { style: 'ordered' }
+
+# Lists do not need to be surrounded by blank lines
+MD032: false
+
+# Allow raw HTML in Markdown
+MD033: false
+
+# Allow emphasis to be used instead of a heading
+MD036: false

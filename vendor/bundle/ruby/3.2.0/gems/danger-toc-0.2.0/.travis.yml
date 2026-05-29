@@ -1,0 +1,14 @@
+language: ruby
+
+cache:
+  directories:
+    - bundle
+
+rvm:
+  - 2.4.1
+
+before_script:
+    - bundle exec danger
+
+script:
+    - bundle exec rake spec

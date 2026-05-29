@@ -1,0 +1,11 @@
+.DS_Store
+pkg
+.idea/
+Gemfile.lock
+.yardoc
+
+# ignore the Ruby Version manager
+.rvmrc
+.ruby-version
+.ruby-gemset
+.rbenv

@@ -1,0 +1,10 @@
+*.gem
+*.kpf
+*.sw?
+.DS_Store
+coverage
+doc
+.yardoc
+pkg
+rdoc
+Gemfile.lock

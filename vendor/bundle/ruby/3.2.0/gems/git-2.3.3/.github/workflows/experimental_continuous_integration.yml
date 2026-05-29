@@ -1,0 +1,43 @@
+name: CI Experimental
+
+on:
+  push:
+    branches: [master,v1]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Ruby ${{ matrix.ruby }} on ${{ matrix.operating-system }}
+    runs-on: ${{ matrix.operating-system }}
+    continue-on-error: true
+    env: { JAVA_OPTS: -Djdk.io.File.enableADS=true }
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - # Building against head version of Ruby is considered experimental
+            ruby: head
+            operating-system: ubuntu-latest
+            experimental: Yes
+
+          - # Since JRuby on Windows is known to not work, consider this experimental
+            ruby: jruby-head
+            operating-system: windows-latest
+            experimental: Yes
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+
+      - name: Run Build
+        run: bundle exec rake default
+
+      - name: Test Gem
+        run: bundle exec rake test:gem

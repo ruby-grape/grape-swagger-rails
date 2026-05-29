@@ -1,0 +1,1 @@
+require 'claide/command/plugins'

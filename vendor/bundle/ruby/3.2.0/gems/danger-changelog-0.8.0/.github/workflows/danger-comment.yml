@@ -1,0 +1,10 @@
+name: Danger Comment
+on:
+  workflow_run:
+    workflows: [Danger]
+    types: [completed]
+
+jobs:
+  comment:
+    uses: ruby-grape/danger/.github/workflows/danger-comment.yml@master
+    secrets: inherit

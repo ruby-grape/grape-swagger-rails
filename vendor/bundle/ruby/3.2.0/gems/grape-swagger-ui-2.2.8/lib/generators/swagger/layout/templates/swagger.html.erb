@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="<%%= I18n.locale.to_s %>" xml:lang="<%%= I18n.locale.to_s %>" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Swagger UI</title>
+    <%%= javascript_include_tag :swagger_ui %>
+    <%%= stylesheet_link_tag :swagger_ui_screen, :media => :screen %>
+    <%%= stylesheet_link_tag :swagger_ui_print, :media => :print %>
+    <%%= csrf_meta_tags %>
+    <style>      
+      .swagger-ui-wrap {
+        max-width: 80%;
+        min-width: 960px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
+
+    <script>  
+      $(function () {
+        var url = window.location.search.match(/url=([^&]+)/);
+        if (url && url.length > 1) {
+          url = decodeURIComponent(url[1]);
+        } else {
+          url = "<%%= request.protocol %><%%= request.host %>:<%%= request.port %>/api/v1/swagger_doc";
+        }
+
+        hljs.configure({
+          highlightSizeThreshold: 5000
+        });
+
+        // Pre load translate...
+        if(window.SwaggerTranslator) {
+          window.SwaggerTranslator.translate();
+        }
+        window.swaggerUi = new SwaggerUi({
+          url: url,
+          dom_id: "swagger-ui-container",
+          supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
+          onComplete: function(swaggerApi, swaggerUi){
+            if(typeof initOAuth == "function") {
+              initOAuth({
+                clientId: "your-client-id",
+                clientSecret: "your-client-secret-if-required",
+                realm: "your-realms",
+                appName: "your-app-name",
+                scopeSeparator: ",",
+                additionalQueryStringParams: {}
+              });
+            }
+
+            if(window.SwaggerTranslator) {
+              window.SwaggerTranslator.translate();
+            }
+          },
+          onFailure: function(data) {
+            log("Unable to Load SwaggerUI");
+          },
+          docExpansion: "none",
+          jsonEditor: false,
+          defaultModelRendering: 'schema',
+          showRequestHeaders: false
+        });
+
+        $('#input_apiKey').change(function() {
+          var key = $('#input_apiKey')[0].value;
+          if(key && key.trim() != "") {
+            swaggerUi.api.clientAuthorizations.add("key", new SwaggerClient.ApiKeyAuthorization("api_key", key, "query"));
+          }
+        })
+
+        window.swaggerUi.load();
+
+        function log() {
+          if ('console' in window) {
+            console.log.apply(console, arguments);
+          }
+        }
+      });
+
+
+    </script>
+  </head>
+  <body class="swagger-section">
+    <div id="header">
+      <div class="swagger-ui-wrap">
+        <a href="http://swagger.io" id="logo">
+          <span class="logo__title">swagger</span>
+        </a>
+        <form id="api_selector">
+          <div class="input">
+            <input id="input_baseUrl" name="baseUrl" placeholder="http://example.com/api" type="text">/</input>
+          </div>
+          <div class="input">
+            <input id="input_apiKey" name="apiKey" placeholder="api_key" type="text"></input>
+          </div>
+          <div id="auth_container"></div>
+          <div class="input">
+            <a class="header__btn" href="#" id="explore">Explore</a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="swagger-ui-wrap" id="message-bar">&nbsp;</div>
+    <div class="swagger-ui-wrap" id="swagger-ui-container"></div>
+  </body>
+</html>

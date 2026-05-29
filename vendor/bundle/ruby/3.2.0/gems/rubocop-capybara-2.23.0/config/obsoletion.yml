@@ -1,0 +1,18 @@
+#
+# Configuration of obsolete/deprecated cops used by `ConfigObsoletion`.
+#
+# See: https://docs.rubocop.org/rubocop/extensions.html#config-obsoletions
+#
+
+renamed:
+  Capybara/CurrentPathExpectation: Capybara/RSpec/CurrentPathExpectation
+  Capybara/NegationMatcher: Capybara/RSpec/NegationMatcher
+  Capybara/NegationMatcherAfterVisit: Capybara/RSpec/NegationMatcherAfterVisit
+  Capybara/SpecificMatcher: Capybara/RSpec/SpecificMatcher
+  Capybara/VisibilityMatcher: Capybara/RSpec/VisibilityMatcher
+
+split:
+  Capybara/MatchStyle:
+    alternatives:
+      - Capybara/AssertStyle
+      - Capybara/RSpec/MatchStyle

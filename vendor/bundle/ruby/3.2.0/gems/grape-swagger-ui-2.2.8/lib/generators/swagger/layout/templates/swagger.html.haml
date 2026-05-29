@@ -1,0 +1,95 @@
+!!!
+%html{ :xmlns => "http://www.w3.org/1999/xhtml", :lang => I18n.locale.to_s, "xml:lang" => I18n.locale.to_s }
+  %head
+    %title Swagger UI
+
+    = javascript_include_tag :swagger_ui
+    = stylesheet_link_tag :swagger_ui_screen, :media => :screen
+    = stylesheet_link_tag :swagger_ui_print, :media => :print
+    = csrf_meta_tags
+
+    :css
+      .swagger-ui-wrap {
+        max-width: 80%;
+        min-width: 960px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+    :javascript
+      $(function () {
+        var url = window.location.search.match(/url=([^&]+)/);
+        if (url && url.length > 1) {
+          url = decodeURIComponent(url[1]);
+        } else {
+          url = "#{request.protocol}#{request.host}:#{request.port}/api/v1/swagger_doc";
+        }
+
+        hljs.configure({
+          highlightSizeThreshold: 5000
+        });
+
+        // Pre load translate...
+        if(window.SwaggerTranslator) {
+          window.SwaggerTranslator.translate();
+        }
+        window.swaggerUi = new SwaggerUi({
+          url: url,
+          dom_id: "swagger-ui-container",
+          supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
+          onComplete: function(swaggerApi, swaggerUi){
+            if(typeof initOAuth == "function") {
+              initOAuth({
+                clientId: "your-client-id",
+                clientSecret: "your-client-secret-if-required",
+                realm: "your-realms",
+                appName: "your-app-name",
+                scopeSeparator: ",",
+                additionalQueryStringParams: {}
+              });
+            }
+
+            if(window.SwaggerTranslator) {
+              window.SwaggerTranslator.translate();
+            }
+          },
+          onFailure: function(data) {
+            log("Unable to Load SwaggerUI");
+          },
+          docExpansion: "none",
+          jsonEditor: false,
+          defaultModelRendering: 'schema',
+          showRequestHeaders: false
+        });
+
+        $('#input_apiKey').change(function() {
+          var key = $('#input_apiKey')[0].value;
+          if(key && key.trim() != "") {
+            swaggerUi.api.clientAuthorizations.add("key", new SwaggerClient.ApiKeyAuthorization("api_key", key, "query"));
+          }
+        })
+
+        window.swaggerUi.load();
+
+        function log() {
+          if ('console' in window) {
+            console.log.apply(console, arguments);
+          }
+        }
+      });
+
+  %body.swagger-section
+    #header
+      .swagger-ui-wrap
+        %a#logo{:href => "http://swagger.io"}
+          %span.logo__title swagger
+        %form#api_selector
+          .input
+            %input#input_baseUrl{:name => "baseUrl", :placeholder => "http://example.com/api", :type => "text"}/
+          .input
+            %input#input_apiKey{:name => "apiKey", :placeholder => "api_key", :type => "text"}
+          #auth_container
+          .input
+            %a#explore.header__btn{"data-sw-translate" => "", :href => "#"} Explore
+    #message-bar.swagger-ui-wrap{"data-sw-translate" => ""} &nbsp;
+    #swagger-ui-container.swagger-ui-wrap

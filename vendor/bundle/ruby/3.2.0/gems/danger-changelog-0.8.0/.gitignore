@@ -1,0 +1,6 @@
+.DS_Store
+pkg
+.idea/
+Gemfile.lock
+.yardoc
+vendor/bundle

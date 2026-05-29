@@ -1,0 +1,16 @@
+---
+extends: '@commitlint/config-conventional'
+
+rules:
+  # See: https://commitlint.js.org/reference/rules.html
+  #
+  # Rules are made up by a name and a configuration array. The configuration array contains:
+  #
+  # * Severity [0..2]: 0 disable rule, 1 warning if violated, or 2 error if violated
+  # * Applicability [always|never]: never inverts the rule
+  # * Value: value to use for this rule
+  #
+  # Run `npx commitlint --print-config` to see the current setting for all rules.
+  #
+  body-leading-blank:    [2, 'always']
+  footer-leading-blank:  [2, 'always']

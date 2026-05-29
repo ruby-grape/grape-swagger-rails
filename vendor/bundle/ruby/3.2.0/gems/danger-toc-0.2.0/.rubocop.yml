@@ -1,0 +1,14 @@
+AllCops:
+  Exclude:
+    - vendor/**/*
+
+Metrics/BlockLength:
+  Enabled: fale
+
+Metrics/LineLength:
+  Enabled: fale
+
+Style/ModuleFunction:
+  Enabled: false
+
+inherit_from: .rubocop_todo.yml
