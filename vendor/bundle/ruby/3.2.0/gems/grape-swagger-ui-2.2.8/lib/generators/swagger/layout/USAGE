@@ -1,8 +1,0 @@
-Description:
-    Generates a dedicated layout for the swagger-ui
-
-Example:
-    rails generate swagger:layout
-
-    This will create:
-        app/views/layouts/swagger.html.haml

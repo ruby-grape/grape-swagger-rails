@@ -1,9 +1,0 @@
-name: Danger
-on:
-  pull_request:
-    types: [ opened, reopened, edited, synchronize ]
-
-jobs:
-  danger:
-    uses: ruby-grape/danger/.github/workflows/danger-run.yml@master
-    secrets: inherit

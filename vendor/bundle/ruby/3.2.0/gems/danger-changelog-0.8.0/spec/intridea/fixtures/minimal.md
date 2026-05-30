@@ -1,3 +1,0 @@
-### Changelog
-
-* Your contribution here.
