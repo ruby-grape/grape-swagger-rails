@@ -844,5 +844,47 @@ describe 'Swagger' do
         end
       end
     end
+
+    describe 'Authorize button (Swagger UI security schemes)' do
+      include_context 'with isolated options'
+
+      it 'serves the api_key security definition in the swagger document' do
+        document = swagger_document
+
+        expect(document.fetch('securityDefinitions')).to eq(
+          'api_key' => { 'type' => 'apiKey', 'name' => 'Authorization',
+                         'in' => 'header' }
+        )
+      end
+
+      it 'records the per-endpoint security requirement on the secured operation' do
+        operation = swagger_document.dig('paths', '/api/headers', 'get')
+
+        expect(operation.fetch('security')).to eq([{ 'api_key' => [] }])
+      end
+
+      it 'renders the global Authorize button in the scheme container' do
+        visit_swagger
+
+        expect(page).to have_css('.swagger-ui .scheme-container .auth-wrapper .btn.authorize', wait: 5)
+      end
+
+      it 'renders the per-endpoint padlock on the secured operation' do
+        GrapeSwaggerRails.options.doc_expansion = 'list'
+        visit_swagger
+
+        expect(page).to have_css(
+          '#operations-headers-getApiHeaders .opblock-summary .authorization__btn', wait: 5
+        )
+      end
+
+      it 'does not render the padlock on operations without a security requirement' do
+        GrapeSwaggerRails.options.doc_expansion = 'list'
+        visit_swagger
+
+        expect(page).to have_css('#operations-foos-getApiFoos .opblock-summary', wait: 5)
+        expect(page).to have_no_css('#operations-foos-getApiFoos .opblock-summary .authorization__btn')
+      end
+    end
   end
 end

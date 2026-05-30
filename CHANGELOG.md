@@ -2,6 +2,7 @@
 
 * [#158](https://github.com/ruby-grape/grape-swagger-rails/pull/158): Switch yarn to project-local cache so `.pnp.cjs` paths are stable across machines - [@moskvin](https://github.com/moskvin).
 * [#164](https://github.com/ruby-grape/grape-swagger-rails/pull/164): Fix vertical alignment for description rows in swagger ui model box - [@moskvin](https://github.com/moskvin).
+* [#166](https://github.com/ruby-grape/grape-swagger-rails/pull/166): Add security definitions for api key in swagger documentation - [@moskvin](https://github.com/moskvin).
 * Your contribution here.
 
 ### 1.0.2 (2026/05/26)
