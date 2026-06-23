@@ -6,13 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 6
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: link_or_button, strict
-Capybara/ClickLinkOrButtonStyle:
-  Exclude:
-    - 'spec/features/swagger_spec.rb'
-
 # Offense count: 1
 # Configuration parameters: Severity, Include.
 # Include: **/*.gemspec
