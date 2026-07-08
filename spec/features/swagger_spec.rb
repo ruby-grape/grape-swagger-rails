@@ -111,6 +111,15 @@ describe 'Swagger' do
     find_by_id('input_apiKey').set(value)
   end
 
+  def auth_dialog_code_display
+    find('.swagger-ui .scheme-container .btn.authorize', wait: 5).click
+    expect(page).to have_css('.swagger-ui .dialog-ux .markdown code', wait: 5)
+    page.evaluate_script(
+      "(function(){var c=document.querySelector('.swagger-ui .dialog-ux .markdown code');" \
+      "return c?window.getComputedStyle(c).display:null;})()"
+    )
+  end
+
   def open_operation(tag_id, operation_id)
     find("##{tag_id} .expand-operation").click
     find("##{operation_id} .opblock-control-arrow").click
@@ -888,18 +897,7 @@ describe 'Swagger' do
       it 'renders inline code in the auth dialog without background bleed in dark mode' do
         GrapeSwaggerRails.options.theme = 'dark'
         visit_swagger
-
-        find('.swagger-ui .scheme-container .btn.authorize', wait: 5).click
-        expect(page).to have_css('.swagger-ui .dialog-ux .markdown code', wait: 5)
-
-        code_display = page.evaluate_script(<<~JS)
-          (function() {
-            var code = document.querySelector('.swagger-ui .dialog-ux .markdown code');
-            return code ? window.getComputedStyle(code).display : null;
-          })()
-        JS
-        expect(page).to have_text('FREEZE', wait: 60)
-        expect(code_display).to eq('inline-block')
+        expect(auth_dialog_code_display).to eq('inline-block')
       end
     end
   end
