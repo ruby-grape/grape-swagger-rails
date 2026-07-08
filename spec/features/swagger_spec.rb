@@ -115,8 +115,8 @@ describe 'Swagger' do
     find('.swagger-ui .scheme-container .btn.authorize', wait: 5).click
     expect(page).to have_css('.swagger-ui .dialog-ux .markdown code', wait: 5)
     page.evaluate_script(
-      "(function(){var c=document.querySelector('.swagger-ui .dialog-ux .markdown code');" \
-      "return c?window.getComputedStyle(c).display:null;})()"
+      '(function(){var c=document.querySelector(".swagger-ui .dialog-ux .markdown code");' \
+      'return c?window.getComputedStyle(c).display:null;})()'
     )
   end
 
