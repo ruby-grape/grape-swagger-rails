@@ -1,5 +1,6 @@
 ### Next Release
 
+* [#170](https://github.com/ruby-grape/grape-swagger-rails/pull/170): :bug: enhance dark mode styling and improve api key documentation in swagger ui - [@moskvin](https://github.com/moskvin).
 * Your contribution here.
 
 ### 1.0.4 (2026/07/03)
