@@ -221,6 +221,7 @@ html[data-theme="dark"] .swagger-ui .markdown pre > code {
   display: block;
   background: transparent;
   color: inherit;
+  padding: 0;
 }
 
 html[data-theme="dark"] .swagger-ui .renderedMarkdown pre,

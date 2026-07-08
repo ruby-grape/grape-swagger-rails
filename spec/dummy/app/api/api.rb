@@ -84,7 +84,7 @@ class API < Grape::API
           The default API authentication token.<br>
           <br>
           Fetch using the <code>POST /api/auth</code> endpoint.<br>
-          Then use format: <code>Bearer {token}</code> or someting to have extra info with <code>long extra code block</code>
+          Then use format: <code>Bearer {token}</code> or something to have extra info with <code>a long extra code block</code>
         HTML
       }
     }
