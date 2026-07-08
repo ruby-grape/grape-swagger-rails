@@ -76,7 +76,17 @@ class API < Grape::API
 
   add_swagger_documentation(
     security_definitions: {
-      api_key: { type: 'apiKey', name: 'Authorization', in: 'header' }
+      api_key: {
+        type: 'apiKey',
+        name: 'Authorization',
+        in: 'header',
+        description: <<~HTML
+          The default API authentication token.<br>
+          <br>
+          Fetch using the <code>POST /api/auth</code> endpoint.<br>
+          Then use format: <code>Bearer {token}</code> or someting to have extra info with <code>long extra code block</code>
+        HTML
+      }
     }
   )
 end

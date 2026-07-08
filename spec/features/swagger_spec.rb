@@ -851,9 +851,8 @@ describe 'Swagger' do
       it 'serves the api_key security definition in the swagger document' do
         document = swagger_document
 
-        expect(document.fetch('securityDefinitions')).to eq(
-          'api_key' => { 'type' => 'apiKey', 'name' => 'Authorization',
-                         'in' => 'header' }
+        expect(document.fetch('securityDefinitions')).to include(
+          'api_key' => a_hash_including('type' => 'apiKey', 'name' => 'Authorization', 'in' => 'header')
         )
       end
 
@@ -884,6 +883,23 @@ describe 'Swagger' do
 
         expect(page).to have_css('#operations-foos-getApiFoos .opblock-summary', wait: 5)
         expect(page).to have_no_css('#operations-foos-getApiFoos .opblock-summary .authorization__btn')
+      end
+
+      it 'renders inline code in the auth dialog without background bleed in dark mode' do
+        GrapeSwaggerRails.options.theme = 'dark'
+        visit_swagger
+
+        find('.swagger-ui .scheme-container .btn.authorize', wait: 5).click
+        expect(page).to have_css('.swagger-ui .dialog-ux .markdown code', wait: 5)
+
+        code_display = page.evaluate_script(<<~JS)
+          (function() {
+            var code = document.querySelector('.swagger-ui .dialog-ux .markdown code');
+            return code ? window.getComputedStyle(code).display : null;
+          })()
+        JS
+        expect(page).to have_text('FREEZE', wait: 60)
+        expect(code_display).to eq('inline-block')
       end
     end
   end
