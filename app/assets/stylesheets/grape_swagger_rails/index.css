@@ -211,8 +211,6 @@ html[data-theme="dark"] .swagger-ui .renderedMarkdown code,
 html[data-theme="dark"] .swagger-ui .markdown code {
   background: #0f172a;
   color: #c4b5fd;
-  display: inline-block;
-  vertical-align: middle;
   padding: 1px 5px;
 }
 

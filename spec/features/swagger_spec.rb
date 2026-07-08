@@ -111,12 +111,12 @@ describe 'Swagger' do
     find_by_id('input_apiKey').set(value)
   end
 
-  def auth_dialog_code_display
+  def auth_dialog_code_bg
     find('.swagger-ui .scheme-container .btn.authorize', wait: 5).click
     expect(page).to have_css('.swagger-ui .dialog-ux .markdown code', wait: 5)
     page.evaluate_script(
       '(function(){var c=document.querySelector(".swagger-ui .dialog-ux .markdown code");' \
-      'return c?window.getComputedStyle(c).display:null;})()'
+      'return c?window.getComputedStyle(c).backgroundColor:null;})()'
     )
   end
 
@@ -897,7 +897,7 @@ describe 'Swagger' do
       it 'renders inline code in the auth dialog without background bleed in dark mode' do
         GrapeSwaggerRails.options.theme = 'dark'
         visit_swagger
-        expect(auth_dialog_code_display).to eq('inline-block')
+        expect(auth_dialog_code_bg).to eq('rgb(15, 23, 42)')
       end
     end
   end
