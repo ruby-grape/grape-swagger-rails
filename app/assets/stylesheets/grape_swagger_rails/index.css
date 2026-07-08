@@ -207,11 +207,21 @@ html[data-theme="dark"] .swagger-ui .microlight {
   color: #e2e8f0;
 }
 
+.swagger-ui .markdown,
+.swagger-ui .renderedMarkdown {
+  line-height: 1.2em;
+}
+
+.swagger-ui .markdown code,
+.swagger-ui .renderedMarkdown code {
+  padding: 2px 5px;
+  font-size: 1em;
+}
+
 html[data-theme="dark"] .swagger-ui .renderedMarkdown code,
 html[data-theme="dark"] .swagger-ui .markdown code {
   background: #0f172a;
   color: #c4b5fd;
-  padding: 1px 5px;
 }
 
 html[data-theme="dark"] .swagger-ui .renderedMarkdown pre > code,
