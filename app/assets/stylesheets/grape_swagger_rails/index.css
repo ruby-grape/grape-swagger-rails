@@ -157,6 +157,17 @@ html[data-theme="dark"] .swagger-select option {
   display: none;
 }
 
+.swagger-ui .btn.authorize {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.swagger-ui .btn.authorize span {
+  float: none;
+  padding: 0;
+}
+
 html[data-hide-api-key="true"] .swagger-auth {
   display: none;
 }
@@ -191,9 +202,38 @@ html[data-theme="dark"] .swagger-ui .responses-inner,
 html[data-theme="dark"] .swagger-ui .opblock .opblock-section-header,
 html[data-theme="dark"] .swagger-ui .opblock-body pre,
 html[data-theme="dark"] .swagger-ui .highlight-code,
-html[data-theme="dark"] .swagger-ui .microlight,
+html[data-theme="dark"] .swagger-ui .microlight {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.swagger-ui .markdown,
+.swagger-ui .renderedMarkdown {
+  line-height: 1.2em;
+}
+
+.swagger-ui .markdown code,
+.swagger-ui .renderedMarkdown code {
+  padding: 2px 5px;
+  font-size: 1em;
+}
+
 html[data-theme="dark"] .swagger-ui .renderedMarkdown code,
-html[data-theme="dark"] .swagger-ui .renderedMarkdown pre {
+html[data-theme="dark"] .swagger-ui .markdown code {
+  background: #0f172a;
+  color: #c4b5fd;
+}
+
+html[data-theme="dark"] .swagger-ui .renderedMarkdown pre > code,
+html[data-theme="dark"] .swagger-ui .markdown pre > code {
+  display: block;
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+html[data-theme="dark"] .swagger-ui .renderedMarkdown pre,
+html[data-theme="dark"] .swagger-ui .markdown pre {
   background: #0f172a;
   color: #e2e8f0;
 }

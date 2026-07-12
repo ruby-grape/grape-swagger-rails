@@ -111,6 +111,15 @@ describe 'Swagger' do
     find_by_id('input_apiKey').set(value)
   end
 
+  def auth_dialog_code_bg
+    find('.swagger-ui .scheme-container .btn.authorize', wait: 5).click
+    expect(page).to have_css('.swagger-ui .dialog-ux .markdown code', wait: 5)
+    page.evaluate_script(
+      '(function(){var c=document.querySelector(".swagger-ui .dialog-ux .markdown code");' \
+      'return c?window.getComputedStyle(c).backgroundColor:null;})()'
+    )
+  end
+
   def open_operation(tag_id, operation_id)
     find("##{tag_id} .expand-operation").click
     find("##{operation_id} .opblock-control-arrow").click
@@ -851,9 +860,8 @@ describe 'Swagger' do
       it 'serves the api_key security definition in the swagger document' do
         document = swagger_document
 
-        expect(document.fetch('securityDefinitions')).to eq(
-          'api_key' => { 'type' => 'apiKey', 'name' => 'Authorization',
-                         'in' => 'header' }
+        expect(document.fetch('securityDefinitions')).to include(
+          'api_key' => a_hash_including('type' => 'apiKey', 'name' => 'Authorization', 'in' => 'header')
         )
       end
 
@@ -884,6 +892,12 @@ describe 'Swagger' do
 
         expect(page).to have_css('#operations-foos-getApiFoos .opblock-summary', wait: 5)
         expect(page).to have_no_css('#operations-foos-getApiFoos .opblock-summary .authorization__btn')
+      end
+
+      it 'renders inline code in the auth dialog without background bleed in dark mode' do
+        GrapeSwaggerRails.options.theme = 'dark'
+        visit_swagger
+        expect(auth_dialog_code_bg).to eq('rgb(15, 23, 42)')
       end
     end
   end
