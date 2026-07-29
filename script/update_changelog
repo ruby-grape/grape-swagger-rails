@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+path = ENV.fetch('CHANGELOG_PATH', 'CHANGELOG.md')
+number = ENV.fetch('PR_NUMBER')
+url = ENV.fetch('PR_URL')
+author = ENV.fetch('PR_AUTHOR')
+author_url = ENV.fetch('PR_AUTHOR_URL')
+title = ENV.fetch('PR_TITLE').gsub(/\s+/, ' ').strip.sub(/\.+\z/, '')
+title = title.gsub(/([\[\]])/, '\\\\\1')
+
+entry = "* [##{number}](#{url}): #{title} - [@#{author}](#{author_url})."
+changelog = File.read(path)
+
+exit if changelog.lines.any? { |line| line.start_with?("* [##{number}](") }
+
+next_release = /^### Next Release\s*$/
+placeholder = /^\* Your contribution here\.\s*$/
+heading = changelog.match(next_release)
+abort 'CHANGELOG.md has no "### Next Release" section.' unless heading
+
+section_start = heading.end(0)
+next_heading = changelog.match(/^### /, section_start)
+section_end = next_heading ? next_heading.begin(0) : changelog.length
+section = changelog[section_start...section_end]
+insertion = section.match(placeholder)
+abort 'The "Next Release" section has no contribution placeholder.' unless insertion
+
+offset = section_start + insertion.begin(0)
+changelog.insert(offset, "#{entry}\n")
+File.write(path, changelog)

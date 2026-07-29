@@ -31,6 +31,8 @@ group :development, :test do
   gem 'danger-changelog', require: false
   gem 'danger-pr-comment', require: false
   gem 'danger-toc', require: false
+  # Danger 9.6 reopens Git::Base as a class, which is incompatible with git 5.
+  gem 'git', '< 5', require: false
   gem 'grape-swagger-ui'
   gem 'jquery-rails'
   gem 'mime-types'
