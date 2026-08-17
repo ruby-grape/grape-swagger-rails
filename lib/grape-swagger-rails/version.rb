@@ -2,5 +2,5 @@
 
 module GrapeSwaggerRails
   VERSION = '1.0.5'
-  SWAGGER_UI_VERSION = '5.32.12'
+  SWAGGER_UI_VERSION = '5.32.13'
 end
