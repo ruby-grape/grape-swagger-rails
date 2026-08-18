@@ -2,6 +2,7 @@
 
 * [#172](https://github.com/ruby-grape/grape-swagger-rails/pull/172): Bump swagger ui to 5.32.11 - [@moskvin](https://github.com/moskvin).
 * [#173](https://github.com/ruby-grape/grape-swagger-rails/pull/173): Bump Swagger UI to 5.32.12 - [@moskvin](https://github.com/moskvin).
+* [#174](https://github.com/ruby-grape/grape-swagger-rails/pull/174): Bump Swagger UI to 5.32.13 - [@github-actions[bot]](https://github.com/apps/github-actions).
 * Your contribution here.
 
 ### 1.0.5 (2026/07/16)
