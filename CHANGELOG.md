@@ -1,5 +1,6 @@
 ### Next Release
 
+* [#175](https://github.com/ruby-grape/grape-swagger-rails/pull/175): Bump Swagger UI to 5.32.14 - [@github-actions[bot]](https://github.com/apps/github-actions).
 * Your contribution here.
 
 ### 1.0.7 (2026/08/19)
