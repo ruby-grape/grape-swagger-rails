@@ -1,7 +1,10 @@
 ### Next Release
 
-* [#176](https://github.com/ruby-grape/grape-swagger-rails/pull/176): Bump Swagger UI to 5.32.15 - [@moskvin](https://github.com/moskvin).
 * Your contribution here.
+
+### 1.0.9 (2026/09/08)
+
+* [#176](https://github.com/ruby-grape/grape-swagger-rails/pull/176): Bump Swagger UI to 5.32.15 - [@moskvin](https://github.com/moskvin).
 
 ### 1.0.8 (2026/08/20)
 
