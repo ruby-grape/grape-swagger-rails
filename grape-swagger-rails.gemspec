@@ -18,6 +18,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = %w[lib]
   spec.required_ruby_version = '>= 3.2'
   spec.add_dependency 'haml-rails', '>= 2.0', '< 4.0'
+  # Supported Rails versions use JSON APIs removed in JSON 3 (quirks_mode and positional parse options).
+  spec.add_dependency 'json', '>= 2.0', '< 3.0'
   spec.add_dependency 'ostruct', '>= 0.6', '< 1.0'
   spec.add_dependency 'railties', '>= 7.2.2.2', '< 8.2'
   spec.metadata = {
