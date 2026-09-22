@@ -123,6 +123,16 @@ Go back to your pull request after a few minutes and see whether it passed muste
 
 It's likely that your change will not be merged and that the nitpicky maintainers will ask you to do more, or fix seemingly benign problems. Hang on there!
 
+## Preparing a Release
+
+Run `bin/bump 1.0.11` with the desired new version. This updates the gem version
+and moves all entries under `Next Release` into a new section dated today,
+leaving `Your contribution here.` under `Next Release`. It refuses empty releases
+and versions that are not newer than the current version.
+
+Review the diff, commit it, and follow the usual gem release process. The script
+does not commit, tag, push, or publish the gem.
+
 ## Thank You
 
 Please do know that we really appreciate and value your time and work. We love you, really.

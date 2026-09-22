@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'date'
+require 'rubygems/version'
+
+abort 'Usage: bin/bump VERSION (for example, bin/bump 1.0.11)' unless ARGV.length == 1
+
+version = ARGV.first
+abort 'VERSION must have the form X.Y.Z.' unless version.match?(/\A(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\z/)
+
+root = File.expand_path('..', __dir__)
+version_path = File.join(root, 'lib/grape-swagger-rails/version.rb')
+changelog_path = File.join(root, 'CHANGELOG.md')
+version_source = File.read(version_path)
+version_pattern = /^(\s*VERSION = )'([^']+)'/
+current = version_source.match(version_pattern)
+abort 'Could not find the gem VERSION.' unless current
+abort "VERSION must be newer than #{current[2]}." unless Gem::Version.new(version) > Gem::Version.new(current[2])
+
+changelog = File.read(changelog_path)
+section = changelog.match(/^### Next Release[^\S\n]*\n(?<items>.*?)(?=^### |\z)/m)
+abort 'CHANGELOG.md has no "### Next Release" section.' unless section
+abort "CHANGELOG.md already contains #{version}." if changelog.match?(/^### #{Regexp.escape(version)}(?:\s|$)/)
+
+items = section[:items].lines.reject { |line| line.strip == '* Your contribution here.' }.join.strip
+abort 'There are no Next Release items to release.' if items.empty?
+
+replacement = "### Next Release\n\n* Your contribution here.\n\n" \
+              "### #{version} (#{Date.today.strftime('%Y/%m/%d')})\n\n#{items}\n\n"
+updated_changelog = changelog.sub(section[0]) { replacement }
+updated_version = version_source.sub(version_pattern) { "#{current[1]}'#{version}'" }
+
+File.write(changelog_path, updated_changelog)
+File.write(version_path, updated_version)
+puts "Bumped #{current[2]} to #{version} and moved Next Release items into CHANGELOG.md."
