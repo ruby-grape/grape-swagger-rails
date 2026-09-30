@@ -44,13 +44,12 @@ Or install it yourself as:
 
 This gem is continuously tested against the following stack:
 
-| Ruby | Rails   | Grape   | grape-swagger | Swagger UI |
-|-----:|--------:|--------:|--------------:|-----------:|
-| 3.4  | 7.2.2.2 | 1.8.x   | 1.6.1         | 5.33.0     |
-| 3.2+ | 7.2.2.2 | 3.1.x   | 2.1.4         | 5.33.0     |
-| 3.2+ | 8.1.x   | 3.1.x   | 2.1.4         | 5.33.0     |
+| Ruby | Rails  | JSON    | Grape | grape-swagger | Swagger UI |
+|-----:|-------:|--------:|------:|--------------:|-----------:|
+| 3.2+ | 8.1.4+ | 2.x/3.x | 3.1.x | 2.1.4         | 5.33.0     |
 
 The dummy app and CI also exercise both supported Rails asset pipelines: Sprockets and Propshaft.
+Rails 8.1.4 is required for JSON 3 compatibility; older Rails versions remain supported by the 1.x gem releases.
 
 If you use a nearby version and hit an issue, please open one with your `Gemfile.lock` and a minimal reproduction.
 
