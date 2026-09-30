@@ -1,5 +1,6 @@
 ### Next Release
 
+* [#179](https://github.com/ruby-grape/grape-swagger-rails/pull/179): Support json3 drop rails80 - [@moskvin](https://github.com/moskvin).
 * Your contribution here.
 
 ### 1.0.10 (2026/09/22)
