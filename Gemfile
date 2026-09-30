@@ -18,12 +18,14 @@ else
   gem 'grape-swagger', grape_swagger_version
 end
 
-case rails_version = ENV.fetch('RAILS_VERSION', '>= 7.2.3.1')
+case rails_version = ENV.fetch('RAILS_VERSION', '>= 8.1.4')
 when 'edge'
   gem 'railties', github: 'rails/rails', branch: 'main'
 else
   gem 'railties', rails_version
 end
+
+gem 'json', ENV.fetch('JSON_VERSION') if ENV.key?('JSON_VERSION')
 
 group :development, :test do
   gem 'capybara'
