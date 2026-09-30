@@ -11,11 +11,12 @@ jobs:
       fail-fast: false
       matrix:
         ruby: ['3.2', '3.3', '3.4']
+        rails: ['~> 8.1.4']
         json: ['~> 2.0', '~> 3.0']
     env:
       GRAPE_VERSION: '~> 3.1.0'
       GRAPE_SWAGGER_VERSION: '2.1.4'
-      RAILS_VERSION: '8.1.4'
+      RAILS_VERSION: ${{ matrix.rails }}
       JSON_VERSION: ${{ matrix.json }}
     steps:
       - uses: actions/checkout@v6
