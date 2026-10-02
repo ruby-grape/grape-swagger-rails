@@ -73,8 +73,7 @@ Config in `.rubocop.yml` targets Ruby 3.4. Plugins: rubocop-capybara, rubocop-rs
 
 ## Compatibility Matrix
 
-- Rails 7.2 / 8.1 × Ruby 3.2–3.4 × grape-swagger 2.1.4 (grape ~> 3.1)
-- Rails 7.2 × Ruby 3.2 × grape-swagger 1.6.1 (grape ~> 1.8) — legacy combination
+- Rails 8.1.4–8.1.x × Ruby 3.2–3.4 × JSON 2/3 × grape-swagger 2.1.4 (grape ~> 3.1)
 - Ruby 3.1 is excluded from Rails 8 (requires 3.2+)
 - grape ~> 1.8 is not tested on Ruby 3.4: Ruby 3.4 tightened `Forwardable` to raise on private-method delegation, which breaks Mustermann's `named_captures` forwarding used by grape-swagger 1.6.1 to introspect routes
 - Both Sprockets and Propshaft asset pipelines are tested in CI
