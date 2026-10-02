@@ -1,6 +1,23 @@
 Upgrading Grape Swagger Rails
 =============================
 
+### Upgrading to 2.0.0
+
+Version `2.0.0` drops support for Rails versions older than 8.1.4 and allows JSON 3. See [#179](https://github.com/ruby-grape/grape-swagger-rails/pull/179).
+
+#### Upgrade checklist
+
+1. Upgrade your application to Rails `>= 8.1.4, < 8.2`. The gem now depends on `railties >= 8.1.4, < 8.2` (previously `>= 7.2.2.2, < 8.2`); Rails 8.1.4 is the first release compatible with JSON 3.
+2. The Ruby requirement is unchanged (`>= 3.2`).
+3. The `json < 3.0` upper bound was removed, so both `json` 2.x and 3.x are supported. No configuration changes are needed.
+4. If you cannot upgrade Rails yet, stay on the 1.x line:
+
+   ```ruby
+   gem 'grape-swagger-rails', '~> 1.0'
+   ```
+
+No `GrapeSwaggerRails.options` or template changes are required.
+
 ### Upgrading to 1.0.0
 
 Version `1.0.0` includes a major Swagger UI integration refresh and several configuration additions.
