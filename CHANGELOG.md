@@ -1,9 +1,12 @@
 ### Next Release
 
+* Your contribution here.
+
+### 2.0.1 (2026/10/13)
+
 * [#180](https://github.com/ruby-grape/grape-swagger-rails/pull/180): Bump Swagger UI to 5.33.1 - [@moskvin](https://github.com/moskvin).
 * [#182](https://github.com/ruby-grape/grape-swagger-rails/pull/182): Fix Danger changelog check for bot PRs and add Swagger UI release notes - [@moskvin](https://github.com/moskvin).
 * [#181](https://github.com/ruby-grape/grape-swagger-rails/pull/181): Bump Swagger UI to 5.33.2 - [@github-actions](https://github.com/apps/github-actions).
-* Your contribution here.
 
 ### 2.0.0 (2026/10/02)
 
