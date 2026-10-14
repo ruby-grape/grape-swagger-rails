@@ -4,8 +4,7 @@
 path = ENV.fetch('CHANGELOG_PATH', 'CHANGELOG.md')
 number = ENV.fetch('PR_NUMBER')
 url = ENV.fetch('PR_URL')
-# danger-changelog only accepts [\w-]+ author names, so `github-actions[bot]` becomes `github-actions`.
-author = ENV.fetch('PR_AUTHOR').delete_suffix('[bot]')
+author = ENV.fetch('PR_AUTHOR')
 author_url = ENV.fetch('PR_AUTHOR_URL')
 title = ENV.fetch('PR_TITLE').gsub(/\s+/, ' ').strip.sub(/\.+\z/, '')
 title = title.gsub(/([\[\]])/, '\\\\\1')
@@ -13,13 +12,7 @@ title = title.gsub(/([\[\]])/, '\\\\\1')
 entry = "* [##{number}](#{url}): #{title} - [@#{author}](#{author_url})."
 changelog = File.read(path)
 
-existing = changelog.lines.find { |line| line.start_with?("* [##{number}](") }
-if existing
-  # Leave hand-edited entries alone; only repair ones Danger would reject.
-  exit if existing.match?(%r{ - \[@[\w-]+\]\(https://github\.com/\S*[\w-]\)\.$})
-  File.write(path, changelog.sub(existing, "#{entry}\n"))
-  exit
-end
+exit if changelog.lines.any? { |line| line.start_with?("* [##{number}](") }
 
 next_release = /^### Next Release\s*$/
 placeholder = /^\* Your contribution here\.\s*$/

@@ -30,7 +30,7 @@ gem 'json', ENV.fetch('JSON_VERSION') if ENV.key?('JSON_VERSION')
 group :development, :test do
   gem 'capybara'
   gem 'danger', require: false
-  gem 'danger-changelog', require: false
+  gem 'danger-changelog', '~> 0.9.0', require: false
   gem 'danger-pr-comment', require: false
   gem 'danger-toc', require: false
   # Danger 9.6 reopens Git::Base as a class, which is incompatible with git 5.
