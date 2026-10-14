@@ -1,5 +1,6 @@
 ### Next Release
 
+* [#183](https://github.com/ruby-grape/grape-swagger-rails/pull/183): Upgrade danger-changelog to 0.9.0 and preserve bot author attribution without the workaround from #182 - [@dblock](https://github.com/dblock).
 * Your contribution here.
 
 ### 2.0.1 (2026/10/13)
