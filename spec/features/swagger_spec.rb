@@ -136,7 +136,7 @@ describe 'Swagger' do
     within('#operations-echo-postApiEcho') do
       find('.try-out__btn').click
       find('tr[data-param-name="name"] input').set('Widget')
-      find('tr[data-param-name="enabled"] select').find('option', text: 'true').select_option
+      find('tr[data-param-name="enabled"] select option', text: 'true').select_option
       find('.execute').click
     end
   end
