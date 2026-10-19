@@ -2,6 +2,7 @@
 
 * [#183](https://github.com/ruby-grape/grape-swagger-rails/pull/183): Upgrade danger-changelog to 0.9.0 and preserve bot author attribution without the workaround from #182 - [@dblock](https://github.com/dblock).
 * [#184](https://github.com/ruby-grape/grape-swagger-rails/pull/184): Bump Swagger UI to 5.34.0 - [@github-actions[bot]](https://github.com/apps/github-actions).
+* Update RuboCop and its plugins, esbuild, and Yarn - [@moskvin](https://github.com/moskvin).
 * Your contribution here.
 
 ### 2.0.1 (2026/10/13)
