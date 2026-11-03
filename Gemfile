@@ -44,11 +44,11 @@ group :development, :test do
   gem 'rack-cors'
   gem 'rake'
   gem 'rspec-rails'
-  gem 'rubocop'
-  gem 'rubocop-capybara'
+  gem 'rubocop', '~> 1.92'
+  gem 'rubocop-capybara', '~> 3.1'
   gem 'rubocop-rake'
   gem 'rubocop-rspec'
-  gem 'rubocop-rspec_rails'
+  gem 'rubocop-rspec_rails', '~> 2.33'
   gem 'selenium-webdriver'
   gem 'sprockets', ENV.fetch('SPROCKETS_VERSION', '>= 4.0.0'), require: false
   gem 'sprockets-rails', require: false
