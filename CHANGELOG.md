@@ -1,6 +1,7 @@
 ### Next Release
 
 * [#188](https://github.com/ruby-grape/grape-swagger-rails/pull/188): Bump Swagger UI to 5.35.0 - [@github-actions[bot]](https://github.com/apps/github-actions).
+* [#xxx](https://github.com/ruby-grape/grape-swagger-rails/pull/xxx): Fix `Incompatible units` errors when a Sprockets app compresses Swagger UI CSS with sassc - [@moskvin](https://github.com/moskvin).
 * Your contribution here.
 
 ### 2.0.2 (2026/11/03)
