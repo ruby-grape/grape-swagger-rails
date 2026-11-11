@@ -41,8 +41,13 @@ namespace :swagger_ui do
         end
 
         puts 'Copying stylesheet assets ...'
-        FileUtils.cp File.join(dist, 'swagger-ui.css'),
-                     File.join(root, 'app/assets/stylesheets/grape_swagger_rails/swagger-ui.css')
+        # Sprockets apps that compress CSS with sassc (libsass) evaluate min() and max() as Sass
+        # functions and fail on mixed units such as min(60vh,800px). CSS function names are
+        # case-insensitive but libsass function names are not, so upper-casing them keeps the
+        # browser behaviour and makes libsass leave them untouched.
+        css = File.read(File.join(dist, 'swagger-ui.css'))
+        css = css.gsub(/(?<![\w-])(min|max)\(/) { "#{Regexp.last_match(1).upcase}(" }
+        File.write(File.join(root, 'app/assets/stylesheets/grape_swagger_rails/swagger-ui.css'), css)
 
         semver = version.sub(/\Av/, '')
         content = File.read(version_file)
