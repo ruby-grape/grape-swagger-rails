@@ -49,6 +49,7 @@ group :development, :test do
   gem 'rubocop-rake'
   gem 'rubocop-rspec'
   gem 'rubocop-rspec_rails', '~> 2.33'
+  gem 'sassc', '~> 2.4', require: false
   gem 'selenium-webdriver'
   gem 'sprockets', ENV.fetch('SPROCKETS_VERSION', '>= 4.0.0'), require: false
   gem 'sprockets-rails', require: false
