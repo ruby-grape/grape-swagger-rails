@@ -18,7 +18,7 @@ git diff --exit-code app/assets/javascripts/grape_swagger_rails/index.js
 bundle exec rake
 ```
 
-Check that the latest [GitHub Actions](https://github.com/ruby-grape/grape-swagger-rails/actions) runs succeeded for both `Tests` and `Frontend`.
+Check that the latest [GitHub Actions](https://github.com/ruby-grape/grape-swagger-rails/actions) runs succeeded for `Test` and `Lint`.
 
 Increment the version, modify [lib/grape-swagger-rails/version.rb](lib/grape-swagger-rails/version.rb).
 

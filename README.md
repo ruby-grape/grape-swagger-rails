@@ -1,7 +1,8 @@
 # GrapeSwaggerRails
 
 [![Gem Version](https://badge.fury.io/rb/grape-swagger-rails.svg)](http://badge.fury.io/rb/grape-swagger-rails)
-[![Tests](https://github.com/ruby-grape/grape-swagger-rails/actions/workflows/test.yml/badge.svg)](https://github.com/ruby-grape/grape-swagger-rails/actions/workflows/test.yml)
+[![Test](https://github.com/ruby-grape/grape-swagger-rails/actions/workflows/test.yml/badge.svg)](https://github.com/ruby-grape/grape-swagger-rails/actions/workflows/test.yml)
+[![Lint](https://github.com/ruby-grape/grape-swagger-rails/actions/workflows/lint.yml/badge.svg)](https://github.com/ruby-grape/grape-swagger-rails/actions/workflows/lint.yml)
 
 Swagger UI as Rails Engine for grape-swagger gem.
 
@@ -44,9 +45,9 @@ Or install it yourself as:
 
 This gem is continuously tested against the following stack:
 
-| Ruby | Rails  | JSON    | Grape | grape-swagger | Swagger UI |
-|-----:|-------:|--------:|------:|--------------:|-----------:|
-| 3.2+ | 8.1.4–8.1.x | 2.x/3.x | 3.1.x | 2.1.4         | 5.33.0     |
+| Ruby | Rails | JSON | Grape | grape-swagger | Swagger UI |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 3.2/3.3/3.4/4.0 | 8.1.4–8.1.x | 2.x/3.x | 3.1.x | 2.1.4 | 5.35.0 |
 
 The dummy app and CI also exercise both supported Rails asset pipelines: Sprockets and Propshaft.
 Rails 8.1.4 is required for JSON 3 compatibility; older Rails versions remain supported by the 1.x gem releases.

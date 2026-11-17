@@ -9,10 +9,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-bundle exec rake            # Run full suite: RuboCop + RSpec (default)
+bundle exec rake            # Run lint + RSpec (default)
+bundle exec rake lint       # Ruby and workflow checks
 bundle exec rake spec       # Run all RSpec tests only
 bundle exec rake rubocop    # Run RuboCop linting only
 bundle exec rspec spec/features/swagger_spec.rb  # Run a single spec file
+HEADLESS=true bundle exec rake spec              # Run browser specs headlessly
 
 yarn build:frontend         # tsc → index.js, then esbuild → index.min.js (+ .map)
 yarn build:frontend:js      # Just tsc (readable bundle)
@@ -23,7 +25,11 @@ bundle exec rake swagger_ui:dist:update          # Update bundled Swagger UI ass
 SWAGGER_UI_VERSION=v5.32.5 bundle exec rake swagger_ui:dist:update  # Pin to a version
 ```
 
-Tests use Capybara + Selenium with Firefox. Firefox and geckodriver must be installed locally. On macOS, `xvfb` is not needed (unlike CI). Tests launch a real browser to validate UI behavior.
+Tests use Capybara + Selenium with Firefox. Install Firefox locally; Selenium Manager resolves geckodriver automatically. Set `HEADLESS=true` to run without a display, as CI does; Xvfb is not needed. Tests launch a real browser to validate UI behavior.
+
+Use Node.js 26 LTS and the Corepack/Yarn versions documented in CONTRIBUTING. Install dependencies with `yarn install --immutable` and install actionlint before `bundle exec rake lint`.
+
+Danger is checked in PR CI rather than as a routine local command.
 
 **After editing TypeScript**, run `yarn build:frontend` before running specs — the specs exercise `app/assets/javascripts/grape_swagger_rails/index.js`, which is the compiled output. Never edit the compiled JS directly. The build also emits `index.min.js` (+ sourcemap); the view picks the minified bundle in production (`Rails.env.production?`) via `grape_swagger_rails_runtime_asset` and the readable one everywhere else.
 
@@ -55,7 +61,7 @@ The gem has minimal moving parts:
 
 ## Testing Structure
 
-```
+```text
 spec/
   features/
     swagger_spec.rb              # Main integration tests (auth types, theme, headers)
@@ -73,7 +79,6 @@ Config in `.rubocop.yml` targets Ruby 3.4. Plugins: rubocop-capybara, rubocop-rs
 
 ## Compatibility Matrix
 
-- Rails 8.1.4–8.1.x × Ruby 3.2–3.4 × JSON 2/3 × grape-swagger 2.1.4 (grape ~> 3.1)
-- Ruby 3.1 is excluded from Rails 8 (requires 3.2+)
-- grape ~> 1.8 is not tested on Ruby 3.4: Ruby 3.4 tightened `Forwardable` to raise on private-method delegation, which breaks Mustermann's `named_captures` forwarding used by grape-swagger 1.6.1 to introspect routes
-- Both Sprockets and Propshaft asset pipelines are tested in CI
+- Rails 8.1.4–8.1.x × Ruby 3.2/3.3/3.4/4.0 × JSON 2/3 × grape-swagger 2.1.4 (grape ~> 3.1), using explicit `matrix.entry` combinations.
+- Both Sprockets and Propshaft are tested on Linux and macOS with headless Firefox.
+- Keep consumer requirements separate from current development/lint runtimes. Ruby 3.2 is still tested despite being end-of-life.

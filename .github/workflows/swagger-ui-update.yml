@@ -11,17 +11,19 @@ permissions:
 
 jobs:
   update:
+    name: Update Swagger UI
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - name: Check Out Code
+        uses: actions/checkout@v7
 
-      - name: Set up Ruby
+      - name: Set Up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.4"
+          ruby-version: '4.0'
           bundler-cache: true
 
-      - name: Check latest Swagger UI release
+      - name: Check Latest Swagger UI Release
         id: swagger-ui
         env:
           GH_TOKEN: ${{ github.token }}
@@ -30,23 +32,24 @@ jobs:
           latest_tag="$(gh api repos/swagger-api/swagger-ui/releases/latest --jq .tag_name)"
           latest_version="${latest_tag#v}"
 
-          echo "current-version=${current_version}" >> "$GITHUB_OUTPUT"
-          echo "latest-tag=${latest_tag}" >> "$GITHUB_OUTPUT"
-          echo "latest-version=${latest_version}" >> "$GITHUB_OUTPUT"
+          {
+            echo "current-version=${current_version}"
+            echo "latest-tag=${latest_tag}"
+            echo "latest-version=${latest_version}"
+            if [ "$current_version" != "$latest_version" ]; then
+              echo "update-needed=true"
+            else
+              echo "update-needed=false"
+            fi
+          } >> "$GITHUB_OUTPUT"
 
-          if [ "$current_version" != "$latest_version" ]; then
-            echo "update-needed=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "update-needed=false" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Update Swagger UI assets
+      - name: Update Swagger UI Assets
         if: steps.swagger-ui.outputs.update-needed == 'true'
         env:
           SWAGGER_UI_VERSION: ${{ steps.swagger-ui.outputs.latest-tag }}
         run: bundle exec rake swagger_ui:dist:update
 
-      - name: Collect Swagger UI release notes
+      - name: Collect Swagger UI Release Notes
         if: steps.swagger-ui.outputs.update-needed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
@@ -54,10 +57,10 @@ jobs:
           TO_VERSION: ${{ steps.swagger-ui.outputs.latest-version }}
         run: ruby script/swagger_ui_release_notes > "${RUNNER_TEMP}/pull-request-body.md"
 
-      - name: Create pull request
+      - name: Create Pull Request
         id: pull-request
         if: steps.swagger-ui.outputs.update-needed == 'true'
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ github.token }}
           branch: update-swagger-ui-${{ steps.swagger-ui.outputs.latest-version }}
@@ -67,7 +70,7 @@ jobs:
           body-path: ${{ runner.temp }}/pull-request-body.md
 
       # PRs created with GITHUB_TOKEN do not trigger the Danger PR workflow.
-      - name: Add the pull request to the changelog
+      - name: Add Pull Request To Changelog
         if: steps.pull-request.outputs.pull-request-number != ''
         env:
           GH_TOKEN: ${{ github.token }}
