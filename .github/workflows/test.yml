@@ -1,48 +1,58 @@
-name: Tests
+name: Test
 on:
   push:
     branches:
       - master
   pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   test:
-    runs-on: ubuntu-latest
+    name: Ruby ${{ matrix.entry.ruby }} / JSON ${{ matrix.entry.json }} / ${{ matrix.entry.os }}
+    runs-on: ${{ matrix.entry.os }}
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
-        ruby: ['3.2', '3.3', '3.4']
-        rails: ['~> 8.1.4']
-        json: ['~> 2.0', '~> 3.0']
+        entry:
+          - { os: ubuntu-latest, ruby: '3.2', json: '~> 2.0' }
+          - { os: ubuntu-latest, ruby: '3.3', json: '~> 3.0' }
+          - { os: ubuntu-latest, ruby: '3.4', json: '~> 2.0' }
+          - { os: ubuntu-latest, ruby: '4.0', json: '~> 3.0' }
+          - { os: macos-latest, ruby: '4.0', json: '~> 3.0' }
     env:
       GRAPE_VERSION: '~> 3.1.0'
       GRAPE_SWAGGER_VERSION: '2.1.4'
-      RAILS_VERSION: ${{ matrix.rails }}
-      JSON_VERSION: ${{ matrix.json }}
+      RAILS_VERSION: '~> 8.1.4'
+      JSON_VERSION: ${{ matrix.entry.json }}
+      HEADLESS: 'true'
+      SE_SKIP_DRIVER_IN_PATH: 'true'
     steps:
-      - uses: actions/checkout@v6
-      - name: Set up Ruby
+      - name: Check Out Code
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Set Up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ matrix.ruby }}
+          ruby-version: ${{ matrix.entry.ruby }}
           bundler-cache: true
-      - name: Print Bundler Versions
-        run: bundle show
-      - name: Setup Firefox
-        uses: browser-actions/setup-firefox@v1
+      - name: Set Up Firefox
+        uses: browser-actions/setup-firefox@v1.7.2
         with:
-          firefox-version: "130.0"
-      - uses: browser-actions/setup-geckodriver@latest
-        with:
-          geckodriver-version: "0.35.0"
-      - name: Run tests with Sprockets
-        uses: coactions/setup-xvfb@v1
+          firefox-version: latest
+      - name: Test With Sprockets
         env:
           ASSET_PIPELINE: sprockets
-        with:
-          run: bundle exec rake spec
-      - name: Run tests with Propshaft
-        uses: coactions/setup-xvfb@v1
+        run: bundle exec rake spec
+      - name: Test With Propshaft
+        if: ${{ !cancelled() }}
         env:
           ASSET_PIPELINE: propshaft
-        with:
-          run: bundle exec rake spec
+        run: bundle exec rake spec

@@ -1,0 +1,79 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  ruby:
+    name: Ruby
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check Out Code
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Set Up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '4.0'
+          bundler-cache: true
+      - name: Lint Ruby
+        run: bundle exec rake rubocop
+
+  frontend:
+    name: Frontend
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check Out Code
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Set Up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '26'
+      - name: Set Up Corepack
+        run: |
+          npm install --global corepack@0.36.0
+          corepack enable
+      - name: Cache Yarn Dependencies
+        uses: actions/cache@v6
+        with:
+          path: .yarn/cache
+          key: yarn-${{ runner.os }}-node26-${{ hashFiles('yarn.lock') }}
+      - name: Install Dependencies
+        run: yarn install --immutable
+      - name: Check Types
+        run: yarn typecheck
+      - name: Build Frontend
+        run: yarn build:frontend
+      - name: Check Committed Frontend Assets
+        run: |
+          git diff --exit-code -- \
+            app/assets/javascripts/grape_swagger_rails/index.js \
+            app/assets/javascripts/grape_swagger_rails/index.min.js \
+            app/assets/javascripts/grape_swagger_rails/index.min.js.map
+
+  workflows:
+    name: GitHub Actions
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check Out Code
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Lint Workflows
+        uses: docker://rhysd/actionlint:1.7.12

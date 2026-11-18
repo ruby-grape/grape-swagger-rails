@@ -19,4 +19,9 @@ RSpec::Core::RakeTask.new(:spec)
 require 'rubocop/rake_task'
 RuboCop::RakeTask.new(:rubocop)
 
-task default: %i[rubocop spec]
+desc 'Lint Ruby and GitHub Actions workflows.'
+task lint: :rubocop do
+  sh 'actionlint'
+end
+
+task default: %i[lint spec]
