@@ -44,9 +44,12 @@ namespace :swagger_ui do
         # Sprockets apps that compress CSS with sassc (libsass) evaluate min() and max() as Sass
         # functions and fail on mixed units such as min(60vh,800px). CSS function names are
         # case-insensitive but libsass function names are not, so upper-casing them keeps the
-        # browser behaviour and makes libsass leave them untouched.
+        # browser behaviour and makes libsass leave them untouched. The same applies to CSS
+        # relative color syntax such as rgb(from red r g b), which libsass rejects as a call to
+        # its own rgb() function.
         css = File.read(File.join(dist, 'swagger-ui.css'))
         css = css.gsub(/(?<![\w-])(min|max)\(/) { "#{Regexp.last_match(1).upcase}(" }
+        css = css.gsub(/(?<![\w-])(rgba?|hsla?)\((?=\s*from\s)/) { "#{Regexp.last_match(1).upcase}(" }
         File.write(File.join(root, 'app/assets/stylesheets/grape_swagger_rails/swagger-ui.css'), css)
 
         semver = version.sub(/\Av/, '')
